@@ -2035,6 +2035,11 @@
               </div>
             </div>
 
+            <!-- ACTION: GO TO SUMMARY (DOWN OF YOUR BOOKING CARD) -->
+            <div class="bk-submit-row" id="bkSubmitRow" style="margin-top:14px; display:none;">
+              <button class="btn btn-glow magnetic" id="bkGoSummaryBtn" style="width:100%; justify-content:center;" disabled onclick="bkConfirmSlots()">Go to Summary →</button>
+            </div>
+
           </div> <!-- /bk-zone--left -->
 
           <!-- RIGHT ZONE: TIMING -->
@@ -2068,11 +2073,6 @@
           </div> <!-- /bk-zone--right -->
 
         </div> <!-- /bk-workspace-grid -->
-
-        <!-- FULL-WIDTH ACTION: GO TO SUMMARY -->
-        <div class="bk-submit-row" style="margin-top:16px;">
-          <button class="btn btn-glow magnetic" id="bkGoSummaryBtn" style="width:100%; justify-content:center;" disabled onclick="bkConfirmSlots()">Go to Summary →</button>
-        </div>
       </div>
 
       <!-- PANE 5 — BOOKING SUMMARY -->
@@ -2618,6 +2618,8 @@
     document.querySelectorAll('#bkTimePills .pill').forEach(pill=>pill.classList.remove('sel'));
     const rangeSummary = document.getElementById('bkRangeSummary');
     if(rangeSummary) rangeSummary.style.display = 'none';
+    const submitRow = document.getElementById('bkSubmitRow');
+    if(submitRow) submitRow.style.display = 'none';
 
     // Transition immediately: Date completes and compacts, Duration expands
     if(typeof bkSetSubStage === 'function'){
@@ -3395,6 +3397,7 @@
 
   function bkAdjustMobileOrder(){
     const summary = document.getElementById('bkRangeSummary');
+    const submitRow = document.getElementById('bkSubmitRow');
     const leftZone = document.querySelector('.bk-zone--left');
     const rightZone = document.querySelector('.bk-zone--right');
     if(!summary || !leftZone || !rightZone) return;
@@ -3402,9 +3405,15 @@
       if(summary.parentElement !== rightZone){
         rightZone.appendChild(summary);
       }
+      if(submitRow && submitRow.parentElement !== rightZone){
+        rightZone.appendChild(submitRow);
+      }
     } else {
       if(summary.parentElement !== leftZone){
         leftZone.appendChild(summary);
+      }
+      if(submitRow && submitRow.parentElement !== leftZone){
+        leftZone.appendChild(submitRow);
       }
     }
   }
@@ -3520,11 +3529,13 @@
     // Persistent Live Booking Overview (Left Zone under Duration)
     const rangeSummary = document.getElementById('bkRangeSummary');
     const connector2 = document.getElementById('bkConnector2');
+    const submitRow = document.getElementById('bkSubmitRow');
     const showPreview = hasDate;
 
     if(rangeSummary){
       rangeSummary.style.display = showPreview ? 'flex' : 'none';
       if(connector2) connector2.style.display = showPreview ? 'block' : 'none';
+      if(submitRow) submitRow.style.display = showPreview ? 'block' : 'none';
 
       if(showPreview){
         const sumDate = document.getElementById('bkSummaryDate');
@@ -3713,6 +3724,8 @@
       if(timePills) timePills.innerHTML = '';
       const rangeSummary = document.getElementById('bkRangeSummary');
       if(rangeSummary) rangeSummary.style.display = 'none';
+      const submitRow = document.getElementById('bkSubmitRow');
+      if(submitRow) submitRow.style.display = 'none';
       bkSetSubStage('duration', false);
       return;
     }
@@ -4123,6 +4136,8 @@
     bkState.selectedRange = null;
     document.querySelectorAll('#bkTimePills .pill').forEach(p=>p.classList.remove('sel'));
     document.getElementById('bkRangeSummary').style.display = 'none';
+    const submitRow = document.getElementById('bkSubmitRow');
+    if(submitRow) submitRow.style.display = 'none';
     bkRenderSlotsList();
     bkAddingSlot = true;
     bkDurationHours = 0;
@@ -4471,6 +4486,8 @@
     document.getElementById('bkTimeContinue')?.setAttribute('disabled', '');
     document.getElementById('bkTimeHint').textContent = 'Choose an available time range.';
     document.getElementById('bkRangeSummary').style.display = 'none';
+    const submitRow = document.getElementById('bkSubmitRow');
+    if(submitRow) submitRow.style.display = 'none';
 
     const selDateBadge = document.getElementById('bkSelectedDateBadge');
     if(selDateBadge) selDateBadge.style.display = 'none';
