@@ -60,7 +60,7 @@
   .btn{font-family:'Inter',sans-serif; font-weight:600; font-size:14px; padding:11px 24px; border-radius:100px; border:none; position:relative; overflow:hidden; display:inline-flex; align-items:center; gap:8px; transition:transform .15s ease-out, box-shadow .3s ease;}
   .btn-glow{background:linear-gradient(135deg,var(--emerald-light),var(--neon)); color:#04140D; box-shadow:0 0 24px rgba(57,255,122,0.4);}
   .btn-glow:hover{box-shadow:0 0 40px rgba(57,255,122,0.7);}
-  .btn-glow[disabled]{opacity:0.35; box-shadow:none; cursor:not-allowed; filter:grayscale(0.4);}
+  .btn-glow[disabled], .btn[disabled], button:disabled{opacity:0.35 !important; box-shadow:none !important; cursor:not-allowed !important; filter:grayscale(0.8) !important; pointer-events:none !important;}
   .btn-outline{background:transparent; color:var(--white); border:1px solid var(--border);}
   .btn-outline:hover{border-color:var(--neon); color:var(--neon);}
   .ripple{position:absolute; border-radius:50%; background:rgba(255,255,255,0.5); transform:scale(0); animation:rip .6s ease-out; pointer-events:none;}
@@ -630,35 +630,57 @@
 
   /* Stage Sections inside Zones */
   .bk-section, .bk-stage{position:relative; transition:all .28s ease; margin-bottom:0; border:none; background:transparent; padding:0; box-shadow:none;}
-  .bk-section.bk-section--locked .bk-section-body, .bk-stage.bk-stage--locked .bk-stage-body{max-height:0 !important; opacity:0 !important; pointer-events:none; overflow:hidden; margin:0 !important; padding:0 !important;}
-  .bk-section.bk-section--locked .bk-section-header, .bk-stage.bk-stage--locked .bk-stage-header{opacity:0.55; cursor:default;}
+  .bk-section.bk-section--locked .bk-section-body,
+  .bk-section.bk-stage--locked .bk-section-body,
+  .bk-stage.bk-stage--locked .bk-stage-body,
+  .bk-stage.bk-section--locked .bk-stage-body{max-height:0 !important; opacity:0 !important; pointer-events:none; overflow:hidden; margin:0 !important; padding:0 !important;}
+  .bk-section.bk-section--locked .bk-section-header,
+  .bk-section.bk-stage--locked .bk-section-header,
+  .bk-stage.bk-stage--locked .bk-stage-header,
+  .bk-stage.bk-section--locked .bk-stage-header{opacity:0.55; cursor:default;}
 
   /* Stage Headers */
   .bk-section-header, .bk-stage-header{display:flex; align-items:center; justify-content:space-between; gap:10px; cursor:pointer; user-select:none; padding:2px 0;}
   .bk-section-title-wrap, .bk-stage-indicator{display:flex; align-items:center; gap:8px;}
   .bk-section-tag, .bk-stage-bullet{font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; width:24px; height:24px; border-radius:7px; display:inline-flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.05); color:var(--muted); border:1px solid rgba(255,255,255,0.1); transition:all .22s ease;}
   .bk-section.bk-section--active .bk-section-tag,
-  .bk-stage.bk-stage--active .bk-stage-bullet{background:rgba(57,255,122,0.14); color:var(--neon); border-color:rgba(57,255,122,0.4); box-shadow:0 0 10px rgba(57,255,122,0.25);}
+  .bk-section.bk-stage--active .bk-section-tag,
+  .bk-stage.bk-stage--active .bk-stage-bullet,
+  .bk-stage.bk-section--active .bk-stage-bullet{background:rgba(57,255,122,0.14); color:var(--neon); border-color:rgba(57,255,122,0.4); box-shadow:0 0 10px rgba(57,255,122,0.25);}
   .bk-section.bk-section--compact .bk-section-tag,
-  .bk-stage.bk-stage--compact .bk-stage-bullet{background:var(--neon); color:#04140D; border-color:var(--neon); font-size:11.5px;}
+  .bk-section.bk-stage--compact .bk-section-tag,
+  .bk-stage.bk-stage--compact .bk-stage-bullet,
+  .bk-stage.bk-section--compact .bk-stage-bullet{background:var(--neon); color:#04140D; border-color:var(--neon); font-size:11.5px;}
   .bk-section-title, .bk-stage-name{font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color:var(--muted); font-family:'Space Grotesk',sans-serif; transition:color .2s ease;}
   .bk-section.bk-section--active .bk-section-title,
-  .bk-stage.bk-stage--active .bk-stage-name{color:var(--white);}
+  .bk-section.bk-stage--active .bk-section-title,
+  .bk-stage.bk-stage--active .bk-stage-name,
+  .bk-stage.bk-section--active .bk-stage-name{color:var(--white);}
   .bk-section.bk-section--compact .bk-section-title,
-  .bk-stage.bk-stage--compact .bk-stage-name{color:var(--white);}
+  .bk-section.bk-stage--compact .bk-section-title,
+  .bk-stage.bk-stage--compact .bk-stage-name,
+  .bk-stage.bk-section--compact .bk-stage-name{color:var(--white);}
 
   .bk-section-status, .bk-stage-summary-val{display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); margin-left:auto;}
   .bk-section-status.done, .bk-stage-summary-val.done{color:var(--neon); font-weight:600;}
   .bk-section-edit-btn, .bk-stage-edit{display:none; font-size:9.5px; font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:100px; padding:2px 8px; transition:all .2s ease;}
   .bk-section.bk-section--compact .bk-section-edit-btn,
-  .bk-stage.bk-stage--compact .bk-stage-edit{display:inline-flex;}
+  .bk-section.bk-stage--compact .bk-section-edit-btn,
+  .bk-stage.bk-stage--compact .bk-stage-edit,
+  .bk-stage.bk-section--compact .bk-stage-edit{display:inline-flex;}
   .bk-section-header:hover .bk-section-edit-btn,
   .bk-stage-header:hover .bk-stage-edit{color:var(--neon); border-color:var(--neon); background:rgba(57,255,122,0.1);}
 
   /* Stage Bodies */
   .bk-section-body, .bk-stage-body{margin-top:10px; transition:max-height .32s cubic-bezier(0.4, 0, 0.2, 1), opacity .25s ease; max-height:1400px; opacity:1; overflow:visible;}
   .bk-section.bk-section--compact .bk-section-body,
-  .bk-stage.bk-stage--compact .bk-stage-body{max-height:0 !important; opacity:0 !important; pointer-events:none; margin:0 !important; padding:0 !important; overflow:hidden;}
+  .bk-section.bk-stage--compact .bk-section-body,
+  .bk-stage.bk-stage--compact .bk-stage-body,
+  .bk-stage.bk-section--compact .bk-stage-body{max-height:0 !important; opacity:0 !important; pointer-events:none; margin:0 !important; padding:0 !important; overflow:hidden;}
+  .bk-section.bk-section--active .bk-section-body,
+  .bk-section.bk-stage--active .bk-section-body,
+  .bk-stage.bk-stage--active .bk-stage-body,
+  .bk-stage.bk-section--active .bk-stage-body{max-height:1400px !important; opacity:1 !important; pointer-events:auto !important; overflow:visible !important; margin-top:10px !important;}
 
   /* Duration Prompt & Compact Multi-Slot Toggle */
   .bk-dur-prompt{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px; flex-wrap:wrap;}
@@ -2396,10 +2418,6 @@
       dateStatus.classList.add('done');
     }
 
-    // Unlock duration section
-    const durSec = document.getElementById('bkSectionDuration');
-    if(durSec) durSec.classList.remove('bk-section--locked');
-
     // Reset any previously selected timing slot when date changes
     bkSelectedRange = null;
     bkState.start = null;
@@ -2409,25 +2427,24 @@
     const rangeSummary = document.getElementById('bkRangeSummary');
     if(rangeSummary) rangeSummary.style.display = 'none';
 
-    // Load availability for the new date and refresh times if duration is already chosen
+    // Transition immediately: Date completes and compacts, Duration expands
+    if(typeof bkSetSubStage === 'function'){
+      bkSetSubStage('duration', true);
+    } else if(typeof bkUpdateSubflowProgress === 'function'){
+      bkUpdateSubflowProgress();
+    }
+
+    // Load availability for the new date in background without disrupting the smooth Duration expansion
     bkLoadAvailability().then(() => {
       if(bkMultiEnabled){
         renderMultiSlotArea();
       } else if(bkDurationHours > 0){
         renderAvailableTimeRanges();
       }
-      if(typeof bkSetSubStage === 'function'){
-        bkSetSubStage('duration', true);
-      } else if(typeof bkUpdateSubflowProgress === 'function'){
+      if(typeof bkUpdateSubflowProgress === 'function'){
         bkUpdateSubflowProgress();
       }
     });
-
-    if(typeof bkSetSubStage === 'function'){
-      bkSetSubStage('duration', true);
-    } else if(typeof bkUpdateSubflowProgress === 'function'){
-      bkUpdateSubflowProgress();
-    }
 
     renderBkCalendar();
     bkPersist();
@@ -3099,6 +3116,16 @@
     }, 120);
   }
 
+  function bkSetSectionState(el, state){
+    if(!el) return;
+    el.classList.remove(
+      'bk-section--active', 'bk-section--compact', 'bk-section--locked',
+      'bk-stage--active', 'bk-stage--compact', 'bk-stage--locked'
+    );
+    el.classList.add(`bk-section--${state}`);
+    el.classList.add(`bk-stage--${state}`);
+  }
+
   function bkSetSubStage(stage, shouldScroll = true, isBackward = false){
     bkSubStage = stage;
     const hasDate = !!bkState.date;
@@ -3110,22 +3137,35 @@
     const secTime = document.getElementById('bkSectionTiming');
 
     if(secDate){
-      secDate.classList.toggle('bk-section--active', stage === 'date');
-      secDate.classList.toggle('bk-section--compact', stage !== 'date' && hasDate);
+      if(stage === 'date'){
+        bkSetSectionState(secDate, 'active');
+      } else if(hasDate){
+        bkSetSectionState(secDate, 'compact');
+      } else {
+        bkSetSectionState(secDate, 'active');
+      }
     }
 
     if(secDur){
-      const isLocked = !hasDate;
-      secDur.classList.toggle('bk-section--locked', isLocked);
-      secDur.classList.toggle('bk-section--active', stage === 'duration');
-      secDur.classList.toggle('bk-section--compact', stage !== 'duration' && hasDur);
+      if(stage === 'duration'){
+        bkSetSectionState(secDur, 'active');
+      } else if(hasDur && stage !== 'duration'){
+        bkSetSectionState(secDur, 'compact');
+      } else if(!hasDate){
+        bkSetSectionState(secDur, 'locked');
+      } else {
+        bkSetSectionState(secDur, stage === 'date' ? 'locked' : 'active');
+      }
     }
 
     if(secTime){
-      const isLocked = !hasDur;
-      secTime.classList.toggle('bk-section--locked', isLocked);
-      secTime.classList.toggle('bk-section--active', stage === 'timing');
-      secTime.classList.toggle('bk-section--compact', false);
+      if(stage === 'timing'){
+        bkSetSectionState(secTime, 'active');
+      } else if(!hasDur){
+        bkSetSectionState(secTime, 'locked');
+      } else {
+        bkSetSectionState(secTime, 'locked');
+      }
     }
 
     bkUpdateSubflowProgress();
@@ -3134,6 +3174,15 @@
       if(stage === 'date') bkRevealElementMinimal(secDate, 25, isBackward);
       else if(stage === 'duration') bkRevealElementMinimal(secDur, 25, isBackward);
       else if(stage === 'timing') bkRevealElementMinimal(secTime, 25, isBackward);
+    }
+
+    if(stage === 'duration'){
+      setTimeout(() => {
+        const activeChip = secDur?.querySelector('.bk-dur-chip.sel') || secDur?.querySelector('.bk-dur-chip');
+        if(activeChip && typeof activeChip.focus === 'function'){
+          try { activeChip.focus({ preventScroll: true }); } catch(e){}
+        }
+      }, 150);
     }
   }
 
@@ -3197,7 +3246,7 @@
     const durSec = document.getElementById('bkSectionDuration');
     const durStatus = document.getElementById('bkDurStatus');
     if(durSec && !durSec.classList.contains('bk-section--active') && !durSec.classList.contains('bk-section--compact')){
-      durSec.classList.toggle('bk-section--locked', !hasDate);
+      bkSetSectionState(durSec, hasDate ? 'active' : 'locked');
     }
     if(durStatus){
       const txt = durStatus.querySelector('.bk-status-text') || durStatus;
@@ -3216,7 +3265,7 @@
     const timeSec = document.getElementById('bkSectionTiming');
     const timeStatus = document.getElementById('bkTimeStatus');
     if(timeSec && !timeSec.classList.contains('bk-section--active')){
-      timeSec.classList.toggle('bk-section--locked', !hasDur);
+      bkSetSectionState(timeSec, 'locked');
     }
     if(timeStatus){
       const txt = timeStatus.querySelector('.bk-status-text') || timeStatus;
