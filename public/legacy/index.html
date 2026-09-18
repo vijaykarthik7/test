@@ -612,13 +612,13 @@
   .bk-builder-badge.ready{background:rgba(57,255,122,0.1); border-color:rgba(57,255,122,0.3); color:var(--neon);}
   .bk-builder-badge.ready .bk-status-dot{background:var(--neon); box-shadow:0 0 8px var(--neon);}
 
-  /* 2-Zone Workspace Grid */
-  .bk-workspace-grid{display:grid; grid-template-columns:1.14fr 0.86fr; gap:16px; align-items:start; width:100%; box-sizing:border-box;}
+  /* 2-Zone Workspace Grid (Balanced 1:1 What vs When) */
+  .bk-workspace-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; width:100%; box-sizing:border-box;}
   @media (max-width: 768px){ .bk-workspace-grid{grid-template-columns:1fr; gap:14px;} }
 
-  /* Zones: Left (Date + Duration) and Right (Timing + Selection) */
+  /* Zones: Left (Date + Duration + Live Preview) and Right (Timing Grid) */
   .bk-zone{background:rgba(10,18,14,0.45); border:1px solid rgba(57,255,122,0.14); border-radius:16px; padding:16px 18px; backdrop-filter:blur(14px); box-sizing:border-box; display:flex; flex-direction:column; min-width:0; position:relative; box-shadow:inset 0 1px 1px rgba(255,255,255,0.04), 0 16px 36px rgba(0,0,0,0.32);}
-  .bk-zone-divider{height:1px; background:rgba(255,255,255,0.06); margin:14px 0; transition:background .25s ease;}
+  .bk-zone-divider{height:1px; background:rgba(255,255,255,0.06); margin:12px 0; transition:background .25s ease;}
 
   /* Contained Responsive Calendar in Left Zone (Strictly bounds calendar) */
   .bk-zone .rc-cal{margin:8px 0 0 !important; padding:10px 8px 12px !important; width:100% !important; max-width:100% !important; box-sizing:border-box !important; background:rgba(0,0,0,0.35) !important; border:1px solid rgba(255,255,255,0.07) !important; border-radius:12px !important;}
@@ -697,25 +697,69 @@
   .bk-dur-chip:hover{border-color:rgba(57,255,122,0.4); color:var(--white); background:rgba(57,255,122,0.06);}
   .bk-dur-chip.sel{background:linear-gradient(135deg, #0fa857, #39ff7a) !important; color:#04140D !important; font-weight:700 !important; border-color:#39ff7a !important; box-shadow:0 0 14px rgba(57,255,122,0.3) !important;}
 
-  /* Timing Prompt & Grid (2-Column in Right Zone) */
+  /* Timing Prompt & Compact 2-Column Grid (Right Zone) */
   .bk-timing-prompt{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px;}
   .bk-timing-sub{font-size:11.5px; color:var(--muted); font-family:'Inter',sans-serif;}
-  .bk-time-grid{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:7px; width:100%; box-sizing:border-box;}
-  @media (max-width: 480px){ .bk-time-grid{grid-template-columns:1fr;} }
-  .bk-time-grid .pill{width:100%; min-width:0; min-height:38px; box-sizing:border-box; text-align:center; display:flex; align-items:center; justify-content:center; padding:6px 4px; font-size:10.5px; font-weight:500; font-family:'JetBrains Mono',monospace; border-radius:7px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); color:#dedede; transition:all .18s ease; cursor:pointer;}
-  .bk-time-grid .pill:hover{border-color:rgba(57,255,122,0.45); color:var(--white); transform:translateY(-1px); background:rgba(57,255,122,0.06);}
-  .bk-time-grid .pill.sel{background:linear-gradient(135deg, #0fa857, #39ff7a) !important; color:#04140D !important; font-weight:700 !important; border-color:#39ff7a !important; box-shadow:0 0 16px rgba(57,255,122,0.35) !important; transform:none !important;}
+  .bk-time-grid, #bkTimePills.bk-time-grid{display:grid !important; grid-template-columns:repeat(2, minmax(0, 1fr)) !important; gap:6px !important; width:100% !important; box-sizing:border-box !important;}
+  @media (max-width: 440px){ .bk-time-grid, #bkTimePills.bk-time-grid{grid-template-columns:1fr !important;} }
+  .bk-zone .bk-time-grid .pill,
+  #book .bk-zone #bkTimePills .pill{
+    width:100% !important;
+    min-width:0 !important;
+    height:34px !important;
+    min-height:34px !important;
+    max-height:34px !important;
+    box-sizing:border-box !important;
+    text-align:center !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    padding:0 8px !important;
+    font-size:11px !important;
+    font-weight:500 !important;
+    font-family:'JetBrains Mono',monospace !important;
+    border-radius:8px !important;
+    background:rgba(255,255,255,0.035) !important;
+    border:1px solid rgba(255,255,255,0.08) !important;
+    color:#dedede !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    line-height:1 !important;
+    transition:all .16s ease !important;
+    cursor:pointer !important;
+  }
+  .bk-zone .bk-time-grid .pill:hover,
+  #book .bk-zone #bkTimePills .pill:hover{
+    border-color:rgba(57,255,122,0.45) !important;
+    color:var(--white) !important;
+    transform:translateY(-1px) !important;
+    background:rgba(57,255,122,0.07) !important;
+  }
+  .bk-zone .bk-time-grid .pill.sel,
+  #book .bk-zone #bkTimePills .pill.sel{
+    background:linear-gradient(135deg, #0fa857, #39ff7a) !important;
+    color:#04140D !important;
+    font-weight:700 !important;
+    border-color:#39ff7a !important;
+    box-shadow:0 0 14px rgba(57,255,122,0.35) !important;
+    transform:none !important;
+  }
 
-  /* Selection Summary Panel (Inside Right Zone Under Timing) */
-  .bk-selection-panel{margin-top:12px; background:rgba(0,0,0,0.45); border:1px solid rgba(57,255,122,0.22); border-radius:10px; padding:10px 12px; box-sizing:border-box; animation:bkFadeIn .25s ease;}
-  @keyframes bkFadeIn{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
-  .bk-selection-panel-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; padding-bottom:5px; border-bottom:1px solid rgba(255,255,255,0.06);}
-  .bk-selection-title{font-size:9.5px; font-family:'JetBrains Mono',monospace; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted);}
-  .bk-panel-row{display:flex; align-items:center; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:11px; margin-bottom:3px;}
+  /* Live Booking Preview (Inside Left Zone Under Duration) */
+  .bk-selection-panel{margin-top:2px; background:rgba(255,255,255,0.02); border:1px solid rgba(57,255,122,0.12); border-radius:12px; padding:12px 14px; box-sizing:border-box; animation:bkFadeIn .22s ease;}
+  @keyframes bkFadeIn{from{opacity:0; transform:translateY(3px);} to{opacity:1; transform:translateY(0);}}
+  .bk-selection-panel-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid rgba(255,255,255,0.06);}
+  .bk-selection-title{font-size:10px; font-family:'JetBrains Mono',monospace; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted);}
+  .bk-meta-price{color:var(--neon); font-weight:700; font-size:13.5px; font-family:'JetBrains Mono',monospace;}
+  .bk-panel-row{display:flex; align-items:center; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:11px; margin-bottom:5px;}
   .bk-panel-row:last-child{margin-bottom:0;}
   .bk-panel-label{color:var(--muted);}
   .bk-panel-val{color:var(--white); font-weight:600;}
-  .bk-meta-price{color:var(--neon); font-weight:700; font-size:13px; font-family:'JetBrains Mono',monospace;}
+  .bk-preview-waiting{color:var(--muted); font-weight:500; font-style:italic;}
+  .bk-preview-done{color:var(--neon); font-weight:700;}
+  .bk-panel-footer{margin-top:8px; padding-top:6px; border-top:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:space-between;}
+  .bk-panel-venue{font-size:9.5px; font-family:'JetBrains Mono',monospace; color:rgba(255,255,255,0.4);}
 
   /* Expand booking-shell slightly on wide desktop when Book Slot is shown */
   @media (min-width: 900px){
@@ -1830,9 +1874,36 @@
               </div>
             </div>
 
+            <div class="bk-zone-divider" id="bkConnector2" style="display:none;"></div>
+
+            <!-- LIVE BOOKING PREVIEW (IN LEFT ZONE UNDER DURATION) -->
+            <div class="bk-selection-panel" id="bkRangeSummary" style="display:none;">
+              <div class="bk-selection-panel-head">
+                <span class="bk-selection-title">YOUR BOOKING</span>
+                <span class="bk-meta-price" id="bkDurAmt">₹—</span>
+              </div>
+              <div class="bk-selection-panel-body">
+                <div class="bk-panel-row">
+                  <span class="bk-panel-label">📅 Date</span>
+                  <b class="bk-panel-val" id="bkSummaryDate">—</b>
+                </div>
+                <div class="bk-panel-row">
+                  <span class="bk-panel-label">⏱ Duration</span>
+                  <b class="bk-panel-val" id="bkDurLabel">—</b>
+                </div>
+                <div class="bk-panel-row">
+                  <span class="bk-panel-label">⚽ Timing</span>
+                  <b class="bk-panel-val" id="bkRangeSel"><span class="bk-preview-waiting">Choose timing</span></b>
+                </div>
+              </div>
+              <div class="bk-panel-footer">
+                <span class="bk-panel-venue">📍 TurfOn24 Arena • FIFA-Standard 7v7</span>
+              </div>
+            </div>
+
           </div> <!-- /bk-zone--left -->
 
-          <!-- RIGHT ZONE: TIMING + SELECTION SUMMARY -->
+          <!-- RIGHT ZONE: TIMING -->
           <div class="bk-zone bk-zone--right">
 
             <!-- STAGE 3: TIMING -->
@@ -1857,19 +1928,6 @@
                   <button class="btn btn-outline magnetic" id="bkAddSlotBtn" type="button" style="display:none; width:100%; justify-content:center; margin-top:10px;" onclick="bkAddAnotherSlot()">+ Add another slot</button>
                 </div>
                 <div id="bkMultiSlotArea" style="display:none;"></div>
-              </div>
-            </div>
-
-            <!-- COMPACT SELECTION SUMMARY PANEL (INSIDE RIGHT ZONE) -->
-            <div class="bk-selection-panel" id="bkRangeSummary" style="display:none;">
-              <div class="bk-selection-panel-head">
-                <span class="bk-selection-title">YOUR SELECTION</span>
-                <span class="bk-meta-price" id="bkDurAmt">₹—</span>
-              </div>
-              <div class="bk-selection-panel-body">
-                <div class="bk-panel-row"><span class="bk-panel-label">📅 Date</span><b class="bk-panel-val" id="bkSummaryDate">—</b></div>
-                <div class="bk-panel-row"><span class="bk-panel-label">⏱ Duration</span><b class="bk-panel-val" id="bkDurLabel">—</b></div>
-                <div class="bk-panel-row"><span class="bk-panel-label">⚽ Timing</span><b class="bk-panel-val" id="bkRangeSel">—</b></div>
               </div>
             </div>
 
@@ -3281,22 +3339,44 @@
       }
     }
 
-    // Compact Selection Summary Bar
+    // Live Booking Preview (in Left Zone under Duration)
     const rangeSummary = document.getElementById('bkRangeSummary');
+    const connector2 = document.getElementById('bkConnector2');
+    const showPreview = hasDate && hasDur && (bkSubStage === 'timing');
+
     if(rangeSummary){
-      const ready = hasDate && hasDur && hasTime;
-      rangeSummary.style.display = ready ? 'block' : 'none';
-      if(ready){
+      rangeSummary.style.display = showPreview ? 'block' : 'none';
+      if(connector2) connector2.style.display = showPreview ? 'block' : 'none';
+
+      if(showPreview){
         const sumDate = document.getElementById('bkSummaryDate');
-        if(sumDate && bkState.dateLabel) sumDate.textContent = `📅 ${bkState.dateLabel}`;
+        if(sumDate && bkState.dateLabel) sumDate.textContent = bkState.dateLabel;
+
         const durLabel = document.getElementById('bkDurLabel');
-        if(durLabel) durLabel.textContent = `⏱ ${bkDurationLabel()}`;
-        const rangeSel = document.getElementById('bkRangeSel');
-        if(rangeSel && bkState.start && bkState.end && bkState.start !== 'null' && bkState.end !== 'null'){
-          rangeSel.textContent = `⚽ ${bkState.start} – ${bkState.end}`;
+        if(durLabel){
+          durLabel.textContent = bkMultiEnabled 
+            ? `${bkSlots.length} slots (${bkTotalHours()} hrs)`
+            : `${bkDurationHours} Hour${bkDurationHours > 1 ? 's' : ''}`;
         }
+
+        const rangeSel = document.getElementById('bkRangeSel');
+        if(rangeSel){
+          if(hasTime && bkState.start && bkState.end && bkState.start !== 'null' && bkState.end !== 'null'){
+            rangeSel.innerHTML = `<span class="bk-preview-done">✓ ${bkState.start} – ${bkState.end}</span>`;
+          } else {
+            rangeSel.innerHTML = `<span class="bk-preview-waiting">Choose timing on right →</span>`;
+          }
+        }
+
         const durAmt = document.getElementById('bkDurAmt');
-        if(durAmt) durAmt.textContent = `₹${(bkDuration()*getSiteRate()).toLocaleString('en-IN')}`;
+        if(durAmt){
+          const hours = bkMultiEnabled ? bkTotalHours() : bkDuration();
+          if(hours > 0){
+            durAmt.textContent = `₹${(hours * getSiteRate()).toLocaleString('en-IN')}`;
+          } else {
+            durAmt.textContent = '₹—';
+          }
+        }
       }
     }
 
@@ -3540,20 +3620,6 @@
     bkState.selectedRange = range;
     document.querySelectorAll('#bkTimePills .pill').forEach(pill=>pill.classList.toggle('sel', Number(pill.dataset.start) === range.start.getTime()));
     
-    const rangeSel = document.getElementById('bkRangeSel');
-    if(rangeSel && bkState.start && bkState.end && bkState.start !== 'null' && bkState.end !== 'null'){
-      rangeSel.textContent = `⚽ ${bkState.start} – ${bkState.end}`;
-    }
-    const durLabel = document.getElementById('bkDurLabel');
-    if(durLabel) durLabel.textContent = `⏱ ${bkDurationLabel()}`;
-    const durAmt = document.getElementById('bkDurAmt');
-    if(durAmt) durAmt.textContent = `₹${(bkDuration()*getSiteRate()).toLocaleString('en-IN')}`;
-    const sumDate = document.getElementById('bkSummaryDate');
-    if(sumDate && bkState.dateLabel) sumDate.textContent = `📅 ${bkState.dateLabel}`;
-
-    const summaryBar = document.getElementById('bkRangeSummary');
-    if(summaryBar) summaryBar.style.display = 'block';
-
     const timeCont = document.getElementById('bkTimeContinue');
     if(timeCont) timeCont.removeAttribute('disabled');
     bkSetAddSlotBtn(true);
@@ -3590,22 +3656,8 @@
       bkSelectedRange = null;
       bkState.start = null;
       bkState.end = null;
-      const summaryBar = document.getElementById('bkRangeSummary');
-      if(summaryBar) summaryBar.style.display = 'none';
       bkSetAddSlotBtn(false);
     } else {
-      const rangeSel = document.getElementById('bkRangeSel');
-      if(rangeSel && bkState.start && bkState.end && bkState.start !== 'null' && bkState.end !== 'null'){
-        rangeSel.textContent = `⚽ ${bkState.start} – ${bkState.end}`;
-      }
-      const durLabel = document.getElementById('bkDurLabel');
-      if(durLabel) durLabel.textContent = `⏱ ${bkDurationLabel()}`;
-      const durAmt = document.getElementById('bkDurAmt');
-      if(durAmt) durAmt.textContent = `₹${(bkDuration()*getSiteRate()).toLocaleString('en-IN')}`;
-      const sumDate = document.getElementById('bkSummaryDate');
-      if(sumDate && bkState.dateLabel) sumDate.textContent = `📅 ${bkState.dateLabel}`;
-      const summaryBar = document.getElementById('bkRangeSummary');
-      if(summaryBar) summaryBar.style.display = 'block';
       bkSetAddSlotBtn(true);
     }
     bkRenderSlotsList();
