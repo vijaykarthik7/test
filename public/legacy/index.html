@@ -602,50 +602,91 @@
   .bk-slot-pills .pill{width:100%; min-width:0; min-height:38px; box-sizing:border-box; text-align:center; white-space:pre-line; line-height:1.3; font-size:12px; display:flex; align-items:center; justify-content:center;}
   .bk-slot-empty{grid-column:1 / -1; font-size:12px; color:var(--muted); font-style:italic; padding:8px 2px;}
 
-  /* ---- Unified Date/Duration/Timing Vertical Progressive Accordion ---- */
-  .bk-subflow-bar{display:flex; align-items:center; justify-content:space-between; background:rgba(10,18,15,0.75); border:1px solid var(--border); border-radius:14px; padding:10px 16px; margin-bottom:24px; backdrop-filter:blur(8px);}
-  .bk-substep{display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); transition:all .25s ease; cursor:pointer;}
-  .bk-substep-icon{width:22px; height:22px; border-radius:50%; border:1px solid var(--border); display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:var(--muted); transition:all .25s ease;}
-  .bk-substep.active{color:var(--white);}
-  .bk-substep.active .bk-substep-icon{border-color:var(--neon); color:var(--neon); box-shadow:0 0 10px rgba(57,255,122,0.35); background:rgba(57,255,122,0.08);}
-  .bk-substep.done{color:var(--neon);}
-  .bk-substep.done .bk-substep-icon{background:var(--neon); color:#04140D; border-color:var(--neon); font-size:11px;}
-  .bk-substep-text{text-transform:uppercase; letter-spacing:0.06em; font-weight:600;}
-  .bk-substep-divider{flex:1; height:1px; background:var(--border); margin:0 12px; transition:background .3s ease;}
-  .bk-substep-divider.done{background:rgba(57,255,122,0.5);}
+  /* ---- Premium Compact Booking Builder Workspace ---- */
+  .bk-builder-head{display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:16px; flex-wrap:wrap;}
+  .bk-builder-title-group{display:flex; flex-direction:column; gap:3px;}
+  .bk-builder-title{margin:0; font-size:16px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--white); font-family:'Space Grotesk',sans-serif;}
+  .bk-builder-subtitle{margin:0; font-size:12px; color:var(--muted); font-family:'Inter',sans-serif;}
+  .bk-builder-badge{display:inline-flex; align-items:center; gap:7px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:100px; padding:4px 10px; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--muted); transition:all .25s ease;}
+  .bk-builder-badge .bk-status-dot{width:6px; height:6px; border-radius:50%; background:var(--muted); transition:all .25s ease;}
+  .bk-builder-badge.ready{background:rgba(57,255,122,0.1); border-color:rgba(57,255,122,0.3); color:var(--neon);}
+  .bk-builder-badge.ready .bk-status-dot{background:var(--neon); box-shadow:0 0 8px var(--neon);}
 
-  .bk-section{background:rgba(16,24,21,0.5); border:1px solid var(--border); border-radius:16px; padding:20px; margin-bottom:20px; transition:max-height .38s cubic-bezier(0.4, 0, 0.2, 1), opacity .3s ease, padding .35s ease, margin .35s ease, border-color .3s ease, box-shadow .3s ease; position:relative; overflow:hidden;}
-  .bk-section:last-of-type{margin-bottom:0;}
-  .bk-section.bk-section--active{border-color:rgba(57,255,122,0.45); box-shadow:0 0 24px rgba(57,255,122,0.08); background:rgba(18,28,24,0.6);}
-  .bk-section.bk-section--locked{max-height:0 !important; opacity:0 !important; pointer-events:none; overflow:hidden; margin-bottom:0 !important; padding-top:0 !important; padding-bottom:0 !important; border-color:transparent !important;}
+  /* Unified Booking Surface (Single Seamless Container, No Heavy Boxed Cards) */
+  .bk-builder-workspace{background:rgba(10,18,14,0.45); border:1px solid rgba(57,255,122,0.14); border-radius:16px; padding:18px 20px; backdrop-filter:blur(14px); position:relative; box-shadow:inset 0 1px 1px rgba(255,255,255,0.04), 0 16px 36px rgba(0,0,0,0.32);}
   
-  .bk-section-header{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:0; flex-wrap:wrap; user-select:none; transition:margin-bottom .25s ease;}
-  .bk-section:not(.bk-section--compact) .bk-section-header{margin-bottom:14px;}
-  .bk-section-title-wrap{display:flex; align-items:center; gap:8px;}
-  .bk-section-tag{font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:0.08em; padding:2px 7px; border-radius:6px; background:rgba(57,255,122,0.12); color:var(--neon); border:1px solid rgba(57,255,122,0.22); transition:all .2s ease;}
-  .bk-section-title{font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--white);}
-  .bk-section-status{font-size:11.5px; font-family:'JetBrains Mono',monospace; color:var(--muted); margin-left:auto; display:flex; align-items:center; gap:8px;}
-  .bk-section-status.done{color:var(--neon);}
-  .bk-section-edit-btn{display:none; font-size:10px; font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:100px; padding:3px 9px; transition:all .2s ease;}
-  .bk-section-edit-btn:hover{color:var(--neon); border-color:var(--neon); background:rgba(57,255,122,0.1);}
+  /* Stage Section */
+  .bk-section, .bk-stage{position:relative; transition:all .28s ease; margin-bottom:0; border:none; background:transparent; padding:0; box-shadow:none;}
+  .bk-section.bk-section--locked, .bk-stage.bk-stage--locked{max-height:0 !important; opacity:0 !important; pointer-events:none; overflow:hidden; margin:0 !important; padding:0 !important;}
 
-  /* Compact Completed Section */
-  .bk-section.bk-section--compact{cursor:pointer; background:rgba(12,20,17,0.4); border-color:rgba(57,255,122,0.22); padding:14px 20px;}
-  .bk-section.bk-section--compact:hover{border-color:rgba(57,255,122,0.5); background:rgba(16,26,22,0.6);}
-  .bk-section.bk-section--compact .bk-section-tag{background:rgba(57,255,122,0.2); color:var(--neon);}
-  .bk-section.bk-section--compact .bk-section-edit-btn{display:inline-flex;}
-  .bk-section.bk-section--compact .bk-section-body{max-height:0 !important; opacity:0 !important; pointer-events:none; margin:0 !important; padding:0 !important; overflow:hidden;}
+  /* Stage Connector Hairline */
+  .bk-stage-connector{height:1px; background:rgba(255,255,255,0.06); margin:16px 0; transition:background .25s ease;}
+  .bk-section.bk-section--locked + .bk-stage-connector,
+  .bk-stage.bk-stage--locked + .bk-stage-connector{display:none;}
+  
+  /* Stage Header */
+  .bk-section-header, .bk-stage-header{display:flex; align-items:center; justify-content:space-between; gap:10px; cursor:pointer; user-select:none; padding:2px 0;}
+  .bk-section-title-wrap, .bk-stage-indicator{display:flex; align-items:center; gap:9px;}
+  .bk-section-tag, .bk-stage-bullet{font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; width:24px; height:24px; border-radius:7px; display:inline-flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.05); color:var(--muted); border:1px solid rgba(255,255,255,0.1); transition:all .22s ease;}
+  .bk-section.bk-section--active .bk-section-tag,
+  .bk-stage.bk-stage--active .bk-stage-bullet{background:rgba(57,255,122,0.14); color:var(--neon); border-color:rgba(57,255,122,0.4); box-shadow:0 0 10px rgba(57,255,122,0.25);}
+  .bk-section.bk-section--compact .bk-section-tag,
+  .bk-stage.bk-stage--compact .bk-stage-bullet{background:var(--neon); color:#04140D; border-color:var(--neon); font-size:11.5px;}
+  .bk-section-title, .bk-stage-name{font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color:var(--muted); font-family:'Space Grotesk',sans-serif; transition:color .2s ease;}
+  .bk-section.bk-section--active .bk-section-title,
+  .bk-stage.bk-stage--active .bk-stage-name{color:var(--white);}
+  .bk-section.bk-section--compact .bk-section-title,
+  .bk-stage.bk-stage--compact .bk-stage-name{color:var(--white);}
 
-  /* Collapsible Section Body */
-  .bk-section-body{transition:max-height .35s cubic-bezier(0.4, 0, 0.2, 1), opacity .3s ease; max-height:1200px; opacity:1; overflow:visible;}
+  .bk-section-status, .bk-stage-summary-val{display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); margin-left:auto;}
+  .bk-section-status.done, .bk-stage-summary-val.done{color:var(--neon); font-weight:600;}
+  .bk-section-edit-btn, .bk-stage-edit{display:none; font-size:9.5px; font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:100px; padding:2px 8px; transition:all .2s ease;}
+  .bk-section.bk-section--compact .bk-section-edit-btn,
+  .bk-stage.bk-stage--compact .bk-stage-edit{display:inline-flex;}
+  .bk-section-header:hover .bk-section-edit-btn,
+  .bk-stage-header:hover .bk-stage-edit{color:var(--neon); border-color:var(--neon); background:rgba(57,255,122,0.1);}
 
-  .bk-selection-badge{display:inline-flex; align-items:center; gap:8px; background:rgba(57,255,122,0.1); border:1px solid rgba(57,255,122,0.3); border-radius:100px; padding:6px 14px; margin-top:14px; font-size:12px; color:var(--white); font-family:'JetBrains Mono',monospace;}
-  .bk-selection-badge .badge-icon{color:var(--neon); font-weight:bold;}
-  .bk-selection-badge .badge-label{color:var(--muted); text-transform:uppercase; font-size:10.5px; letter-spacing:0.05em;}
-  .bk-selection-badge .badge-val{color:var(--white); font-weight:600;}
+  /* Stage Body */
+  .bk-section-body, .bk-stage-body{margin-top:12px; transition:max-height .32s cubic-bezier(0.4, 0, 0.2, 1), opacity .25s ease; max-height:1400px; opacity:1; overflow:visible;}
+  .bk-section.bk-section--compact .bk-section-body,
+  .bk-stage.bk-stage--compact .bk-stage-body{max-height:0 !important; opacity:0 !important; pointer-events:none; margin:0 !important; padding:0 !important; overflow:hidden;}
+
+  /* Duration Prompt & Compact Multi-Slot Toggle */
+  .bk-dur-prompt{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; flex-wrap:wrap;}
+  .bk-dur-sub{font-size:11.5px; color:var(--muted); font-family:'Inter',sans-serif;}
+  .bk-compact-toggle{display:inline-flex; align-items:center; cursor:pointer; user-select:none; margin:0;}
+  .bk-compact-toggle input{display:none;}
+  .bk-toggle-pill{display:inline-flex; align-items:center; gap:5px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:100px; padding:3px 9px; transition:all .2s ease;}
+  .bk-compact-toggle input:checked + .bk-toggle-pill{background:rgba(57,255,122,0.12); border-color:rgba(57,255,122,0.35); color:var(--neon);}
+  .bk-toggle-icon{font-size:10.5px; font-weight:700;}
+
+  /* Duration Chips Grid */
+  .bk-duration-grid{display:grid; grid-template-columns:repeat(6, minmax(0,1fr)); gap:7px; width:100%; box-sizing:border-box;}
+  @media (max-width: 600px){ .bk-duration-grid{grid-template-columns:repeat(4, minmax(0,1fr));} }
+  .bk-dur-chip{width:100%; min-width:0; box-sizing:border-box; text-align:center; padding:9px 4px; font-size:11px; font-weight:600; font-family:'JetBrains Mono',monospace; border-radius:8px; background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); color:var(--muted); transition:all .18s ease; cursor:pointer;}
+  .bk-dur-chip:hover{border-color:rgba(57,255,122,0.4); color:var(--white); background:rgba(57,255,122,0.06);}
+  .bk-dur-chip.sel{background:linear-gradient(135deg, #0fa857, #39ff7a) !important; color:#04140D !important; font-weight:700 !important; border-color:#39ff7a !important; box-shadow:0 0 14px rgba(57,255,122,0.3) !important;}
+
+  /* Timing Prompt & Grid */
+  .bk-timing-prompt{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px;}
+  .bk-timing-sub{font-size:11.5px; color:var(--muted); font-family:'Inter',sans-serif;}
+  .bk-time-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); gap:8px; width:100%; box-sizing:border-box;}
+  @media (max-width: 500px){ .bk-time-grid{grid-template-columns:repeat(2, minmax(0,1fr));} }
+  .bk-time-grid .pill{width:100%; min-width:0; min-height:40px; box-sizing:border-box; text-align:center; display:flex; align-items:center; justify-content:center; padding:7px 6px; font-size:11px; font-weight:500; font-family:'JetBrains Mono',monospace; border-radius:8px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); color:#dedede; transition:all .18s ease; cursor:pointer;}
+  .bk-time-grid .pill:hover{border-color:rgba(57,255,122,0.45); color:var(--white); transform:translateY(-1px); background:rgba(57,255,122,0.06);}
+  .bk-time-grid .pill.sel{background:linear-gradient(135deg, #0fa857, #39ff7a) !important; color:#04140D !important; font-weight:700 !important; border-color:#39ff7a !important; box-shadow:0 0 16px rgba(57,255,122,0.35) !important; transform:none !important;}
+
+  /* Selection Summary Bar (Compact Floating Bar) */
+  .bk-selection-bar{margin-top:14px; background:rgba(8,16,12,0.85); border:1px solid rgba(57,255,122,0.25); border-radius:10px; padding:10px 16px; box-shadow:0 6px 20px rgba(0,0,0,0.35); animation:bkFadeIn .25s ease;}
+  @keyframes bkFadeIn{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+  .bk-selection-details{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .bk-selection-title{font-size:9.5px; font-family:'JetBrains Mono',monospace; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted);}
+  .bk-selection-meta{display:flex; align-items:center; gap:7px; font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--white); flex-wrap:wrap;}
+  .bk-meta-sep{color:rgba(255,255,255,0.2); font-size:10px;}
+  .bk-meta-price{color:var(--neon); font-weight:700; font-size:13px;}
 
   @media (prefers-reduced-motion: reduce){
-    .bk-section, .bk-section-body, .bk-substep, .bk-substep-divider{transition:none !important;}
+    .bk-section, .bk-stage, .bk-section-body, .bk-stage-body{transition:none !important;}
   }
 
   .qr-card{border:1px solid var(--border); border-radius:20px; padding:32px; text-align:center; position:relative; overflow:hidden; background:var(--black); animation:qrReveal .5s cubic-bezier(.2,.8,.2,1);}
@@ -1649,129 +1690,155 @@
         <button class="btn btn-glow magnetic" id="bkVerifyContinue" style="width:100%; justify-content:center; margin-top:18px;" onclick="bkContinueFromVerification()">Continue to date selection →</button>
       </div>
 
-      <!-- PANE 2 — DATE + DURATION + TIMING (SINGLE COMPACT PAGE) -->
+      <!-- PANE 2 — BOOKING BUILDER WORKSPACE (UNIFIED SURFACE) -->
       <div id="bkPane2" class="bk-pane" style="display:none;">
-        <!-- Compact In-Page Sub-Progress Tracker -->
-        <div class="bk-subflow-bar" id="bkSubflowBar">
-          <div class="bk-substep active" id="bkSubstepDate" onclick="bkHandleSubstepClick('date')">
-            <span class="bk-substep-icon">01</span>
-            <span class="bk-substep-text">Date</span>
+        <!-- Compact Workspace Header -->
+        <div class="bk-builder-head">
+          <div class="bk-builder-title-group">
+            <h2 class="bk-builder-title">BOOK YOUR SLOT</h2>
+            <p class="bk-builder-subtitle">Choose your date, duration and preferred timing</p>
           </div>
-          <div class="bk-substep-divider" id="bkSubstepDiv1"></div>
-          <div class="bk-substep" id="bkSubstepDur" onclick="bkHandleSubstepClick('duration')">
-            <span class="bk-substep-icon">02</span>
-            <span class="bk-substep-text">Duration</span>
-          </div>
-          <div class="bk-substep-divider" id="bkSubstepDiv2"></div>
-          <div class="bk-substep" id="bkSubstepTime" onclick="bkHandleSubstepClick('timing')">
-            <span class="bk-substep-icon">03</span>
-            <span class="bk-substep-text">Timing</span>
+          <div class="bk-builder-badge" id="bkBuilderStatusBadge">
+            <span class="bk-status-dot"></span>
+            <span class="bk-status-counter" id="bkBuilderCount">1 of 3 selected</span>
           </div>
         </div>
 
-        <!-- SECTION 1 — SELECT DATE -->
-        <div class="bk-section bk-section--active" id="bkSectionDate">
-          <div class="bk-section-header" onclick="bkHandleHeaderClick('date')" role="button" tabindex="0" aria-label="Section 1: Select Date">
-            <div class="bk-section-title-wrap">
-              <span class="bk-section-tag" id="bkDateTag">01</span>
-              <span class="bk-section-title">Select Date</span>
+        <!-- Unified Surface -->
+        <div class="bk-builder-workspace">
+          <!-- STAGE 1: DATE -->
+          <div class="bk-stage bk-section bk-stage--active bk-section--active" id="bkSectionDate">
+            <div class="bk-stage-header bk-section-header" onclick="bkHandleHeaderClick('date')" role="button" tabindex="0" aria-label="Section 1: Select Date">
+              <div class="bk-stage-indicator bk-section-title-wrap">
+                <span class="bk-stage-bullet bk-section-tag" id="bkDateTag">01</span>
+                <span class="bk-stage-name bk-section-title">Date</span>
+              </div>
+              <div class="bk-stage-summary-val bk-section-status" id="bkDateStatus">
+                <span class="bk-status-text">Pick a date</span>
+                <span class="bk-stage-edit bk-section-edit-btn">Change</span>
+              </div>
             </div>
-            <div class="bk-section-status" id="bkDateStatus">
-              <span class="bk-status-text">Pick a date</span>
-              <span class="bk-section-edit-btn">Change</span>
-            </div>
-          </div>
-          <div class="bk-section-body" id="bkDateBody">
-            <label class="field-label booking-date-heading" id="bkDateLabel" style="margin-bottom:8px;"><span>Month —</span> <span class="booking-month" id="bkDateMonth">August 2026</span></label>
-            <div class="rc-cal">
-              <div class="rc-head rc-head--bk">
-                <div class="rc-nav-group">
-                  <button class="rc-nav" id="bkPrevMonth" type="button" aria-label="Previous month" onclick="event.stopPropagation(); bkStepMonth(-1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-                  <span id="bkCalendarMonth"></span>
-                  <button class="rc-nav" id="bkNextMonth" type="button" aria-label="Next month" onclick="event.stopPropagation(); bkStepMonth(1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+            <div class="bk-stage-body bk-section-body" id="bkDateBody">
+              <label class="field-label booking-date-heading" id="bkDateLabel" style="margin-bottom:8px;"><span>Month —</span> <span class="booking-month" id="bkDateMonth">August 2026</span></label>
+              <div class="rc-cal">
+                <div class="rc-head rc-head--bk">
+                  <div class="rc-nav-group">
+                    <button class="rc-nav" id="bkPrevMonth" type="button" aria-label="Previous month" onclick="event.stopPropagation(); bkStepMonth(-1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+                    <span id="bkCalendarMonth"></span>
+                    <button class="rc-nav" id="bkNextMonth" type="button" aria-label="Next month" onclick="event.stopPropagation(); bkStepMonth(1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+                  </div>
+                  <span id="bkDateHint">Past dates are disabled</span>
                 </div>
-                <span id="bkDateHint">Past dates are disabled</span>
+                <div class="rc-grid" id="bkCalGrid"></div>
               </div>
-              <div class="rc-grid" id="bkCalGrid"></div>
-            </div>
-            <div id="bkSelectedDateBadge" class="bk-selection-badge" style="display:none;">
-              <span class="badge-icon">✓</span>
-              <span class="badge-label">Selected Date:</span>
-              <span class="badge-val" id="bkSelectedDateVal">—</span>
+              <div id="bkSelectedDateBadge" class="bk-selection-badge" style="display:none;">
+                <span class="badge-icon">✓</span>
+                <span class="badge-label">Selected Date:</span>
+                <span class="badge-val" id="bkSelectedDateVal">—</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- SECTION 2 — SELECT DURATION -->
-        <div class="bk-section bk-section--locked" id="bkSectionDuration">
-          <div class="bk-section-header" onclick="bkHandleHeaderClick('duration')" role="button" tabindex="0" aria-label="Section 2: Select Duration">
-            <div class="bk-section-title-wrap">
-              <span class="bk-section-tag" id="bkDurTag">02</span>
-              <span class="bk-section-title">Select Duration</span>
-            </div>
-            <div class="bk-section-status" id="bkDurStatus">
-              <span class="bk-status-text">Pick a date first</span>
-              <span class="bk-section-edit-btn">Change</span>
-            </div>
-          </div>
-          <div class="bk-section-body" id="bkDurBody">
-            <div class="ms-toggle-row">
-              <label class="ms-toggle">
-                <input type="checkbox" id="bkMultiToggle" onchange="bkSetMulti(this.checked)">
-                <span class="ms-track"></span>
-                <span class="ms-label">Add Multiple Slots</span>
-              </label>
-              <span class="ms-hint">Book several non-overlapping time windows on the same date.</span>
-            </div>
-            <div id="bkSingleDurWrap">
-              <div class="pill-row" id="bkDurationPills">
-                <div class="pill" data-duration="1">1 hour</div><div class="pill" data-duration="2">2 hours</div><div class="pill" data-duration="3">3 hours</div><div class="pill" data-duration="4">4 hours</div><div class="pill" data-duration="5">5 hours</div><div class="pill" data-duration="6">6 hours</div><div class="pill" data-duration="7">7 hours</div><div class="pill" data-duration="8">8 hours</div><div class="pill" data-duration="9">9 hours</div><div class="pill" data-duration="10">10 hours</div><div class="pill" data-duration="11">11 hours</div><div class="pill" data-duration="12">12 hours</div>
-              </div>
-              <div class="bk-note">Choose how long you want to book the turf.</div>
-            </div>
-            <div id="bkMultiPanel" style="display:none;">
-              <label class="field-label">Number of Slots</label>
-              <div class="ms-count-row">
-                <button type="button" class="ms-step" id="bkSlotMinus" onclick="bkStepSlotCount(-1)" aria-label="Remove a slot" disabled>−</button>
-                <div class="ms-count" id="bkSlotCount">2</div>
-                <button type="button" class="ms-step" id="bkSlotPlus" onclick="bkStepSlotCount(1)" aria-label="Add a slot">+</button>
-              </div>
-              <div class="ms-hint" id="bkSlotCountHint">Pick how many time windows to book — from 2 up to 5 slots on the same date.</div>
-              <div id="bkSlotDurations"></div>
-            </div>
-          </div>
-        </div>
+          <div class="bk-stage-connector" id="bkConnector1"></div>
 
-        <!-- SECTION 3 — SELECT TIMING -->
-        <div class="bk-section bk-section--locked" id="bkSectionTiming">
-          <div class="bk-section-header" onclick="bkHandleHeaderClick('timing')" role="button" tabindex="0" aria-label="Section 3: Select Timing">
-            <div class="bk-section-title-wrap">
-              <span class="bk-section-tag" id="bkTimeTag">03</span>
-              <span class="bk-section-title">Select Timing</span>
+          <!-- STAGE 2: DURATION -->
+          <div class="bk-stage bk-section bk-stage--locked bk-section--locked" id="bkSectionDuration">
+            <div class="bk-stage-header bk-section-header" onclick="bkHandleHeaderClick('duration')" role="button" tabindex="0" aria-label="Section 2: Select Duration">
+              <div class="bk-stage-indicator bk-section-title-wrap">
+                <span class="bk-stage-bullet bk-section-tag" id="bkDurTag">02</span>
+                <span class="bk-stage-name bk-section-title">Duration</span>
+              </div>
+              <div class="bk-stage-summary-val bk-section-status" id="bkDurStatus">
+                <span class="bk-status-text">Pick a date first</span>
+                <span class="bk-stage-edit bk-section-edit-btn">Change</span>
+              </div>
             </div>
-            <div class="bk-section-status" id="bkTimeStatus">
-              <span class="bk-status-text">Pick duration first</span>
-              <span class="bk-section-edit-btn">Change</span>
+            <div class="bk-stage-body bk-section-body" id="bkDurBody">
+              <div class="bk-dur-prompt">
+                <span class="bk-dur-sub">How long do you want to play?</span>
+                <label class="bk-compact-toggle" title="Book multiple slots on the same date">
+                  <input type="checkbox" id="bkMultiToggle" onchange="bkSetMulti(this.checked)">
+                  <span class="bk-toggle-pill">
+                    <span class="bk-toggle-icon">＋</span>
+                    <span class="bk-toggle-label">Multiple slots</span>
+                  </span>
+                </label>
+              </div>
+              <div id="bkSingleDurWrap">
+                <div class="bk-duration-grid" id="bkDurationPills">
+                  <div class="pill bk-dur-chip" data-duration="1">1 HR</div>
+                  <div class="pill bk-dur-chip" data-duration="2">2 HRS</div>
+                  <div class="pill bk-dur-chip" data-duration="3">3 HRS</div>
+                  <div class="pill bk-dur-chip" data-duration="4">4 HRS</div>
+                  <div class="pill bk-dur-chip" data-duration="5">5 HRS</div>
+                  <div class="pill bk-dur-chip" data-duration="6">6 HRS</div>
+                  <div class="pill bk-dur-chip" data-duration="7">7 HRS</div>
+                  <div class="pill bk-dur-chip" data-duration="8">8 HRS</div>
+                  <div class="pill bk-dur-chip" data-duration="9">9 HRS</div>
+                  <div class="pill bk-dur-chip" data-duration="10">10 HRS</div>
+                  <div class="pill bk-dur-chip" data-duration="11">11 HRS</div>
+                  <div class="pill bk-dur-chip" data-duration="12">12 HRS</div>
+                </div>
+              </div>
+              <div id="bkMultiPanel" style="display:none;">
+                <label class="field-label">Number of Slots</label>
+                <div class="ms-count-row">
+                  <button type="button" class="ms-step" id="bkSlotMinus" onclick="bkStepSlotCount(-1)" aria-label="Remove a slot" disabled>−</button>
+                  <div class="ms-count" id="bkSlotCount">2</div>
+                  <button type="button" class="ms-step" id="bkSlotPlus" onclick="bkStepSlotCount(1)" aria-label="Add a slot">+</button>
+                </div>
+                <div class="ms-hint" id="bkSlotCountHint">Pick how many time windows to book — from 2 up to 5 slots on the same date.</div>
+                <div id="bkSlotDurations"></div>
+              </div>
             </div>
           </div>
-          <div class="bk-section-body" id="bkTimeBody">
-            <div id="bkSingleTimeArea">
-              <div class="pill-row" id="bkTimePills"></div>
-              <div class="bk-note" id="bkTimeHint">Choose an available time range.</div>
-              <div class="bk-summary" id="bkRangeSummary" style="display:none; margin-top:18px; margin-bottom:0;">
-                <div class="bk-row"><span>Selected range</span><b id="bkRangeSel">—</b></div>
-                <div class="bk-row"><span>Duration</span><b id="bkDurLabel">—</b></div>
-                <div class="bk-row total"><span>Total amount</span><b id="bkDurAmt">—</b></div>
+
+          <div class="bk-stage-connector" id="bkConnector2"></div>
+
+          <!-- STAGE 3: TIMING -->
+          <div class="bk-stage bk-section bk-stage--locked bk-section--locked" id="bkSectionTiming">
+            <div class="bk-stage-header bk-section-header" onclick="bkHandleHeaderClick('timing')" role="button" tabindex="0" aria-label="Section 3: Select Timing">
+              <div class="bk-stage-indicator bk-section-title-wrap">
+                <span class="bk-stage-bullet bk-section-tag" id="bkTimeTag">03</span>
+                <span class="bk-stage-name bk-section-title">Timing</span>
               </div>
-              <div class="bk-summary" id="bkSlotsList" style="display:none; margin-top:18px; margin-bottom:0;"></div>
-              <button class="btn btn-outline magnetic" id="bkAddSlotBtn" type="button" style="display:none; width:100%; justify-content:center; margin-top:18px;" onclick="bkAddAnotherSlot()">+ Add another slot</button>
+              <div class="bk-stage-summary-val bk-section-status" id="bkTimeStatus">
+                <span class="bk-status-text">Pick duration first</span>
+                <span class="bk-stage-edit bk-section-edit-btn">Change</span>
+              </div>
             </div>
-            <div id="bkMultiSlotArea" style="display:none;"></div>
+            <div class="bk-stage-body bk-section-body" id="bkTimeBody">
+              <div id="bkSingleTimeArea">
+                <div class="bk-timing-prompt">
+                  <span class="bk-timing-sub" id="bkTimeHint">Available times</span>
+                </div>
+                <div class="bk-time-grid" id="bkTimePills"></div>
+                <div class="bk-summary" id="bkSlotsList" style="display:none; margin-top:14px; margin-bottom:0;"></div>
+                <button class="btn btn-outline magnetic" id="bkAddSlotBtn" type="button" style="display:none; width:100%; justify-content:center; margin-top:14px;" onclick="bkAddAnotherSlot()">+ Add another slot</button>
+              </div>
+              <div id="bkMultiSlotArea" style="display:none;"></div>
+            </div>
+          </div>
+
+          <!-- COMPACT SELECTION SUMMARY (CLEAN INLINE STRIP) -->
+          <div class="bk-selection-bar" id="bkRangeSummary" style="display:none;">
+            <div class="bk-selection-details">
+              <span class="bk-selection-title">YOUR SELECTION</span>
+              <div class="bk-selection-meta">
+                <span class="bk-meta-item" id="bkSummaryDate">📅 —</span>
+                <span class="bk-meta-sep">•</span>
+                <span class="bk-meta-item" id="bkDurLabel">⏱ —</span>
+                <span class="bk-meta-sep">•</span>
+                <span class="bk-meta-item" id="bkRangeSel">⚽ —</span>
+                <span class="bk-meta-sep">•</span>
+                <span class="bk-meta-item bk-meta-price" id="bkDurAmt">₹—</span>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- ACTION: GO TO SUMMARY -->
-        <div class="bk-submit-row" style="margin-top:24px;">
+        <div class="bk-submit-row" style="margin-top:18px;">
           <button class="btn btn-glow magnetic" id="bkGoSummaryBtn" style="width:100%; justify-content:center;" disabled onclick="bkConfirmSlots()">Go to Summary →</button>
         </div>
       </div>
@@ -2306,7 +2373,8 @@
     if(dateHint) dateHint.textContent = 'Date selected';
     const dateStatus = document.getElementById('bkDateStatus');
     if(dateStatus){
-      dateStatus.textContent = 'Date selected';
+      const txt = dateStatus.querySelector('.bk-status-text') || dateStatus;
+      txt.textContent = bkState.dateLabel || 'Date selected';
       dateStatus.classList.add('done');
     }
 
@@ -3069,36 +3137,25 @@
   function bkUpdateSubflowProgress(){
     const hasDate = !!bkState.date;
     const hasDur = bkMultiEnabled ? (bkSlots.length && bkSlots.every(s => s && s.hours > 0)) : (bkDurationHours > 0);
-    const hasTime = bkMultiEnabled ? (bkSlots.length && bkSlots.every(s => s && s.hours > 0 && s.start && s.end)) : (!!bkSelectedRange || bkSlots.length > 0);
+    const hasValidSingleTime = !!bkSelectedRange && !!bkState.start && !!bkState.end && bkState.start !== 'null' && bkState.end !== 'null';
+    const hasTime = bkMultiEnabled 
+      ? (bkSlots.length > 0 && bkSlots.every(s => s && s.hours > 0 && s.start && s.end))
+      : hasValidSingleTime;
 
-    const stepDate = document.getElementById('bkSubstepDate');
-    const stepDur = document.getElementById('bkSubstepDur');
-    const stepTime = document.getElementById('bkSubstepTime');
-    const div1 = document.getElementById('bkSubstepDiv1');
-    const div2 = document.getElementById('bkSubstepDiv2');
-
-    if(stepDate){
-      stepDate.classList.toggle('done', hasDate);
-      stepDate.classList.toggle('active', bkSubStage === 'date');
-      const icon = stepDate.querySelector('.bk-substep-icon');
-      if(icon) icon.textContent = hasDate ? '✓' : '01';
+    // Update Compact Header Badge (e.g. "1 of 3 selected", "3 of 3 selected")
+    const builderBadge = document.getElementById('bkBuilderStatusBadge');
+    const builderCount = document.getElementById('bkBuilderCount');
+    const selCount = (hasDate ? 1 : 0) + (hasDur ? 1 : 0) + (hasTime ? 1 : 0);
+    if(builderCount){
+      if(selCount === 3){
+        builderCount.textContent = '3 of 3 selected';
+        if(builderBadge) builderBadge.classList.add('ready');
+      } else {
+        builderCount.textContent = `${selCount} of 3 selected`;
+        if(builderBadge) builderBadge.classList.remove('ready');
+      }
     }
-    if(div1) div1.classList.toggle('done', hasDate);
 
-    if(stepDur){
-      stepDur.classList.toggle('done', hasDur);
-      stepDur.classList.toggle('active', bkSubStage === 'duration');
-      const icon = stepDur.querySelector('.bk-substep-icon');
-      if(icon) icon.textContent = hasDur ? '✓' : '02';
-    }
-    if(div2) div2.classList.toggle('done', hasDur);
-
-    if(stepTime){
-      stepTime.classList.toggle('done', hasTime);
-      stepTime.classList.toggle('active', bkSubStage === 'timing');
-      const icon = stepTime.querySelector('.bk-substep-icon');
-      if(icon) icon.textContent = hasTime ? '✓' : '03';
-    }
 
     const dateTag = document.getElementById('bkDateTag');
     if(dateTag) dateTag.textContent = hasDate ? '✓' : '01';
@@ -3127,7 +3184,7 @@
     if(durStatus){
       const txt = durStatus.querySelector('.bk-status-text') || durStatus;
       if(hasDur){
-        txt.textContent = bkMultiEnabled ? `${bkSlots.length} slots configured` : `${bkDurationHours} hour${bkDurationHours>1?'s':''} selected`;
+        txt.textContent = bkMultiEnabled ? `${bkSlots.length} slots configured` : `${bkDurationHours} HR${bkDurationHours>1?'S':''}`;
         durStatus.classList.add('done');
       } else if(hasDate){
         txt.textContent = 'Choose duration';
@@ -3145,15 +3202,34 @@
     }
     if(timeStatus){
       const txt = timeStatus.querySelector('.bk-status-text') || timeStatus;
-      if(hasTime){
+      if(hasTime && bkState.start && bkState.end && bkState.start !== 'null' && bkState.end !== 'null'){
         txt.textContent = bkMultiEnabled ? 'All slots timed' : `${bkState.start} → ${bkState.end}`;
         timeStatus.classList.add('done');
       } else if(hasDur){
-        txt.textContent = 'Choose time slot';
+        txt.textContent = 'Choose timing';
         timeStatus.classList.remove('done');
       } else {
         txt.textContent = 'Pick duration first';
         timeStatus.classList.remove('done');
+      }
+    }
+
+    // Compact Selection Summary Bar
+    const rangeSummary = document.getElementById('bkRangeSummary');
+    if(rangeSummary){
+      const ready = hasDate && hasDur && hasTime;
+      rangeSummary.style.display = ready ? 'block' : 'none';
+      if(ready){
+        const sumDate = document.getElementById('bkSummaryDate');
+        if(sumDate && bkState.dateLabel) sumDate.textContent = `📅 ${bkState.dateLabel}`;
+        const durLabel = document.getElementById('bkDurLabel');
+        if(durLabel) durLabel.textContent = `⏱ ${bkDurationLabel()}`;
+        const rangeSel = document.getElementById('bkRangeSel');
+        if(rangeSel && bkState.start && bkState.end && bkState.start !== 'null' && bkState.end !== 'null'){
+          rangeSel.textContent = `⚽ ${bkState.start} – ${bkState.end}`;
+        }
+        const durAmt = document.getElementById('bkDurAmt');
+        if(durAmt) durAmt.textContent = `₹${(bkDuration()*getSiteRate()).toLocaleString('en-IN')}`;
       }
     }
 
@@ -3396,14 +3472,25 @@
     bkState.end = formatBookingTime(range.end);
     bkState.selectedRange = range;
     document.querySelectorAll('#bkTimePills .pill').forEach(pill=>pill.classList.toggle('sel', Number(pill.dataset.start) === range.start.getTime()));
-    document.getElementById('bkRangeSel').textContent = `${bkState.start} → ${bkState.end}`;
-    document.getElementById('bkDurLabel').textContent = bkDurationLabel();
-    document.getElementById('bkDurAmt').textContent = `₹${(bkDuration()*getSiteRate()).toLocaleString('en-IN')}`;
-    document.getElementById('bkRangeSummary').style.display = 'block';
+    
+    const rangeSel = document.getElementById('bkRangeSel');
+    if(rangeSel && bkState.start && bkState.end && bkState.start !== 'null' && bkState.end !== 'null'){
+      rangeSel.textContent = `⚽ ${bkState.start} – ${bkState.end}`;
+    }
+    const durLabel = document.getElementById('bkDurLabel');
+    if(durLabel) durLabel.textContent = `⏱ ${bkDurationLabel()}`;
+    const durAmt = document.getElementById('bkDurAmt');
+    if(durAmt) durAmt.textContent = `₹${(bkDuration()*getSiteRate()).toLocaleString('en-IN')}`;
+    const sumDate = document.getElementById('bkSummaryDate');
+    if(sumDate && bkState.dateLabel) sumDate.textContent = `📅 ${bkState.dateLabel}`;
+
+    const summaryBar = document.getElementById('bkRangeSummary');
+    if(summaryBar) summaryBar.style.display = 'block';
+
     const timeCont = document.getElementById('bkTimeContinue');
     if(timeCont) timeCont.removeAttribute('disabled');
     bkSetAddSlotBtn(true);
-    document.getElementById('bkTimeHint').textContent = `${bkState.start} → ${bkState.end} selected.`;
+    document.getElementById('bkTimeHint').textContent = 'Available times';
     bkUpdateSubflowProgress();
     bkPersist();
 
@@ -3436,13 +3523,22 @@
       bkSelectedRange = null;
       bkState.start = null;
       bkState.end = null;
-      document.getElementById('bkRangeSummary').style.display = 'none';
+      const summaryBar = document.getElementById('bkRangeSummary');
+      if(summaryBar) summaryBar.style.display = 'none';
       bkSetAddSlotBtn(false);
     } else {
-      document.getElementById('bkRangeSel').textContent = `${bkState.start} → ${bkState.end}`;
-      document.getElementById('bkDurLabel').textContent = bkDurationLabel();
-      document.getElementById('bkDurAmt').textContent = `₹${(bkDuration()*getSiteRate()).toLocaleString('en-IN')}`;
-      document.getElementById('bkRangeSummary').style.display = 'block';
+      const rangeSel = document.getElementById('bkRangeSel');
+      if(rangeSel && bkState.start && bkState.end && bkState.start !== 'null' && bkState.end !== 'null'){
+        rangeSel.textContent = `⚽ ${bkState.start} – ${bkState.end}`;
+      }
+      const durLabel = document.getElementById('bkDurLabel');
+      if(durLabel) durLabel.textContent = `⏱ ${bkDurationLabel()}`;
+      const durAmt = document.getElementById('bkDurAmt');
+      if(durAmt) durAmt.textContent = `₹${(bkDuration()*getSiteRate()).toLocaleString('en-IN')}`;
+      const sumDate = document.getElementById('bkSummaryDate');
+      if(sumDate && bkState.dateLabel) sumDate.textContent = `📅 ${bkState.dateLabel}`;
+      const summaryBar = document.getElementById('bkRangeSummary');
+      if(summaryBar) summaryBar.style.display = 'block';
       bkSetAddSlotBtn(true);
     }
     bkRenderSlotsList();
@@ -4072,6 +4168,14 @@
     if(selDateBadge) selDateBadge.style.display = 'none';
     const selDateVal = document.getElementById('bkSelectedDateVal');
     if(selDateVal) selDateVal.textContent = '—';
+    const sumDate = document.getElementById('bkSummaryDate');
+    if(sumDate) sumDate.textContent = '📅 —';
+    const rangeSel = document.getElementById('bkRangeSel');
+    if(rangeSel) rangeSel.textContent = '⚽ —';
+    const durLabel = document.getElementById('bkDurLabel');
+    if(durLabel) durLabel.textContent = '⏱ —';
+    const durAmt = document.getElementById('bkDurAmt');
+    if(durAmt) durAmt.textContent = '₹—';
 
     bkSubStage = 'date';
     if(typeof bkSetSubStage === 'function'){
