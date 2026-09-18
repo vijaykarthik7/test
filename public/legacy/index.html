@@ -633,7 +633,7 @@
   .bk-section.bk-section--locked .bk-section-body,
   .bk-section.bk-stage--locked .bk-section-body,
   .bk-stage.bk-stage--locked .bk-stage-body,
-  .bk-stage.bk-section--locked .bk-stage-body{max-height:0 !important; opacity:0 !important; pointer-events:none; overflow:hidden; margin:0 !important; padding:0 !important;}
+  .bk-stage.bk-section--locked .bk-stage-body{display:none !important; max-height:0 !important; opacity:0 !important; pointer-events:none; overflow:hidden; margin:0 !important; padding:0 !important;}
   .bk-section.bk-section--locked .bk-section-header,
   .bk-section.bk-stage--locked .bk-section-header,
   .bk-stage.bk-stage--locked .bk-stage-header,
@@ -667,7 +667,7 @@
   .bk-section.bk-section--compact .bk-section-edit-btn,
   .bk-section.bk-stage--compact .bk-section-edit-btn,
   .bk-stage.bk-stage--compact .bk-stage-edit,
-  .bk-stage.bk-section--compact .bk-stage-edit{display:inline-flex;}
+  .bk-stage.bk-section--compact .bk-stage-edit{display:none;}
   .bk-section-header:hover .bk-section-edit-btn,
   .bk-stage-header:hover .bk-stage-edit{color:var(--neon); border-color:var(--neon); background:rgba(57,255,122,0.1);}
 
@@ -676,11 +676,67 @@
   .bk-section.bk-section--compact .bk-section-body,
   .bk-section.bk-stage--compact .bk-section-body,
   .bk-stage.bk-stage--compact .bk-stage-body,
-  .bk-stage.bk-section--compact .bk-stage-body{max-height:0 !important; opacity:0 !important; pointer-events:none; margin:0 !important; padding:0 !important; overflow:hidden;}
+  .bk-stage.bk-section--compact .bk-stage-body{display:none !important; max-height:0 !important; opacity:0 !important; pointer-events:none; margin:0 !important; padding:0 !important; overflow:hidden !important;}
   .bk-section.bk-section--active .bk-section-body,
   .bk-section.bk-stage--active .bk-section-body,
   .bk-stage.bk-stage--active .bk-stage-body,
-  .bk-stage.bk-section--active .bk-stage-body{max-height:1400px !important; opacity:1 !important; pointer-events:auto !important; overflow:visible !important; margin-top:10px !important;}
+  .bk-stage.bk-section--active .bk-stage-body{display:block !important; max-height:1400px !important; opacity:1 !important; pointer-events:auto !important; overflow:visible !important; margin-top:10px !important;}
+
+  /* Persistent Completed State Cards (Date & Duration) */
+  .bk-completed-card{
+    display:none;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(57,255,122,0.16);
+    border-radius:12px;
+    padding:10px 14px;
+    margin-top:8px;
+    transition:all .2s ease;
+    box-sizing:border-box;
+  }
+  .bk-completed-card:hover{
+    background:rgba(57,255,122,0.035);
+    border-color:rgba(57,255,122,0.28);
+  }
+  .bk-section--compact .bk-completed-card,
+  .bk-stage--compact .bk-completed-card{
+    display:flex !important;
+    animation:bkFadeIn .22s ease;
+  }
+  .bk-section--active .bk-completed-card,
+  .bk-stage--active .bk-completed-card,
+  .bk-section--locked .bk-completed-card,
+  .bk-stage--locked .bk-completed-card{
+    display:none !important;
+  }
+  .bk-completed-main{display:flex; flex-direction:column; gap:2px; min-width:0;}
+  .bk-completed-badge{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.04em; color:var(--neon); font-weight:600; display:flex; align-items:center; gap:4px;}
+  .bk-completed-value{font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; color:var(--white); letter-spacing:-0.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .bk-completed-change-btn{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--muted);
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:100px;
+    padding:4px 10px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:all .2s ease;
+    flex-shrink:0;
+  }
+  .bk-completed-change-btn:hover{
+    color:var(--neon);
+    border-color:var(--neon);
+    background:rgba(57,255,122,0.12);
+    transform:translateY(-1px);
+    box-shadow:0 2px 8px rgba(57,255,122,0.2);
+  }
 
   /* Duration Prompt & Compact Multi-Slot Toggle */
   .bk-dur-prompt{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px; flex-wrap:wrap;}
@@ -691,37 +747,75 @@
   .bk-compact-toggle input:checked + .bk-toggle-pill{background:rgba(57,255,122,0.12); border-color:rgba(57,255,122,0.35); color:var(--neon);}
   .bk-toggle-icon{font-size:10px; font-weight:700;}
 
-  /* Duration Chips Grid (4-Column in Left Zone) */
-  .bk-duration-grid{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:6px; width:100%; box-sizing:border-box;}
-  .bk-dur-chip{width:100%; min-width:0; box-sizing:border-box; text-align:center; padding:8px 3px; font-size:10.5px; font-weight:600; font-family:'JetBrains Mono',monospace; border-radius:7px; background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); color:var(--muted); transition:all .18s ease; cursor:pointer;}
-  .bk-dur-chip:hover{border-color:rgba(57,255,122,0.4); color:var(--white); background:rgba(57,255,122,0.06);}
-  .bk-dur-chip.sel{background:linear-gradient(135deg, #0fa857, #39ff7a) !important; color:#04140D !important; font-weight:700 !important; border-color:#39ff7a !important; box-shadow:0 0 14px rgba(57,255,122,0.3) !important;}
-
-  /* Timing Prompt & Compact 2-Column Grid (Right Zone) */
-  .bk-timing-prompt{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px;}
-  .bk-timing-sub{font-size:11.5px; color:var(--muted); font-family:'Inter',sans-serif;}
-  .bk-time-grid, #bkTimePills.bk-time-grid{display:grid !important; grid-template-columns:repeat(2, minmax(0, 1fr)) !important; gap:6px !important; width:100% !important; box-sizing:border-box !important;}
-  @media (max-width: 440px){ .bk-time-grid, #bkTimePills.bk-time-grid{grid-template-columns:1fr !important;} }
-  .bk-zone .bk-time-grid .pill,
-  #book .bk-zone #bkTimePills .pill{
+  /* Duration Chips Grid (4-Column in Left Zone: exactly 1-12 HRS) */
+  .bk-duration-grid,
+  #book .bk-zone #bkDurationPills{
+    display:grid !important;
+    grid-template-columns:repeat(4, minmax(0,1fr)) !important;
+    gap:6px !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+    margin-bottom:0 !important;
+  }
+  @media (max-width: 480px){
+    .bk-duration-grid,
+    #book .bk-zone #bkDurationPills{grid-template-columns:repeat(3, minmax(0,1fr)) !important;}
+  }
+  .bk-dur-chip,
+  #book .bk-zone #bkDurationPills .pill{
     width:100% !important;
     min-width:0 !important;
-    height:34px !important;
-    min-height:34px !important;
-    max-height:34px !important;
+    height:36px !important;
+    min-height:36px !important;
+    max-height:36px !important;
     box-sizing:border-box !important;
     text-align:center !important;
     display:inline-flex !important;
     align-items:center !important;
     justify-content:center !important;
-    padding:0 8px !important;
+    padding:0 4px !important;
     font-size:11px !important;
-    font-weight:500 !important;
+    font-weight:600 !important;
     font-family:'JetBrains Mono',monospace !important;
     border-radius:8px !important;
     background:rgba(255,255,255,0.035) !important;
     border:1px solid rgba(255,255,255,0.08) !important;
-    color:#dedede !important;
+    color:var(--muted) !important;
+    white-space:nowrap !important;
+    line-height:1 !important;
+    transition:all .18s ease !important;
+    cursor:pointer !important;
+  }
+  .bk-dur-chip:hover,
+  #book .bk-zone #bkDurationPills .pill:hover{border-color:rgba(57,255,122,0.4) !important; color:var(--white) !important; background:rgba(57,255,122,0.06) !important;}
+  .bk-dur-chip.sel,
+  #book .bk-zone #bkDurationPills .pill.sel{background:linear-gradient(135deg, #0fa857, #39ff7a) !important; color:#04140D !important; font-weight:700 !important; border-color:#39ff7a !important; box-shadow:0 0 14px rgba(57,255,122,0.3) !important;}
+
+  /* Timing Prompt & Compact 2-Column Grid (Right Zone) */
+  .bk-timing-prompt{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px;}
+  .bk-timing-sub{font-size:11.5px; color:var(--muted); font-family:'Inter',sans-serif;}
+  .bk-time-grid, #bkTimePills.bk-time-grid{display:grid !important; grid-template-columns:repeat(2, minmax(0, 1fr)) !important; gap:8px !important; width:100% !important; box-sizing:border-box !important;}
+  @media (max-width: 440px){ .bk-time-grid, #bkTimePills.bk-time-grid{grid-template-columns:1fr !important;} }
+  .bk-zone .bk-time-grid .pill,
+  #book .bk-zone #bkTimePills .pill{
+    width:100% !important;
+    min-width:0 !important;
+    height:44px !important;
+    min-height:44px !important;
+    max-height:44px !important;
+    box-sizing:border-box !important;
+    text-align:center !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    padding:0 10px !important;
+    font-size:11.5px !important;
+    font-weight:600 !important;
+    font-family:'JetBrains Mono',monospace !important;
+    border-radius:9px !important;
+    background:rgba(255,255,255,0.035) !important;
+    border:1px solid rgba(255,255,255,0.09) !important;
+    color:#e0e0e0 !important;
     white-space:nowrap !important;
     overflow:hidden !important;
     text-overflow:ellipsis !important;
@@ -746,20 +840,36 @@
     transform:none !important;
   }
 
-  /* Live Booking Preview (Inside Left Zone Under Duration) */
-  .bk-selection-panel{margin-top:2px; background:rgba(255,255,255,0.02); border:1px solid rgba(57,255,122,0.12); border-radius:12px; padding:12px 14px; box-sizing:border-box; animation:bkFadeIn .22s ease;}
+  /* Live Booking Overview (Inside Left Zone Under Duration) */
+  .bk-selection-panel{
+    margin-top:4px;
+    background:rgba(255,255,255,0.02);
+    border:1px solid rgba(57,255,122,0.14);
+    border-radius:14px;
+    padding:14px 16px;
+    box-sizing:border-box;
+    animation:bkFadeIn .22s ease;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
   @keyframes bkFadeIn{from{opacity:0; transform:translateY(3px);} to{opacity:1; transform:translateY(0);}}
-  .bk-selection-panel-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid rgba(255,255,255,0.06);}
-  .bk-selection-title{font-size:10px; font-family:'JetBrains Mono',monospace; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted);}
-  .bk-meta-price{color:var(--neon); font-weight:700; font-size:13.5px; font-family:'JetBrains Mono',monospace;}
-  .bk-panel-row{display:flex; align-items:center; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:11px; margin-bottom:5px;}
+  .bk-selection-panel-head{display:flex; align-items:center; justify-content:space-between; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.06);}
+  .bk-selection-title{font-size:10.5px; font-family:'JetBrains Mono',monospace; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted);}
+  .bk-meta-price{color:var(--neon); font-weight:700; font-size:15px; font-family:'JetBrains Mono',monospace; letter-spacing:-0.01em;}
+  .bk-selection-panel-body{display:flex; flex-direction:column; gap:6px;}
+  .bk-panel-row{display:flex; align-items:center; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:11.5px; padding:2px 0;}
   .bk-panel-row:last-child{margin-bottom:0;}
-  .bk-panel-label{color:var(--muted);}
-  .bk-panel-val{color:var(--white); font-weight:600;}
-  .bk-preview-waiting{color:var(--muted); font-weight:500; font-style:italic;}
+  .bk-panel-label{color:var(--muted); display:flex; align-items:center; gap:6px;}
+  .bk-panel-val{color:var(--white); font-weight:600; text-align:right;}
+  .bk-preview-waiting{color:var(--muted); font-weight:500; font-style:italic; font-size:11px;}
   .bk-preview-done{color:var(--neon); font-weight:700;}
-  .bk-panel-footer{margin-top:8px; padding-top:6px; border-top:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:space-between;}
-  .bk-panel-venue{font-size:9.5px; font-family:'JetBrains Mono',monospace; color:rgba(255,255,255,0.4);}
+  .bk-panel-footer{margin-top:2px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.06);}
+  .bk-venue-badge{display:flex; align-items:flex-start; gap:8px;}
+  .bk-venue-dot{color:var(--neon); font-size:10px; line-height:1.4;}
+  .bk-venue-details{display:flex; flex-direction:column; gap:1px;}
+  .bk-venue-name{font-family:'Space Grotesk',sans-serif; font-size:11.5px; font-weight:700; color:var(--white); letter-spacing:0.02em;}
+  .bk-venue-sub{font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--muted); letter-spacing:0.04em;}
 
   /* Expand booking-shell slightly on wide desktop when Book Slot is shown */
   @media (min-width: 900px){
@@ -1822,6 +1932,13 @@
                   <span class="badge-val" id="bkSelectedDateVal">—</span>
                 </div>
               </div>
+              <div class="bk-completed-card" id="bkDateCompletedCard">
+                <div class="bk-completed-main">
+                  <span class="bk-completed-badge">✓ Selected date</span>
+                  <div class="bk-completed-value" id="bkDateDisplayVal">—</div>
+                </div>
+                <button type="button" class="bk-completed-change-btn" onclick="bkHandleHeaderClick('date')" aria-label="Change Date">Change</button>
+              </div>
             </div>
 
             <div class="bk-zone-divider" id="bkConnector1"></div>
@@ -1859,6 +1976,10 @@
                     <div class="pill bk-dur-chip" data-duration="6">6 HRS</div>
                     <div class="pill bk-dur-chip" data-duration="7">7 HRS</div>
                     <div class="pill bk-dur-chip" data-duration="8">8 HRS</div>
+                    <div class="pill bk-dur-chip" data-duration="9">9 HRS</div>
+                    <div class="pill bk-dur-chip" data-duration="10">10 HRS</div>
+                    <div class="pill bk-dur-chip" data-duration="11">11 HRS</div>
+                    <div class="pill bk-dur-chip" data-duration="12">12 HRS</div>
                   </div>
                 </div>
                 <div id="bkMultiPanel" style="display:none;">
@@ -1872,11 +1993,18 @@
                   <div id="bkSlotDurations"></div>
                 </div>
               </div>
+              <div class="bk-completed-card" id="bkDurCompletedCard">
+                <div class="bk-completed-main">
+                  <span class="bk-completed-badge" id="bkDurCompletedSub">✓ Duration selected</span>
+                  <div class="bk-completed-value" id="bkDurDisplayVal">—</div>
+                </div>
+                <button type="button" class="bk-completed-change-btn" onclick="bkHandleHeaderClick('duration')" aria-label="Change Duration">Change</button>
+              </div>
             </div>
 
             <div class="bk-zone-divider" id="bkConnector2" style="display:none;"></div>
 
-            <!-- LIVE BOOKING PREVIEW (IN LEFT ZONE UNDER DURATION) -->
+            <!-- LIVE BOOKING OVERVIEW (IN LEFT ZONE UNDER DURATION) -->
             <div class="bk-selection-panel" id="bkRangeSummary" style="display:none;">
               <div class="bk-selection-panel-head">
                 <span class="bk-selection-title">YOUR BOOKING</span>
@@ -1897,7 +2025,13 @@
                 </div>
               </div>
               <div class="bk-panel-footer">
-                <span class="bk-panel-venue">📍 TurfOn24 Arena • FIFA-Standard 7v7</span>
+                <div class="bk-venue-badge">
+                  <span class="bk-venue-dot">●</span>
+                  <div class="bk-venue-details">
+                    <span class="bk-venue-name">TurfOn24 Arena</span>
+                    <span class="bk-venue-sub">FIFA-Standard 7v7</span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -3259,6 +3393,23 @@
     bkHandleHeaderClick(stage);
   }
 
+  function bkAdjustMobileOrder(){
+    const summary = document.getElementById('bkRangeSummary');
+    const leftZone = document.querySelector('.bk-zone--left');
+    const rightZone = document.querySelector('.bk-zone--right');
+    if(!summary || !leftZone || !rightZone) return;
+    if(window.innerWidth <= 768){
+      if(summary.parentElement !== rightZone){
+        rightZone.appendChild(summary);
+      }
+    } else {
+      if(summary.parentElement !== leftZone){
+        leftZone.appendChild(summary);
+      }
+    }
+  }
+  window.addEventListener('resize', bkAdjustMobileOrder);
+
   function bkUpdateSubflowProgress(){
     const hasDate = !!bkState.date;
     const hasDur = bkMultiEnabled ? (bkSlots.length && bkSlots.every(s => s && s.hours > 0)) : (bkDurationHours > 0);
@@ -3281,7 +3432,6 @@
       }
     }
 
-
     const dateTag = document.getElementById('bkDateTag');
     if(dateTag) dateTag.textContent = hasDate ? '✓' : '01';
     const durTag = document.getElementById('bkDurTag');
@@ -3298,6 +3448,17 @@
       } else {
         txt.textContent = 'Pick a date';
         dateStatus.classList.remove('done');
+      }
+    }
+
+    // Populate Completed Date Card (Always visible and formatted when Date is compact)
+    const dateDisplayVal = document.getElementById('bkDateDisplayVal');
+    if(dateDisplayVal){
+      if(hasDate && bkState.date){
+        const fullDate = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(bkState.date);
+        dateDisplayVal.textContent = fullDate;
+      } else {
+        dateDisplayVal.textContent = '—';
       }
     }
 
@@ -3320,6 +3481,23 @@
       }
     }
 
+    // Populate Completed Duration Card (Always visible when Duration is compact)
+    const durDisplayVal = document.getElementById('bkDurDisplayVal');
+    const durCompletedSub = document.getElementById('bkDurCompletedSub');
+    if(durDisplayVal){
+      if(hasDur){
+        if(bkMultiEnabled){
+          durDisplayVal.textContent = `${bkSlots.length} Slots (${bkTotalHours()} Hours)`;
+          if(durCompletedSub) durCompletedSub.textContent = '✓ Multiple slots selected';
+        } else {
+          durDisplayVal.textContent = `${bkDurationHours} Hour${bkDurationHours > 1 ? 's' : ''}`;
+          if(durCompletedSub) durCompletedSub.textContent = `✓ ${bkDurationHours} Hour${bkDurationHours > 1 ? 's' : ''} selected`;
+        }
+      } else {
+        durDisplayVal.textContent = '—';
+      }
+    }
+
     const timeSec = document.getElementById('bkSectionTiming');
     const timeStatus = document.getElementById('bkTimeStatus');
     if(timeSec && !timeSec.classList.contains('bk-section--active')){
@@ -3339,32 +3517,42 @@
       }
     }
 
-    // Live Booking Preview (in Left Zone under Duration)
+    // Persistent Live Booking Overview (Left Zone under Duration)
     const rangeSummary = document.getElementById('bkRangeSummary');
     const connector2 = document.getElementById('bkConnector2');
-    const showPreview = hasDate && hasDur && (bkSubStage === 'timing');
+    const showPreview = hasDate;
 
     if(rangeSummary){
-      rangeSummary.style.display = showPreview ? 'block' : 'none';
+      rangeSummary.style.display = showPreview ? 'flex' : 'none';
       if(connector2) connector2.style.display = showPreview ? 'block' : 'none';
 
       if(showPreview){
         const sumDate = document.getElementById('bkSummaryDate');
-        if(sumDate && bkState.dateLabel) sumDate.textContent = bkState.dateLabel;
+        if(sumDate){
+          sumDate.textContent = bkState.date 
+            ? new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(bkState.date)
+            : (bkState.dateLabel || '—');
+        }
 
         const durLabel = document.getElementById('bkDurLabel');
         if(durLabel){
-          durLabel.textContent = bkMultiEnabled 
-            ? `${bkSlots.length} slots (${bkTotalHours()} hrs)`
-            : `${bkDurationHours} Hour${bkDurationHours > 1 ? 's' : ''}`;
+          if(hasDur){
+            durLabel.innerHTML = bkMultiEnabled 
+              ? `${bkSlots.length} slots (${bkTotalHours()} hrs)`
+              : `${bkDurationHours} Hour${bkDurationHours > 1 ? 's' : ''}`;
+          } else {
+            durLabel.innerHTML = '<span class="bk-preview-waiting">Choose duration</span>';
+          }
         }
 
         const rangeSel = document.getElementById('bkRangeSel');
         if(rangeSel){
           if(hasTime && bkState.start && bkState.end && bkState.start !== 'null' && bkState.end !== 'null'){
             rangeSel.innerHTML = `<span class="bk-preview-done">✓ ${bkState.start} – ${bkState.end}</span>`;
-          } else {
+          } else if(hasDur){
             rangeSel.innerHTML = `<span class="bk-preview-waiting">Choose timing on right →</span>`;
+          } else {
+            rangeSel.innerHTML = `<span class="bk-preview-waiting">Choose timing</span>`;
           }
         }
 
@@ -3413,6 +3601,7 @@
     document.getElementById('bkStepsRow').classList.toggle('done-through', n > 1);
 
     if(n === 2){
+      if(typeof bkAdjustMobileOrder === 'function') bkAdjustMobileOrder();
       const hasDate = !!bkState.date;
       const hasDur = bkMultiEnabled ? (bkSlots.length && bkSlots.every(s => s && s.hours > 0)) : (bkDurationHours > 0);
       const targetStage = hasDate ? (hasDur ? 'timing' : 'duration') : 'date';
@@ -3675,7 +3864,7 @@
   function formatBookingTime(dateTime){
     const time = dateTime.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
     const nextDay = dateTime.getFullYear() !== bkState.date.getFullYear() || dateTime.getMonth() !== bkState.date.getMonth() || dateTime.getDate() !== bkState.date.getDate();
-    return nextDay ? `${time}\n(next day)` : time;
+    return nextDay ? `${time} (+1d)` : time;
   }
   const bkDurationOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   function bkCreateMultiSlot(i){
