@@ -501,19 +501,21 @@
   .booking-blocked strong{display:block; font-size:26px; font-weight:700; letter-spacing:-0.02em; margin-bottom:6px; color:var(--white);}
   .booking-blocked p{margin:0; font-size:18px; line-height:1.55; color:var(--muted);}
   .booking-shell{width:100%; max-width:680px; margin:0 auto; background:var(--glass); border:1px solid var(--border); border-radius:24px; padding:44px; box-sizing:border-box; backdrop-filter:blur(14px); text-align:left; position:relative;}
-  .booking-back{position:absolute; top:16px; left:16px; width:30px; height:30px; padding:0; border:1px solid var(--border); border-radius:50%; display:none; align-items:center; justify-content:center; background:rgba(255,255,255,0.04); color:var(--muted); transition:all .2s ease;}
+  .booking-back{position:absolute; top:16px; left:16px; width:32px; height:32px; padding:0; border:1px solid var(--border); border-radius:50%; display:none; align-items:center; justify-content:center; background:rgba(255,255,255,0.04); color:var(--muted); transition:all .2s ease; z-index:10;}
   .booking-back:hover{border-color:var(--neon); color:var(--neon); background:rgba(57,255,122,0.08);}
   .booking-back svg{width:16px; height:16px;}
-  .booking-close{position:absolute; top:16px; right:16px; width:30px; height:30px; padding:0; z-index:2; border:1px solid var(--border); border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.04); color:var(--muted); transition:all .2s ease;}
+  .booking-close{position:absolute; top:16px; right:16px; width:32px; height:32px; padding:0; z-index:10; border:1px solid var(--border); border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.04); color:var(--muted); transition:all .2s ease;}
   .booking-close:hover{border-color:var(--neon); color:var(--neon); background:rgba(57,255,122,0.08); transform:rotate(90deg);}
   .booking-close svg{width:16px; height:16px;}
   .steps-row{position:relative; display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:0; margin-bottom:38px;}
-  .steps-row::before{content:""; position:absolute; top:13px; left:0; right:0; height:2px; background:var(--border); z-index:0; transform:translateY(-50%);}
+  .steps-row::before{content:""; position:absolute; top:13px; left:10%; right:10%; height:2px; background:var(--border); z-index:0; transform:translateY(-50%);}
   .bstep{display:flex; flex-direction:column; align-items:center; gap:7px; position:relative; z-index:1; min-width:0;}
-  .bstep-dot{width:27px;height:27px;border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; border:1px solid var(--border); background:transparent; transition:all .3s ease;}
-  .bstep.active .bstep-dot{background:var(--neon); color:#04140D; border-color:var(--neon); box-shadow:0 0 14px rgba(57,255,122,0.5);}
-  .bstep.done .bstep-dot{background:transparent; color:var(--neon); border-color:var(--neon);}
-  .bstep-label{font-size:9.5px; color:var(--muted); text-transform:uppercase; letter-spacing:0.03em; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%;}
+  .bstep-dot{width:27px;height:27px;border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Inter',sans-serif; font-size:11px; font-weight:600; border:1px solid var(--border); background:#06110A; color:var(--muted); transition:all .3s ease;}
+  #book .bstep.active .bstep-dot,
+  .bstep.active .bstep-dot{background:var(--neon) !important; color:#04140D !important; border-color:var(--neon) !important; box-shadow:0 0 14px rgba(57,255,122,0.5); font-weight:700 !important;}
+  #book .bstep.done .bstep-dot,
+  .bstep.done .bstep-dot{background:#06110A !important; color:var(--neon) !important; border-color:var(--neon) !important; font-weight:700 !important;}
+  .bstep-label{font-family:'Inter',sans-serif; font-size:9.5px; font-weight:500; color:var(--muted); text-transform:uppercase; letter-spacing:0.03em; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%;}
   .steps-row.done-through::before{background:var(--neon); opacity:0.5;}
   .bk-pane{width:100%; max-width:100%; min-width:0; animation:bkPaneIn .4s ease;}
   @keyframes bkPaneIn{from{opacity:0; transform:translateX(14px);} to{opacity:1; transform:translateX(0);}}
@@ -548,22 +550,22 @@
   .bk-note{font-size:11.5px; color:var(--muted); margin-top:14px; font-style:italic;}
   .bk-total{display:flex; justify-content:space-between; align-items:baseline; padding:18px 20px; background:var(--black); border:1px solid var(--border); border-radius:12px; margin-bottom:10px;}
   .bk-total .amt{font-family:'JetBrains Mono',monospace; font-size:30px; color:var(--neon); font-weight:600; transition:opacity .15s ease;}
-  .bk-summary{width:100%; max-width:100%; min-width:0; background:var(--black); border:1px solid var(--border); border-radius:14px; padding:6px 20px; margin-bottom:24px;}
-  .bk-row{display:flex; justify-content:space-between; align-items:center; gap:12px; width:100%; min-width:0; padding:14px 0; border-bottom:1px solid var(--border); font-size:14px; color:var(--muted);}
+  .bk-summary{width:100%; max-width:100%; min-width:0; background:#0A0F0D; border:1px solid #1E2E21; border-radius:14px; padding:6px 20px; margin-bottom:24px; box-shadow:0 16px 40px rgba(0,0,0,0.6);}
+  .bk-row{display:flex; justify-content:space-between; align-items:center; gap:12px; width:100%; min-width:0; padding:14px 0; border-bottom:1px solid #1E2E21; font-size:14px; color:var(--muted);}
   .bk-row:last-child{border-bottom:none;}
   .bk-row span{min-width:0;}
   .bk-row b{flex:0 1 auto; min-width:0; max-width:62%; color:var(--white); font-weight:500; text-align:right; overflow-wrap:anywhere;}
   .bk-row.total{padding-top:16px;}
-  .bk-row.total b{color:var(--neon); font-family:'JetBrains Mono',monospace; font-size:20px;}
+  .bk-row.total b{color:var(--neon); font-family:'Inter',sans-serif; font-weight:700; font-size:22px;}
   .bk-slot-remove{background:none; border:none; padding:0; margin-left:10px; color:var(--muted); cursor:pointer; font-size:14px; line-height:1; font-family:'Inter',sans-serif; flex-shrink:0; opacity:.9;}
   .bk-slot-remove:hover{color:var(--neon);}
-  .bk-slot-head{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--neon); padding-bottom:4px;}
+  .bk-slot-head{font-family:'Inter',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--neon); padding-bottom:4px;}
   .bk-slot-head b{display:none;}
   .bk-slot-tabs{display:flex; flex-wrap:nowrap; align-items:center; gap:20px; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:thin; scrollbar-color:rgba(57,255,122,0.35) transparent; margin-bottom:16px; padding-bottom:4px;}
   .bk-slot-tabs::-webkit-scrollbar{height:6px;}
   .bk-slot-tabs::-webkit-scrollbar-thumb{background:rgba(57,255,122,0.25); border-radius:8px;}
   .bk-slot-tabs::-webkit-scrollbar-track{background:rgba(255,255,255,0.03);}
-  .bk-slot-tab{flex:1 1 0; min-width:0; padding:10px 18px; border:1px solid var(--border); border-radius:12px; background:var(--black); color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; font-weight:600; cursor:pointer; transition:all .2s ease; text-align:center;}
+  .bk-slot-tab{flex:1 1 0; min-width:0; padding:10px 18px; border:1px solid #1E2E21; border-radius:12px; background:#131C15; color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; font-weight:600; cursor:pointer; transition:all .2s ease; text-align:center;}
   .bk-slot-tab:hover{border-color:var(--neon); color:var(--neon);}
   .bk-slot-tab.active{border-color:var(--neon); color:var(--neon); background:rgba(57,255,122,0.1); box-shadow:0 0 14px rgba(57,255,122,0.18);}
   .bk-sum-date-row{margin-bottom:8px;}
@@ -583,7 +585,7 @@
   .ms-step{width:46px; height:46px; border-radius:12px; border:1px solid var(--border); background:var(--black); color:var(--white); font-size:22px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s ease; font-family:'Inter',sans-serif;}
   .ms-step:hover:not(:disabled){border-color:var(--neon); color:var(--neon); background:rgba(57,255,122,0.08);}
   .ms-step:disabled{opacity:.35; cursor:not-allowed;}
-  .ms-count{min-width:60px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:30px; color:var(--neon); font-weight:600;}
+  .ms-count{min-width:60px; text-align:center; font-family:'Inter',sans-serif; font-size:30px; color:var(--neon); font-weight:700;}
   .ms-slot-dur-group{margin-bottom:22px;}
   .ms-slot-dur-group:last-child{margin-bottom:6px;}
   .ms-slot-dur-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:10px;}
@@ -607,17 +609,18 @@
     background:#0A0F0D;
     border:1px solid #1E2E21;
     border-radius:18px;
-    box-shadow:0 24px 60px rgba(0,0,0,0.85), 0 0 35px rgba(57,247,42,0.06);
+    box-shadow:0 24px 60px rgba(0,0,0,0.85), 0 0 35px rgba(57, 255, 122,0.06);
     display:flex;
     flex-direction:column;
     width:100%;
     max-width:760px;
     margin:0 auto;
     box-sizing:border-box;
-    padding:24px 22px;
-    gap:22px;
+    padding:28px 24px;
+    gap:32px;
     position:relative;
     overflow:hidden;
+    font-family:'Inter',sans-serif;
   }
 
   /* Console Header */
@@ -626,19 +629,19 @@
     align-items:center;
     justify-content:space-between;
     gap:14px;
-    padding-bottom:16px;
+    padding-bottom:18px;
     border-bottom:1px solid #1E2E21;
     flex-wrap:wrap;
   }
-  .bk-streamline-head-titles{display:flex; flex-direction:column; gap:3px;}
+  .bk-streamline-head-titles{display:flex; flex-direction:column; gap:4px;}
   .bk-streamline-title{
     margin:0;
     font-size:20px;
-    font-weight:800;
+    font-weight:700;
     text-transform:uppercase;
-    letter-spacing:0.08em;
+    letter-spacing:0.06em;
     color:var(--white);
-    font-family:'Space Grotesk',sans-serif;
+    font-family:'Inter',sans-serif;
   }
   .bk-streamline-subtitle{
     margin:0;
@@ -650,26 +653,26 @@
     display:inline-flex;
     align-items:center;
     gap:6px;
-    background:rgba(57,247,42,0.08);
-    border:1px solid rgba(57,247,42,0.25);
+    background:rgba(57, 255, 122,0.08);
+    border:1px solid rgba(57, 255, 122,0.25);
     border-radius:100px;
     padding:5px 12px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:10.5px;
-    color:#39F72A;
-    font-weight:700;
-    letter-spacing:0.05em;
+    font-family:'Inter',sans-serif;
+    font-size:11px;
+    color:#39FF7A;
+    font-weight:600;
+    letter-spacing:0.04em;
   }
 
-  /* Slat Section Architecture */
+  /* Slat Section Architecture - Generous Spacing Between Sections */
   .bk-slat-section{
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:16px;
     width:100%;
     box-sizing:border-box;
     border-bottom:1px solid #1E2E21;
-    padding-bottom:20px;
+    padding-bottom:28px;
   }
   .bk-slat-head{
     display:flex;
@@ -679,30 +682,30 @@
     width:100%;
   }
   .bk-slat-title{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:13px;
-    font-weight:800;
+    font-family:'Inter',sans-serif;
+    font-size:12.5px;
+    font-weight:600;
     text-transform:uppercase;
-    letter-spacing:0.1em;
+    letter-spacing:0.08em;
     color:#94A3B8;
     margin:0;
   }
   .bk-slat-readout{
-    font-family:'JetBrains Mono',monospace;
-    font-size:12.5px;
-    font-weight:700;
-    color:#39F72A;
+    font-family:'Inter',sans-serif;
+    font-size:12px;
+    font-weight:500;
+    color:#39FF7A;
     letter-spacing:0.04em;
   }
   .bk-slat-month-btn{
     background:rgba(255,255,255,0.04);
     border:1px solid #1E2E21;
     border-radius:8px;
-    padding:5px 12px;
-    color:#39F72A;
-    font-family:'JetBrains Mono',monospace;
+    padding:6px 13px;
+    color:#39FF7A;
+    font-family:'Inter',sans-serif;
     font-size:12px;
-    font-weight:700;
+    font-weight:500;
     cursor:pointer;
     transition:all .18s ease;
     display:inline-flex;
@@ -710,8 +713,8 @@
     gap:6px;
   }
   .bk-slat-month-btn:hover{
-    background:rgba(57,247,42,0.1);
-    border-color:#39F72A;
+    background:rgba(57, 255, 122,0.1);
+    border-color:#39FF7A;
   }
 
   /* SECTION 1: DATE (Symmetrical 7-Day Horizon) */
@@ -740,17 +743,17 @@
     box-sizing:border-box;
   }
   .bk-date-card:hover{
-    border-color:rgba(57,247,42,0.4);
-    background:rgba(57,247,42,0.06);
+    border-color:rgba(57, 255, 122,0.4);
+    background:rgba(57, 255, 122,0.06);
     transform:translateY(-1px);
   }
   .bk-date-card.active{
-    border-color:#39F72A;
-    background:rgba(57,247,42,0.12);
-    box-shadow:0 0 16px rgba(57,247,42,0.22);
+    border-color:#39FF7A;
+    background:rgba(57, 255, 122,0.12);
+    box-shadow:0 0 16px rgba(57, 255, 122,0.22);
   }
   .bk-date-card-day{
-    font-family:'JetBrains Mono',monospace;
+    font-family:'Inter',sans-serif;
     font-size:11px;
     text-transform:uppercase;
     color:#94A3B8;
@@ -758,15 +761,15 @@
     line-height:1;
   }
   .bk-date-card-num{
-    font-family:'Space Grotesk',sans-serif;
+    font-family:'Inter',sans-serif;
     font-size:18px;
-    font-weight:800;
+    font-weight:600;
     color:#FFFFFF;
     line-height:1.1;
   }
   .bk-date-card.active .bk-date-card-day,
   .bk-date-card.active .bk-date-card-num{
-    color:#39F72A;
+    color:#39FF7A;
   }
 
   /* SECTION 2: DURATION (Uniform 6x2 / 4x3 Matrix) */
@@ -783,9 +786,9 @@
     background:#131C15;
     border:1px solid #1E2E21;
     color:#FFFFFF;
-    font-family:'Space Grotesk',sans-serif;
+    font-family:'Inter',sans-serif;
     font-size:14px;
-    font-weight:700;
+    font-weight:500;
     cursor:pointer;
     transition:all .16s ease;
     display:flex;
@@ -796,15 +799,15 @@
     padding:0 4px;
   }
   .bk-dur-matrix-btn:hover{
-    border-color:rgba(57,247,42,0.45);
-    background:rgba(57,247,42,0.08);
+    border-color:rgba(57, 255, 122,0.45);
+    background:rgba(57, 255, 122,0.08);
   }
   .bk-dur-matrix-btn.active{
-    background:#39F72A;
-    border-color:#39F72A;
+    background:#39FF7A;
+    border-color:#39FF7A;
     color:#0A0F0D;
-    font-weight:800;
-    box-shadow:0 0 16px rgba(57,247,42,0.35);
+    font-weight:600;
+    box-shadow:0 0 16px rgba(57, 255, 122,0.35);
   }
 
   /* Compact Multi-slot Toggle */
@@ -831,21 +834,21 @@
     background:rgba(255,255,255,0.035);
     border:1px solid rgba(255,255,255,0.1);
     color:var(--muted);
-    font-family:'Space Grotesk',sans-serif;
+    font-family:'Inter',sans-serif;
     font-size:11.5px;
     font-weight:700;
     transition:all .18s ease;
   }
   .bk-compact-toggle:hover .bk-toggle-pill{
-    background:rgba(57,247,42,0.08);
-    border-color:rgba(57,247,42,0.3);
+    background:rgba(57, 255, 122,0.08);
+    border-color:rgba(57, 255, 122,0.3);
     color:var(--white);
   }
   .bk-compact-toggle input:checked + .bk-toggle-pill{
-    background:rgba(57,247,42,0.15);
-    border-color:#39F72A;
-    color:#39F72A;
-    box-shadow:0 0 10px rgba(57,247,42,0.25);
+    background:rgba(57, 255, 122,0.15);
+    border-color:#39FF7A;
+    color:#39FF7A;
+    box-shadow:0 0 10px rgba(57, 255, 122,0.25);
   }
   .bk-toggle-icon{
     font-size:12px;
@@ -853,7 +856,7 @@
     line-height:1;
   }
   .bk-compact-toggle input:checked + .bk-toggle-pill .bk-toggle-icon{
-    color:#39F72A;
+    color:#39FF7A;
   }
 
   /* SECTION 3: TIMING (Aligned Monospace Time Grid) */
@@ -876,7 +879,7 @@
     background:#131C15;
     border:1px solid #1E2E21;
     color:#94A3B8;
-    font-family:'JetBrains Mono',monospace;
+    font-family:'Inter',sans-serif;
     font-size:11px;
     font-weight:700;
     cursor:pointer;
@@ -888,14 +891,14 @@
     flex-shrink:0;
   }
   .bk-time-filter-chip:hover{
-    border-color:rgba(57,247,42,0.4);
+    border-color:rgba(57, 255, 122,0.4);
     color:var(--white);
   }
   .bk-time-filter-chip.active{
-    background:rgba(57,247,42,0.12);
-    border-color:#39F72A;
-    color:#39F72A;
-    box-shadow:0 0 10px rgba(57,247,42,0.2);
+    background:rgba(57, 255, 122,0.12);
+    border-color:#39FF7A;
+    color:#39FF7A;
+    box-shadow:0 0 10px rgba(57, 255, 122,0.2);
   }
 
   .bk-streamline-time-grid{
@@ -911,9 +914,9 @@
     background:#131C15;
     border:1px solid #1E2E21;
     color:#FFFFFF;
-    font-family:'Space Grotesk', -apple-system, sans-serif;
+    font-family:'Inter',sans-serif;
     font-size:12.5px;
-    font-weight:700;
+    font-weight:500;
     cursor:pointer;
     transition:all .16s ease;
     display:flex;
@@ -928,7 +931,7 @@
     overflow:hidden;
   }
   .bk-time-pill .bk-time-range{
-    font-family:'Space Grotesk', sans-serif;
+    font-family:'Inter', sans-serif;
     font-size:12.5px;
     font-weight:700;
     white-space:nowrap;
@@ -939,27 +942,27 @@
     letter-spacing:-0.01em;
   }
   .bk-time-pill .bk-time-tag{
-    font-family:'JetBrains Mono', monospace;
-    font-size:9px;
-    font-weight:800;
-    color:#39F72A;
+    font-family:'Inter', sans-serif;
+    font-size:9.5px;
+    font-weight:600;
+    color:#39FF7A;
     letter-spacing:0.04em;
     text-transform:uppercase;
     line-height:1;
     margin-top:2.5px;
   }
   .bk-time-pill:hover{
-    border-color:#39F72A;
-    background:rgba(57,247,42,0.06);
+    border-color:#39FF7A;
+    background:rgba(57, 255, 122,0.06);
   }
   .bk-time-pill.active{
-    border:2px solid #39F72A;
-    background:rgba(57,247,42,0.12);
-    color:#39F72A;
-    box-shadow:0 0 18px rgba(57,247,42,0.25);
+    border:2px solid #39FF7A;
+    background:rgba(57, 255, 122,0.12);
+    color:#39FF7A;
+    box-shadow:0 0 18px rgba(57, 255, 122,0.25);
   }
   .bk-time-pill.active .bk-time-range{
-    color:#39F72A;
+    color:#39FF7A;
   }
   .bk-time-pill.booked{
     opacity:0.35;
@@ -973,71 +976,207 @@
     padding:24px 14px;
     text-align:center;
     color:#94A3B8;
-    font-family:'JetBrains Mono',monospace;
-    font-size:12px;
+    font-family:'Inter',sans-serif;
+    font-size:12.5px;
     background:rgba(255,255,255,0.02);
     border-radius:12px;
     border:1px solid #1E2E21;
   }
 
-  /* SECTION 4: MATCH SUMMARY & ACTION BAR */
-  .bk-streamline-summary-bar{
-    border-radius:14px;
+  /* Multi-Slot Cards inside Streamline Console (Always ABOVE Summary Bar) */
+  #bkMultiSlotArea{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    width:100%;
+    box-sizing:border-box;
+  }
+  .bk-slot-card{
     background:#131C15;
     border:1px solid #1E2E21;
-    padding:16px 20px;
+    border-radius:14px;
+    padding:16px 14px;
+    box-sizing:border-box;
+    width:100%;
+    transition:all .18s ease;
+  }
+  .bk-slot-card.has-sel{
+    border-color:rgba(57, 255, 122,0.45);
+    background:rgba(57, 255, 122,0.03);
+    box-shadow:0 0 16px rgba(57, 255, 122,0.08);
+  }
+  .bk-slot-card-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+  }
+  .bk-slot-num{
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    font-weight:700;
+    color:#39FF7A;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+  .bk-slot-dur{
+    font-family:'Inter',sans-serif;
+    font-size:11px;
+    font-weight:600;
+    color:#94A3B8;
+    background:rgba(255,255,255,0.04);
+    padding:3px 9px;
+    border-radius:6px;
+    border:1px solid #1E2E21;
+  }
+  .bk-slot-chosen{
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    font-weight:500;
+    color:#FFFFFF;
+    margin-bottom:12px;
+    line-height:1.25;
+  }
+  .bk-slot-selected{
+    color:#39FF7A;
+    font-weight:700;
+  }
+  .bk-slot-pills{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:8px;
+    width:100%;
+    box-sizing:border-box;
+  }
+  .bk-slot-pills .pill{
+    min-height:46px;
+    border-radius:10px;
+    background:#0E1510;
+    border:1px solid #1E2E21;
+    color:#FFFFFF;
+    font-family:'Inter',sans-serif;
+    font-size:12px;
+    font-weight:600;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    cursor:pointer;
+    transition:all .16s ease;
+    padding:5px 4px;
+    box-sizing:border-box;
+    width:100%;
+    min-width:0;
+    overflow:hidden;
+  }
+  .bk-slot-pills .pill .bk-time-range{
+    font-size:11.5px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:100%;
+    line-height:1.2;
+    letter-spacing:-0.01em;
+  }
+  .bk-slot-pills .pill .bk-time-tag{
+    font-family:'Inter',sans-serif;
+    font-size:8.5px;
+    font-weight:800;
+    color:#39FF7A;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    line-height:1;
+    margin-top:2px;
+  }
+  .bk-slot-pills .pill:hover{
+    border-color:#39FF7A;
+    background:rgba(57, 255, 122,0.06);
+  }
+  .bk-slot-pills .pill.sel{
+    border:2px solid #39FF7A;
+    background:rgba(57, 255, 122,0.12);
+    color:#39FF7A;
+    box-shadow:0 0 14px rgba(57, 255, 122,0.2);
+  }
+  .bk-slot-pills .pill.sel .bk-time-range{
+    color:#39FF7A;
+  }
+  @media (max-width: 768px){
+    .bk-slot-pills{
+      grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+      gap:6px !important;
+    }
+    .bk-slot-card{
+      padding:12px 10px !important;
+    }
+  }
+
+  /* SECTION 4: MATCH SUMMARY & ACTION BAR */
+  .bk-streamline-summary-bar{
+    border-radius:16px;
+    background:#131C15;
+    border:1px solid #1E2E21;
+    padding:20px 22px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:16px;
+    gap:20px;
     box-sizing:border-box;
     width:100%;
-    margin-top:4px;
+    margin-top:12px;
   }
   .bk-streamline-sum-info{
     display:flex;
     flex-direction:column;
-    gap:4px;
+    gap:10px;
     min-width:0;
+    flex:1;
   }
   .bk-streamline-sum-kicker{
-    font-family:'JetBrains Mono',monospace;
-    font-size:9.5px;
-    font-weight:800;
-    letter-spacing:0.12em;
-    color:#39F72A;
+    font-family:'Inter',sans-serif;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:0.14em;
+    color:#39FF7A;
     text-transform:uppercase;
+    margin-bottom:2px;
   }
   .bk-streamline-sum-details{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:13.5px;
+    font-family:'Inter',sans-serif;
+    font-size:13px;
     color:#FFFFFF;
-    font-weight:600;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    font-weight:400;
+    white-space:normal;
+    overflow:visible;
+    text-overflow:clip;
+    line-height:1.45;
+    word-break:break-word;
   }
   .bk-streamline-sum-price{
-    font-family:'JetBrains Mono',monospace;
-    font-size:18px;
-    font-weight:800;
-    color:#39F72A;
-    line-height:1.1;
+    font-family:'Inter',sans-serif;
+    font-size:20px;
+    font-weight:700;
+    color:#39FF7A;
+    line-height:1.2;
+    padding-top:8px;
+    border-top:1px solid rgba(255,255,255,0.07);
+    margin-top:4px;
   }
   .bk-streamline-go-btn{
     height:48px;
     padding:0 28px;
     border-radius:100px;
-    background:#39F72A;
+    background:#39FF7A;
     color:#0A0F0D;
-    font-family:'Space Grotesk',sans-serif;
+    font-family:'Inter',sans-serif;
     font-size:13.5px;
-    font-weight:800;
+    font-weight:600;
     letter-spacing:0.04em;
     border:none;
     cursor:pointer;
     transition:all .18s ease;
-    box-shadow:0 0 24px rgba(57,247,42,0.4);
+    box-shadow:0 0 24px rgba(57, 255, 122,0.4);
     display:inline-flex;
     align-items:center;
     justify-content:center;
@@ -1047,7 +1186,7 @@
   }
   .bk-streamline-go-btn:hover{
     transform:translateY(-1px);
-    box-shadow:0 0 30px rgba(57,247,42,0.6);
+    box-shadow:0 0 30px rgba(57, 255, 122,0.6);
   }
   .bk-streamline-go-btn:disabled{
     opacity:0.35;
@@ -1064,10 +1203,10 @@
     right:28px;
     z-index:50;
     background:#07120A;
-    border:1px solid rgba(57,247,42,0.3);
+    border:1px solid rgba(57, 255, 122,0.3);
     border-radius:18px;
     padding:16px;
-    box-shadow:0 20px 50px rgba(0,0,0,0.8), 0 0 24px rgba(57,247,42,0.15);
+    box-shadow:0 20px 50px rgba(0,0,0,0.8), 0 0 24px rgba(57, 255, 122,0.15);
     max-width:360px;
     width:calc(100% - 56px);
     box-sizing:border-box;
@@ -1082,10 +1221,22 @@
     }
     #book .booking-shell{
       max-width:100% !important;
-      padding:44px 8px 36px !important;
+      padding:68px 12px 36px !important;
       border-radius:18px !important;
       box-sizing:border-box !important;
       overflow:hidden !important;
+    }
+    .booking-back{
+      top:16px;
+      left:14px;
+      width:32px;
+      height:32px;
+    }
+    .booking-close{
+      top:16px;
+      right:14px;
+      width:32px;
+      height:32px;
     }
     .bk-streamline-console{
       padding:14px 8px 24px !important;
@@ -1163,34 +1314,45 @@
       display:none;
     }
 
-    /* Summary Bar Full Width Stack with ample padding */
+    /* Summary Bar Full Width Stack with ample padding and generous spacing */
     .bk-streamline-summary-bar{
       flex-direction:column;
       align-items:stretch;
-      gap:14px;
-      padding:16px 14px;
-      margin-top:14px;
-      border-radius:14px;
+      gap:16px;
+      padding:20px 16px;
+      margin-top:18px;
+      border-radius:16px;
       width:100%;
       box-sizing:border-box;
     }
     .bk-streamline-sum-info{
       width:100%;
+      gap:12px;
+    }
+    .bk-streamline-sum-kicker{
+      font-size:10px;
+      letter-spacing:0.14em;
+      margin-bottom:2px;
     }
     .bk-streamline-sum-details{
-      font-size:12.5px;
+      font-size:13px;
       white-space:normal;
-      line-height:1.35;
+      line-height:1.45;
     }
     .bk-streamline-sum-price{
-      font-size:20px;
+      font-size:22px;
+      font-weight:700;
+      padding-top:10px;
+      border-top:1px solid #1E2E21;
+      margin-top:4px;
     }
     .bk-streamline-go-btn{
       width:100%;
-      height:48px;
-      font-size:14px;
+      height:50px;
+      font-size:14.5px;
+      font-weight:600;
       padding:0 20px;
-      margin-top:2px;
+      margin-top:4px;
     }
 
     /* Keep floating buttons from overlapping summary card on mobile */
@@ -1213,7 +1375,7 @@
   /* Ultra-small mobile screens <= 375px (iPhone SE / older Android) */
   @media (max-width: 375px){
     #book .booking-shell{
-      padding:38px 6px 26px !important;
+      padding:66px 8px 26px !important;
     }
     .bk-streamline-console{
       padding:12px 6px 20px !important;
@@ -1240,7 +1402,7 @@
 
   /* Mobile Adaptations */
   @media (max-width: 768px){
-    #book .booking-shell{max-width:100%; padding:16px 10px 24px; box-sizing:border-box;}
+    #book .booking-shell{max-width:100%; padding:68px 12px 24px; box-sizing:border-box;}
     .bk-runway-console{
       padding:14px 10px 18px;
       border-radius:18px;
@@ -1292,7 +1454,7 @@
       padding:14px 14px 16px;
       border-radius:16px;
       background:rgba(4,14,8,0.98);
-      border:1px solid rgba(57,247,42,0.22);
+      border:1px solid rgba(57, 255, 122,0.22);
       box-shadow:0 10px 28px rgba(0,0,0,0.6);
       width:100%;
       max-width:100%;
@@ -1613,7 +1775,7 @@
     #book{width:100%; max-width:100%; padding-left:2.25vw; padding-right:2.25vw;}
     #book .booking-shell{width:100%; max-width:none; margin-left:0; margin-right:0; padding:76px 16px 34px;}
     #book .steps-row{width:100%; max-width:100%; margin:0 0 42px; gap:0; grid-template-columns:repeat(5, minmax(0,1fr));}
-    #book .steps-row::before{top:16px;}
+    #book .steps-row::before{top:16px; left:10%; right:10%;}
     #book .bstep-dot{width:32px; height:32px; font-size:12px;}
     #book .bstep-label{font-size:9px; letter-spacing:0.02em;}
     #book .field-label{font-size:14px; margin-bottom:12px;}
@@ -1678,9 +1840,10 @@
     .bk-range-row{grid-template-columns:1fr; gap:8px;}
     .bk-range-arrow{transform:rotate(90deg);}
     #book .steps-row{grid-template-columns:repeat(5, minmax(0,1fr)); gap:0;}
-    #book .bstep-dot{width:28px; height:28px; font-size:11px;}
-    #book .steps-row::before{top:14px;}
-    #book .bstep-label{font-size:8px; letter-spacing:0.01em;}
+    #book .bstep-dot{width:28px; height:28px; font-size:12px; font-family:'Inter',sans-serif; background:#06110A;}
+    #book .bstep.active .bstep-dot{background:var(--neon) !important; color:#04140D !important; font-weight:700 !important;}
+    #book .steps-row::before{top:14px; left:10%; right:10%;}
+    #book .bstep-label{font-size:8px; letter-spacing:0.01em; font-family:'Inter',sans-serif; font-weight:500;}
     #book #bkDurationPills{grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-bottom:8px;}
     #book #bkDurationPills .pill{padding:12px 6px;}
     #book .ms-dur-pills{grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px;}
@@ -2404,7 +2567,7 @@
             <div class="bk-slat-head">
               <span class="bk-slat-title">02. DURATION</span>
               <div style="display:inline-flex; align-items:center; gap:12px;">
-                <span class="bk-slat-readout" id="bkStreamlineDurReadout">2 HOURS SELECTED</span>
+                <span class="bk-slat-readout" id="bkStreamlineDurReadout">SELECT DURATION</span>
                 <label class="bk-compact-toggle" title="Book multiple slots on the same date">
                   <input type="checkbox" id="bkMultiToggle" onchange="bkSetMulti(this.checked)">
                   <span class="bk-toggle-pill">
@@ -2418,7 +2581,7 @@
             <!-- 12 Uniform Duration Buttons -->
             <div class="bk-streamline-dur-grid" id="bkStreamlineDurGrid">
               <button type="button" class="bk-dur-matrix-btn" data-dur="1" onclick="bkSetStreamlineDuration(1)">1h</button>
-              <button type="button" class="bk-dur-matrix-btn active" data-dur="2" onclick="bkSetStreamlineDuration(2)">2h ★</button>
+              <button type="button" class="bk-dur-matrix-btn" data-dur="2" onclick="bkSetStreamlineDuration(2)">2h</button>
               <button type="button" class="bk-dur-matrix-btn" data-dur="3" onclick="bkSetStreamlineDuration(3)">3h</button>
               <button type="button" class="bk-dur-matrix-btn" data-dur="4" onclick="bkSetStreamlineDuration(4)">4h</button>
               <button type="button" class="bk-dur-matrix-btn" data-dur="5" onclick="bkSetStreamlineDuration(5)">5h</button>
@@ -2436,10 +2599,10 @@
               <label class="field-label">Number of Slots</label>
               <div class="ms-count-row">
                 <button type="button" class="ms-step" id="bkSlotMinus" onclick="bkStepSlotCount(-1)" aria-label="Remove a slot" disabled>−</button>
-                <div class="ms-count" id="bkSlotCount">2</div>
+                <div class="ms-count" id="bkSlotCount">1</div>
                 <button type="button" class="ms-step" id="bkSlotPlus" onclick="bkStepSlotCount(1)" aria-label="Add a slot">+</button>
               </div>
-              <div class="ms-hint" id="bkSlotCountHint">2 to 5 slots on the same date.</div>
+              <div class="ms-hint" id="bkSlotCountHint">1 to 5 slots on the same date.</div>
               <div id="bkSlotDurations"></div>
             </div>
           </div>
@@ -2447,22 +2610,20 @@
           <!-- 03. AVAILABLE TIMINGS (Aligned Monospace Grid) -->
           <div class="bk-slat-section" style="border-bottom:none; padding-bottom:4px;">
             <div class="bk-slat-head">
-              <span class="bk-slat-title">03. AVAILABLE TIMINGS</span>
+              <span class="bk-slat-title" id="bkStreamlineTimingsTitle">03. AVAILABLE TIMINGS</span>
               <span class="bk-slat-readout" id="bkStreamlineSlotsCount">8 SLOTS OPEN</span>
             </div>
 
-            <!-- Time Period Filters -->
-            <div class="bk-time-filter-bar">
-              <button type="button" class="bk-time-filter-chip active" data-filter="all" onclick="bkFilterStreamlineTimings('all')">ALL</button>
-              <button type="button" class="bk-time-filter-chip" data-filter="morning" onclick="bkFilterStreamlineTimings('morning')">MORNING <span class="bk-filter-sub">(06–12)</span></button>
-              <button type="button" class="bk-time-filter-chip" data-filter="afternoon" onclick="bkFilterStreamlineTimings('afternoon')">AFTERNOON <span class="bk-filter-sub">(12–17)</span></button>
-              <button type="button" class="bk-time-filter-chip" data-filter="night" onclick="bkFilterStreamlineTimings('night')">NIGHT <span class="bk-filter-sub">(17–06)</span></button>
+            <!-- Single-Slot Timing Container (3-Col Desktop / 2-Col Mobile Grid) -->
+            <div id="bkSingleTimeWrap">
+              <!-- Slot Grid (3-Col Desktop / 2-Col Mobile) -->
+              <div class="bk-streamline-time-grid" id="bkStreamlineTimeGrid">
+                <!-- Dynamically populated time pills -->
+              </div>
             </div>
 
-            <!-- Slot Grid (3-Col Desktop / 2-Col Mobile) -->
-            <div class="bk-streamline-time-grid" id="bkStreamlineTimeGrid">
-              <!-- Dynamically populated time pills -->
-            </div>
+            <!-- Multi-slot Timing Cards (Always ABOVE Summary Bar!) -->
+            <div id="bkMultiSlotArea" style="display:none; width:100%; margin-top:8px;"></div>
           </div>
 
           <!-- 04. MATCH SUMMARY & ACTION BAR -->
@@ -2502,7 +2663,6 @@
         <div id="bkDurationPills" style="display:none;"></div>
         <div id="bkTimePills" style="display:none;"></div>
         <div id="bkSingleTimeArea" style="display:none;"></div>
-        <div id="bkMultiSlotArea" style="display:none;"></div>
         <div id="bkSlotsList" style="display:none;"></div>
         <div id="bkDateHint" style="display:none;"></div>
         <button id="bkAddSlotBtn" style="display:none;"></button>
@@ -2512,7 +2672,7 @@
       <!-- PANE 5 — BOOKING SUMMARY -->
       <div id="bkPane5" class="bk-pane" style="display:none;">
         <label class="field-label">Review your booking</label>
-        <div class="bk-row bk-sum-date-row"><span>Booking date</span><b id="bkSumDate">—</b></div>
+        <div class="bk-summary" style="padding:4px 20px; margin-bottom:14px;"><div class="bk-row" style="border-bottom:none;"><span>Booking date</span><b id="bkSumDate" style="color:#39FF7A; font-weight:600;">—</b></div></div>
         <div class="bk-slot-tabs" id="bkSumSlots" role="tablist" aria-label="Slots"></div>
         <div class="bk-summary" id="bkSumActive" style="margin-bottom:14px;"></div>
         <div class="bk-summary" id="bkSumCombined"></div>
@@ -3296,7 +3456,7 @@
   let bkDurationHours = 0, bkSelectedRange = null, bkAddingSlot = false;
   let bkSlots = [];
   let bkSummaryActiveSlot = 1;
-  let bkMultiEnabled = false, bkSlotCount = 2;
+  let bkMultiEnabled = false, bkSlotCount = 1;
   let bkActiveSlotPage = 0;
   let bkCurrentStep = 1;
   let bkPaymentIdempotencyKey = null;
@@ -3804,11 +3964,66 @@
     if(!bkState.dateLabel && bkState.date){
       bkState.dateLabel = new Intl.DateTimeFormat('en-US', { month:'short', day:'numeric', year:'numeric' }).format(bkState.date);
     }
-    if(!bkDurationHours) bkDurationHours = 2;
-    bkState.duration = bkDurationHours;
+
+    // Preserve existing duration, slots and timing when navigating back from summary!
+    if(typeof bkDurationHours !== 'number'){
+      bkDurationHours = bkState.duration || 0;
+    }
+    if(!bkDurationHours && bkState.duration){
+      bkDurationHours = bkState.duration;
+    }
+    if(!bkSelectedRange && bkState.selectedRange){
+      bkSelectedRange = bkState.selectedRange;
+    }
+    if(!bkSelectedRange && bkSlots.length && bkSlots[0].start && bkSlots[0].end && !bkMultiEnabled){
+      bkSelectedRange = {
+        start: (bkSlots[0].start instanceof Date) ? bkSlots[0].start : new Date(bkSlots[0].start),
+        end: (bkSlots[0].end instanceof Date) ? bkSlots[0].end : new Date(bkSlots[0].end)
+      };
+      bkState.selectedRange = bkSelectedRange;
+    }
+    if(bkSelectedRange && bkSelectedRange.start){
+      if(!(bkSelectedRange.start instanceof Date)) bkSelectedRange.start = new Date(bkSelectedRange.start);
+      if(!(bkSelectedRange.end instanceof Date)) bkSelectedRange.end = new Date(bkSelectedRange.end);
+    }
+
+    // If multi-slot mode was active, preserve it!
+    const multiToggle = document.getElementById('bkMultiToggle');
+    if(bkMultiEnabled){
+      if(multiToggle) multiToggle.checked = true;
+      const durGrid = document.getElementById('bkStreamlineDurGrid');
+      const multiPanel = document.getElementById('bkMultiPanel');
+      const singleTimeWrap = document.getElementById('bkSingleTimeWrap');
+      const multiArea = document.getElementById('bkMultiSlotArea');
+      if(durGrid) durGrid.style.display = 'none';
+      if(multiPanel) multiPanel.style.display = 'block';
+      if(singleTimeWrap) singleTimeWrap.style.display = 'none';
+      if(multiArea) multiArea.style.display = 'flex';
+      bkRenderStreamlineDates();
+      renderMultiSlotArea();
+      bkUpdateStreamlineSummary();
+      bkLoadAvailability().then(() => {
+        bkStepSlotCount(0);
+        renderMultiSlotArea();
+        bkUpdateStreamlineSummary();
+      });
+      return;
+    } else {
+      if(multiToggle) multiToggle.checked = false;
+      const durGrid = document.getElementById('bkStreamlineDurGrid');
+      const multiPanel = document.getElementById('bkMultiPanel');
+      const singleTimeWrap = document.getElementById('bkSingleTimeWrap');
+      const multiArea = document.getElementById('bkMultiSlotArea');
+      if(durGrid) durGrid.style.display = 'grid';
+      if(multiPanel) multiPanel.style.display = 'none';
+      if(singleTimeWrap) singleTimeWrap.style.display = 'block';
+      if(multiArea) multiArea.style.display = 'none';
+    }
 
     bkRenderStreamlineDates();
     bkRenderStreamlineDuration();
+    bkRenderStreamlineTimings();
+    bkUpdateStreamlineSummary();
     bkLoadAvailability().then(() => {
       bkRenderStreamlineTimings();
       bkUpdateStreamlineSummary();
@@ -3891,20 +4106,25 @@
 
   // 2. Duration Matrix Control
   function bkRenderStreamlineDuration(){
-    const dur = bkDurationHours || 2;
+    const dur = bkDurationHours || 0;
     const readout = document.getElementById('bkStreamlineDurReadout');
     if(readout){
-      readout.textContent = `${dur} HOUR${dur > 1 ? 'S' : ''} SELECTED`;
+      readout.textContent = dur > 0 ? `${dur} HOUR${dur > 1 ? 'S' : ''} SELECTED` : 'SELECT DURATION';
     }
     document.querySelectorAll('#bkStreamlineDurGrid .bk-dur-matrix-btn').forEach(btn => {
       const bDur = parseInt(btn.dataset.dur, 10);
-      btn.classList.toggle('active', bDur === dur);
+      btn.classList.toggle('active', dur > 0 && bDur === dur);
     });
   }
 
   function bkSetStreamlineDuration(dur){
-    bkDurationHours = dur;
-    bkState.duration = dur;
+    if(bkDurationHours === dur){
+      bkDurationHours = 0;
+      bkState.duration = 0;
+    } else {
+      bkDurationHours = dur;
+      bkState.duration = dur;
+    }
     bkSelectedRange = null;
     bkState.start = null;
     bkState.end = null;
@@ -3918,6 +4138,21 @@
   window.bkSetStreamlineDuration = bkSetStreamlineDuration;
 
   // 3. Timings Grid & Filter Control
+  function bkRangesMatch(r1, r2){
+    if(!r1 || !r2) return false;
+    const s1 = r1.start, s2 = r2.start;
+    if(!s1 || !s2) return false;
+    const d1 = (s1 instanceof Date) ? s1 : new Date(s1);
+    const d2 = (s2 instanceof Date) ? s2 : new Date(s2);
+    if(isNaN(d1.getTime()) || isNaN(d2.getTime())) return false;
+    return d1.getFullYear() === d2.getFullYear() &&
+           d1.getMonth() === d2.getMonth() &&
+           d1.getDate() === d2.getDate() &&
+           d1.getHours() === d2.getHours() &&
+           d1.getMinutes() === d2.getMinutes();
+  }
+  window.bkRangesMatch = bkRangesMatch;
+
   function bkFilterStreamlineTimings(filter){
     streamlineActiveFilter = filter;
     document.querySelectorAll('.bk-time-filter-chip').forEach(chip => {
@@ -3933,36 +4168,40 @@
     if(!grid) return;
     grid.innerHTML = '';
 
-    const dur = bkDurationHours || 2;
-    const availableRanges = getAvailableTimeRanges();
-
-    // Filter ranges based on active period
-    let filteredRanges = availableRanges;
-    if(streamlineActiveFilter === 'morning'){
-      filteredRanges = availableRanges.filter(r => r.start.getHours() >= 6 && r.start.getHours() < 12);
-    } else if(streamlineActiveFilter === 'afternoon'){
-      filteredRanges = availableRanges.filter(r => r.start.getHours() >= 12 && r.start.getHours() < 17);
-    } else if(streamlineActiveFilter === 'night'){
-      filteredRanges = availableRanges.filter(r => (r.start.getHours() >= 17 && r.start.getHours() <= 23) || (r.start.getHours() >= 0 && r.start.getHours() < 6));
-    }
-
-    if(countEl){
-      countEl.textContent = `${filteredRanges.length} SLOT${filteredRanges.length === 1 ? '' : 'S'} OPEN`;
-    }
-
-    if(!filteredRanges.length){
-      grid.innerHTML = `<div class="bk-time-empty-note">No available ${dur}h slots open in this period. Choose another filter or duration above.</div>`;
+    if(!bkDurationHours){
+      if(countEl) countEl.textContent = 'SELECT DURATION';
+      grid.innerHTML = '<div class="bk-time-empty-note">Please select a duration above to view available time slots.</div>';
+      bkSelectedRange = null;
+      bkState.start = null; bkState.end = null; bkState.selectedRange = null;
+      bkUpdateStreamlineSummary();
       return;
     }
 
-    filteredRanges.forEach(range => {
+    const dur = bkDurationHours;
+    const availableRanges = getAvailableTimeRanges();
+
+    if(countEl){
+      countEl.textContent = availableRanges.length ? `${availableRanges.length} SLOT${availableRanges.length === 1 ? '' : 'S'} OPEN` : 'NO SLOTS OPEN';
+    }
+
+    if(!availableRanges.length){
+      grid.innerHTML = `<div class="bk-time-empty-note">No available slots for ${dur} hour${dur > 1 ? 's' : ''} on this date.<br>Try selecting another date or duration above.</div>`;
+      bkSelectedRange = null;
+      bkState.start = null; bkState.end = null; bkState.selectedRange = null;
+      bkUpdateStreamlineSummary();
+      return;
+    }
+
+    availableRanges.forEach(range => {
       const pill = document.createElement('button');
       pill.type = 'button';
       pill.className = 'bk-time-pill';
       pill.dataset.start = String(range.start.getTime());
 
-      const isSelected = bkSelectedRange && bkSelectedRange.start && (bkSelectedRange.start.getTime() === range.start.getTime());
-      if(isSelected) pill.classList.add('active');
+      // If user has actively chosen this range, mark active
+      if(bkRangesMatch(range, bkSelectedRange)){
+        pill.classList.add('active');
+      }
 
       const startBase = range.start.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
       const endBase = range.end.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
@@ -3979,12 +4218,20 @@
       grid.appendChild(pill);
     });
 
-    // If a range was previously selected and is still in filteredRanges, preserve it.
-    // Otherwise auto-select the first prime evening slot (or first available)
-    if(!bkSelectedRange && filteredRanges.length){
-      const prime = filteredRanges.find(r => r.start.getHours() >= 17 && r.start.getHours() <= 22);
-      bkSelectStreamlineSlot(prime || filteredRanges[0]);
+    // Verify existing selection against available ranges using robust date/time match
+    if(bkSelectedRange && bkSelectedRange.start){
+      const matched = availableRanges.find(r => bkRangesMatch(r, bkSelectedRange));
+      if(matched){
+        bkSelectedRange = matched;
+        bkState.selectedRange = matched;
+        bkState.start = formatBookingTime(matched.start);
+        bkState.end = formatBookingTime(matched.end);
+      } else {
+        bkSelectedRange = null;
+        bkState.start = null; bkState.end = null; bkState.selectedRange = null;
+      }
     }
+    bkUpdateStreamlineSummary();
   }
 
   function bkSelectStreamlineSlot(range){
@@ -4008,33 +4255,77 @@
     const detailsEl = document.getElementById('bkStreamlineSumDetails');
     const priceEl = document.getElementById('bkStreamlineSumPrice');
     const goBtn = document.getElementById('bkStreamlineGoBtn');
-
-    const dur = bkDurationHours || 2;
     const rate = typeof getSiteRate === 'function' ? getSiteRate() : 800;
-    const totalPrice = dur * rate;
 
-    if(priceEl){
-      priceEl.textContent = `TOTAL: ₹${totalPrice.toLocaleString('en-IN')}`;
-    }
+    if(bkMultiEnabled){
+      const totalHrs = bkTotalHours();
+      const totalPrice = totalHrs * rate;
+      const selectedSlots = bkSlots.filter(s => s.start && s.end && s.hours > 0);
+      const allSelected = bkSlots.length && (selectedSlots.length === bkSlots.length);
 
-    if(detailsEl){
-      if(bkState.date && bkSelectedRange){
-        const dStr = bkState.date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
-        const timeStr = `${formatBookingTime(bkSelectedRange.start)} - ${formatBookingTime(bkSelectedRange.end)}`;
-        detailsEl.textContent = `${dStr} • ${dur} Hour${dur > 1 ? 's' : ''} • ${timeStr}`;
-      } else if(bkState.date){
-        const dStr = bkState.date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
-        detailsEl.textContent = `${dStr} • ${dur} Hour${dur > 1 ? 's' : ''} • Choose Time Slot`;
-      } else {
-        detailsEl.textContent = '—';
+      if(priceEl){
+        priceEl.textContent = `TOTAL: ₹${totalPrice.toLocaleString('en-IN')}`;
       }
-    }
 
-    if(goBtn){
-      if(bkSelectedRange){
-        goBtn.removeAttribute('disabled');
-      } else {
-        goBtn.setAttribute('disabled', '');
+      if(detailsEl){
+        const dStr = bkState.date ? bkState.date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }) : 'Date Selected';
+        if(allSelected){
+          const slotCards = bkSlots.map((s, idx) => `
+            <div style="display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:8px 12px; font-size:13px; gap:8px;">
+              <span><strong style="color:#39FF7A; font-weight:600; margin-right:6px;">Slot ${idx + 1}:</strong> ${s.startLabel} – ${s.endLabel}</span>
+              <span style="color:#94A3B8; font-size:11.5px; font-weight:500; background:rgba(255,255,255,0.05); padding:2px 8px; border-radius:6px; white-space:nowrap;">${s.hours}h</span>
+            </div>
+          `).join('');
+          detailsEl.innerHTML = `
+            <div style="color:#94A3B8; font-size:12.5px; margin-bottom:8px; font-weight:500;">${dStr} • ${totalHrs} Total Hours</div>
+            <div style="display:flex; flex-direction:column; gap:8px;">${slotCards}</div>
+          `;
+        } else {
+          detailsEl.innerHTML = `<div style="color:#94A3B8; font-size:12.5px; margin-bottom:4px;">${dStr}</div><div style="color:#FFFFFF; font-size:13px;">${selectedSlots.length}/${bkSlots.length} Slots Configured (${totalHrs}h chosen)</div>`;
+        }
+      }
+
+      if(goBtn){
+        if(allSelected){
+          goBtn.removeAttribute('disabled');
+        } else {
+          goBtn.setAttribute('disabled', '');
+        }
+      }
+    } else {
+      const dur = bkDurationHours || 0;
+      const totalPrice = dur * rate;
+
+      if(priceEl){
+        priceEl.textContent = `TOTAL: ₹${totalPrice.toLocaleString('en-IN')}`;
+      }
+
+      if(detailsEl){
+        const dStr = bkState.date ? bkState.date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }) : '—';
+        if(dur > 0 && bkSelectedRange){
+          const timeStr = `${formatBookingTime(bkSelectedRange.start)} – ${formatBookingTime(bkSelectedRange.end)}`;
+          detailsEl.innerHTML = `
+            <div style="color:#94A3B8; font-size:12.5px; margin-bottom:8px; font-weight:500;">${dStr} • ${dur} Hour${dur > 1 ? 's' : ''}</div>
+            <div style="display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:8px 12px; font-size:13px; color:#FFFFFF;">
+              <span>${timeStr}</span>
+              <span style="color:#94A3B8; font-size:11.5px; font-weight:500; background:rgba(255,255,255,0.05); padding:2px 8px; border-radius:6px;">${dur}h</span>
+            </div>
+          `;
+        } else if(dur > 0){
+          detailsEl.innerHTML = `<div style="color:#94A3B8; font-size:12.5px; margin-bottom:4px;">${dStr} • ${dur} Hour${dur > 1 ? 's' : ''}</div><div style="color:#E2E8F0; font-size:13px;">Choose Time Slot</div>`;
+        } else if(bkState.date){
+          detailsEl.innerHTML = `<div style="color:#94A3B8; font-size:12.5px; margin-bottom:4px;">${dStr}</div><div style="color:#E2E8F0; font-size:13px;">Choose Duration & Time</div>`;
+        } else {
+          detailsEl.textContent = '—';
+        }
+      }
+
+      if(goBtn){
+        if(dur > 0 && bkSelectedRange){
+          goBtn.removeAttribute('disabled');
+        } else {
+          goBtn.setAttribute('disabled', '');
+        }
       }
     }
 
@@ -4043,10 +4334,12 @@
     const sumDur = document.getElementById('bkTlSumDur');
     const sumTime = document.getElementById('bkTlSumTime');
     const sumTotal = document.getElementById('bkTlSumTotal');
+    const dispDur = bkMultiEnabled ? bkTotalHours() : (bkDurationHours || 2);
+    const dispTotal = dispDur * rate;
     if(sumDate && bkState.date) sumDate.textContent = bkState.date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-    if(sumDur) sumDur.textContent = `${dur} Hour${dur > 1 ? 's' : ''}`;
+    if(sumDur) sumDur.textContent = `${dispDur} Hour${dispDur > 1 ? 's' : ''}`;
     if(sumTime && bkSelectedRange) sumTime.textContent = `${formatBookingTime(bkSelectedRange.start)} → ${formatBookingTime(bkSelectedRange.end)}`;
-    if(sumTotal) sumTotal.textContent = `₹${totalPrice.toLocaleString('en-IN')}`;
+    if(sumTotal) sumTotal.textContent = `₹${dispTotal.toLocaleString('en-IN')}`;
   }
 
   // Compatibility Stubs for bridge / automated checks
@@ -4136,6 +4429,16 @@
       return `${dateKey}T${String(dateTime.getHours()).padStart(2, '0')}:00`;
     }
     function bkRangeBooked(startDateTime, duration){
+      const endDateTime = new Date(startDateTime.getTime() + duration * 60 * 60 * 1000);
+      if(typeof bkRangesMatch === 'function'){
+        if(bkSelectedRange && bkRangesMatch({ start: startDateTime, end: endDateTime }, bkSelectedRange)){
+          return false;
+        }
+        if(bkSlots && bkSlots.length){
+          const matchesOwnSlot = bkSlots.some(s => s && bkRangesMatch({ start: startDateTime, end: endDateTime }, s));
+          if(matchesOwnSlot) return false;
+        }
+      }
       return Array.from({length: duration}, (_, offset)=>{
         const hour = new Date(startDateTime.getTime() + offset * 60 * 60 * 1000);
         return bkBookedSlotKeys.has(bkBookedKey(hour));
@@ -4150,7 +4453,8 @@
       if(!bkState.date) return;
       const requestId = ++bkAvailabilityRequest;
       try {
-        const response = await fetch(`/api/bookings?date=${encodeURIComponent(bkIsoDate(bkState.date))}`);
+        const draftParam = bkDraftReference ? `&draftReference=${encodeURIComponent(bkDraftReference)}` : '';
+        const response = await fetch(`/api/bookings?date=${encodeURIComponent(bkIsoDate(bkState.date))}${draftParam}`);
         const data = await response.json().catch(()=>({}));
         if(!response.ok) throw new Error(data.message || 'Unable to load slot availability.');
         if(requestId !== bkAvailabilityRequest) return;
@@ -4182,14 +4486,14 @@
       if (bkState.date.getTime() === today.getTime() && startDateTime <= new Date()) continue;
       if (bkRangeBooked(startDateTime, duration)) continue;
       if(!bkUnavailableIntervals(startDateTime, endDateTime).length){
-        const thisRange = { start: new Date(startDateTime), end: new Date(endDateTime) };
-        if(!bkSlotsOverlap(thisRange)) ranges.push(thisRange);
+        ranges.push({ start: new Date(startDateTime), end: new Date(endDateTime) });
       }
     }
     return ranges;
   }
   function bkSlotsOverlap(range){
-    return bkSlots.some(s => range.start < s.end && s.start < range.end);
+    if(!bkMultiEnabled) return false;
+    return bkSlots.some(s => s && s.start && s.end && range.start < s.end && s.start < range.end);
   }
   function selectBookingRange(range){
     if(bkSlotsOverlap(range)){
@@ -4308,9 +4612,15 @@
   }
 
   function formatBookingTime(dateTime){
-    const time = dateTime.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+    if(!dateTime) return '—';
+    if(typeof dateTime === 'string' && (dateTime.includes('AM') || dateTime.includes('PM'))){
+      return dateTime;
+    }
+    const d = (dateTime instanceof Date) ? dateTime : new Date(dateTime);
+    if(isNaN(d.getTime())) return String(dateTime);
+    const time = d.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
     const baseDate = bkState.date || new Date();
-    const nextDay = dateTime.getFullYear() !== baseDate.getFullYear() || dateTime.getMonth() !== baseDate.getMonth() || dateTime.getDate() !== baseDate.getDate();
+    const nextDay = d.getFullYear() !== baseDate.getFullYear() || d.getMonth() !== baseDate.getMonth() || d.getDate() !== baseDate.getDate();
     return nextDay ? `${time} (+1d)` : time;
   }
     const bkDurationOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -4319,38 +4629,62 @@
   }
   function bkSetMulti(on){
     bkMultiEnabled = on;
-    document.getElementById('bkMultiPanel').style.display = on ? 'block' : 'none';
-    document.getElementById('bkSingleDurWrap').style.display = on ? 'none' : 'block';
+    const durGrid = document.getElementById('bkStreamlineDurGrid');
+    const multiPanel = document.getElementById('bkMultiPanel');
+    const singleTimeWrap = document.getElementById('bkSingleTimeWrap');
+    const multiArea = document.getElementById('bkMultiSlotArea');
+    const durReadout = document.getElementById('bkStreamlineDurReadout');
+    const timingsTitle = document.getElementById('bkStreamlineTimingsTitle');
+    const slotsCount = document.getElementById('bkStreamlineSlotsCount');
+
+    if(durGrid) durGrid.style.display = on ? 'none' : 'grid';
+    if(multiPanel) multiPanel.style.display = on ? 'block' : 'none';
+    if(singleTimeWrap) singleTimeWrap.style.display = on ? 'none' : 'block';
+    if(multiArea) multiArea.style.display = on ? 'flex' : 'none';
+
     if(on){
-      bkSlotCount = Math.min(5, Math.max(2, bkSlots.length ? bkSlots.length : bkSlotCount));
-      if(!bkSlots.length) bkSlots = Array.from({ length: bkSlotCount }, (_, i)=>bkCreateMultiSlot(i));
+      bkSlotCount = Math.min(5, Math.max(1, bkSlots.length ? bkSlots.length : 1));
+      if(!bkSlots.length) bkSlots = [bkCreateMultiSlot(0)];
       bkDurationHours = 0;
       bkSelectedRange = null;
       bkState.start = null; bkState.end = null; bkState.selectedRange = null;
-      document.querySelectorAll('#bkDurationPills .pill').forEach(p=>p.classList.remove('sel'));
-      document.getElementById('bkTimeContinue')?.setAttribute('disabled', '');
+      if(durReadout) durReadout.textContent = `${bkSlotCount} ${bkSlotCount === 1 ? 'SLOT' : 'SLOTS'} CONFIGURING`;
+      if(timingsTitle) timingsTitle.textContent = '03. MULTI-SLOT TIMINGS';
+      if(slotsCount) slotsCount.textContent = 'SELECT FOR EACH SLOT';
       bkStepSlotCount(0);
+      renderMultiSlotArea();
     } else {
       bkSlots = [];
       bkSelectedRange = null;
       bkDurationHours = 0;
+      bkState.duration = 0;
       bkState.start = null; bkState.end = null; bkState.selectedRange = null;
-      document.querySelectorAll('#bkDurationPills .pill, #bkSlotDurations .ms-dur-pill').forEach(p=>p.classList.remove('sel'));
-      document.getElementById('bkDurationContinue')?.setAttribute('disabled', '');
-      renderAvailableTimeRanges();
+      if(durReadout) durReadout.textContent = 'SELECT DURATION';
+      if(timingsTitle) timingsTitle.textContent = '03. AVAILABLE TIMINGS';
+      bkRenderStreamlineDuration();
+      bkRenderStreamlineTimings();
     }
-    if(typeof bkUpdateSubflowProgress === 'function') bkUpdateSubflowProgress();
+    bkUpdateStreamlineSummary();
+    bkPersist();
   }
   function bkStepSlotCount(delta){
     const next = bkSlotCount + delta;
-    if(next >= 2 && next <= 5) bkSlotCount = next;
-    document.getElementById('bkSlotCount').textContent = bkSlotCount;
-    document.getElementById('bkSlotMinus').disabled = bkSlotCount <= 2;
-    document.getElementById('bkSlotPlus').disabled = bkSlotCount >= 5;
+    if(next >= 1 && next <= 5) bkSlotCount = next;
+    const countEl = document.getElementById('bkSlotCount');
+    const minusBtn = document.getElementById('bkSlotMinus');
+    const plusBtn = document.getElementById('bkSlotPlus');
+    const durReadout = document.getElementById('bkStreamlineDurReadout');
+    if(countEl) countEl.textContent = bkSlotCount;
+    if(minusBtn) minusBtn.disabled = bkSlotCount <= 1;
+    if(plusBtn) plusBtn.disabled = bkSlotCount >= 5;
+    if(durReadout) durReadout.textContent = `${bkSlotCount} ${bkSlotCount === 1 ? 'SLOT' : 'SLOTS'} CONFIGURING`;
     while(bkSlots.length < bkSlotCount) bkSlots.push(bkCreateMultiSlot(bkSlots.length));
     while(bkSlots.length > bkSlotCount) bkSlots.pop();
     bkRenderMultiDurations();
     bkUpdateMultiDurationContinue();
+    renderMultiSlotArea();
+    bkUpdateStreamlineSummary();
+    bkPersist();
   }
   function bkRenderMultiDurations(){
     const box = document.getElementById('bkSlotDurations');
@@ -4377,13 +4711,9 @@
     slot.start = null; slot.end = null; slot.startLabel = null; slot.endLabel = null; slot.amount = 0;
     bkRenderMultiDurations();
     bkUpdateMultiDurationContinue();
-    const ok = bkSlots.length && bkSlots.every(s => s && s.hours > 0);
     renderMultiSlotArea();
-    if(ok){
-      if(typeof bkSetSubStage === 'function') bkSetSubStage('timing', true);
-    } else {
-      if(typeof bkSetSubStage === 'function') bkSetSubStage('duration', false);
-    }
+    bkUpdateStreamlineSummary();
+    bkPersist();
   }
   function bkUpdateMultiDurationContinue(){
     const btn = document.getElementById('bkDurationContinue');
@@ -4414,51 +4744,68 @@
       slot.amount = slot.hours * getSiteRate();
     }
     renderMultiSlotArea();
+    bkUpdateStreamlineSummary();
+    bkPersist();
   }
   function renderMultiSlotArea(){
     const area = document.getElementById('bkMultiSlotArea');
     if(!area) return;
-    const singleArea = document.getElementById('bkSingleTimeArea');
     area.innerHTML = '';
-    if(singleArea) singleArea.style.display = 'none';
-    area.style.display = bkIsMobileRange() ? 'flex' : 'block';
-    bkSetAddSlotBtn(false);
+    area.style.display = 'flex';
+
     bkSlots.forEach((slot, i)=>{
       const card = document.createElement('div');
       card.className = 'bk-slot-card' + (slot.start ? ' has-sel' : '');
       const chosen = slot.start
-        ? '<span class="bk-slot-selected">' + slot.startLabel + ' → ' + slot.endLabel + '</span>'
-        : 'No time selected';
+        ? '<span class="bk-slot-selected">✓ ' + slot.startLabel + ' – ' + slot.endLabel + '</span>'
+        : '<span style="color:#94A3B8; font-size:12px;">Choose timing below</span>';
+
       let pillsHtml = '';
-      const ranges = getAvailableTimeRanges(slot.hours);
-      ranges.forEach(range=>{
-        if(slot.start && range.start.getTime() === slot.start.getTime()) return;
-        pillsHtml += '<div class="pill" data-i="' + i + '" data-start="' + range.start.getTime() + '">' + formatBookingTime(range.start) + ' → ' + formatBookingTime(range.end) + '</div>';
-      });
-      if(slot.start){
-        pillsHtml = '<div class="pill sel" data-i="' + i + '" data-start="' + slot.start.getTime() + '">' + slot.startLabel + ' → ' + slot.endLabel + '</div>' + pillsHtml;
+      if(!slot.hours){
+        pillsHtml = '<div class="bk-slot-empty" style="grid-column:1/-1; padding:12px; text-align:center; color:#94A3B8; font-size:12px;">Select a duration for Slot ' + (i + 1) + ' above.</div>';
+      } else {
+        const ranges = getAvailableTimeRanges(slot.hours);
+        ranges.forEach(range=>{
+          if(slot.start && range.start.getTime() === slot.start.getTime()) return;
+          const isOverlap = bkMultiSlotOverlapsOthers(i, range);
+          if(isOverlap) return; // Skip overlapping ranges
+
+          const startBase = range.start.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+          const endBase = range.end.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+          const baseDate = bkState.date || new Date();
+          const nextDay = range.end.getFullYear() !== baseDate.getFullYear() || range.end.getMonth() !== baseDate.getMonth() || range.end.getDate() !== baseDate.getDate();
+          const tagHtml = nextDay ? '<span class="bk-time-tag">+1 DAY</span>' : '';
+
+          pillsHtml += '<div class="pill" data-i="' + i + '" data-start="' + range.start.getTime() + '"><span class="bk-time-range">' + startBase + ' – ' + endBase + '</span>' + tagHtml + '</div>';
+        });
+
+        if(slot.start){
+          const startBase = slot.start.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+          const endBase = slot.end.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+          const baseDate = bkState.date || new Date();
+          const nextDay = slot.end.getFullYear() !== baseDate.getFullYear() || slot.end.getMonth() !== baseDate.getMonth() || slot.end.getDate() !== baseDate.getDate();
+          const tagHtml = nextDay ? '<span class="bk-time-tag">+1 DAY</span>' : '';
+
+          pillsHtml = '<div class="pill sel" data-i="' + i + '" data-start="' + slot.start.getTime() + '"><span class="bk-time-range">' + startBase + ' – ' + endBase + '</span>' + tagHtml + '</div>' + pillsHtml;
+        }
+
+        if(!pillsHtml){
+          pillsHtml = '<div class="bk-slot-empty" style="grid-column:1/-1; padding:12px; text-align:center; color:#94A3B8; font-size:12px;">No non-overlapping time ranges available for this duration.</div>';
+        }
       }
-      if(!pillsHtml) pillsHtml = '<div class="bk-slot-empty">No time ranges are available for this duration.</div>';
+
       card.innerHTML =
-        '<div class="bk-slot-card-head"><span class="bk-slot-num">SLOT ' + (i + 1) + '</span><span class="bk-slot-dur">Duration: ' + slot.hours + ' hour' + (slot.hours > 1 ? 's' : '') + '</span></div>' +
+        '<div class="bk-slot-card-head"><span class="bk-slot-num">SLOT ' + (i + 1) + '</span><span class="bk-slot-dur">' + (slot.hours ? slot.hours + ' hour' + (slot.hours > 1 ? 's' : '') : 'No duration') + '</span></div>' +
         '<div class="bk-slot-chosen">' + chosen + '</div>' +
         '<div class="pill-row bk-slot-pills">' + pillsHtml + '</div>';
       area.appendChild(card);
     });
+
     area.querySelectorAll('.pill').forEach(p=>{
       p.onclick = ()=>bkSelectMultiSlotPill(Number(p.dataset.i), Number(p.dataset.start));
     });
-    bkSetupSlotPager();
-    const allSet = bkSlots.length && bkSlots.every(s => s.hours > 0 && s.start && s.end);
-    const btn = document.getElementById('bkTimeContinue');
-    const hintEl = document.getElementById('bkTimeHint');
-    if(allSet){
-      btn?.removeAttribute('disabled');
-      if(hintEl) hintEl.textContent = 'All slots selected — continue to the summary.';
-    } else {
-      btn?.setAttribute('disabled', '');
-      if(hintEl) hintEl.textContent = bkSlots.every(s => s.hours > 0) ? 'Select a non-overlapping time range for every slot.' : 'Pick a duration for every slot first.';
-    }
+
+    bkUpdateStreamlineSummary();
     if(typeof bkUpdateSubflowProgress === 'function') bkUpdateSubflowProgress();
   }
   function bkIsMobileRange(){ return window.matchMedia('(max-width:768px)').matches; }
@@ -4631,6 +4978,7 @@
         bkState.start = bkSlots[0].startLabel;
         bkState.end = bkSlots[0].endLabel;
         bkState.duration = dur;
+        bkState.selectedRange = slotRange;
       } else {
         alert('Please choose an available time slot to continue.');
         return;
@@ -4651,14 +4999,18 @@
   function renderActiveSlotSummary(){
     const holder = document.getElementById('bkSumActive');
     if(!holder) return;
-    const slot = bkSlots[bkSummaryActiveSlot];
-    if(!slot){ holder.innerHTML = ''; return; }
+    const slots = (bkSlots && bkSlots.length) ? bkSlots : [{ startLabel: bkState.start || '—', endLabel: bkState.end || '—', hours: bkState.duration || 1 }];
     const rows = [];
-    rows.push(`<div class="bk-row bk-slot-head"><span>Slot ${bkSummaryActiveSlot + 1}</span></div>`);
-    rows.push(`<div class="bk-row"><span>Start time</span><b>${slot.startLabel || '—'}</b></div>`);
-    rows.push(`<div class="bk-row"><span>End time</span><b>${slot.endLabel || '—'}</b></div>`);
-    rows.push(`<div class="bk-row"><span>Duration</span><b>${slot.hours ? (slot.hours+' hour'+(slot.hours>1?'s':'')) : '—'}</b></div>`);
-    rows.push(`<div class="bk-row"><span>Amount</span><b>₹${((slot.hours || 0) * getSiteRate()).toLocaleString('en-IN')}</b></div>`);
+    slots.forEach((slot, idx) => {
+      const isMulti = slots.length > 1;
+      const headMargin = (idx > 0) ? 'margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08);' : '';
+      if(isMulti){
+        rows.push(`<div class="bk-row bk-slot-head" style="${headMargin}"><span>Slot ${idx + 1}</span></div>`);
+      }
+      rows.push(`<div class="bk-row" style="${!isMulti && idx === 0 ? '' : ''}"><span>${isMulti ? 'Timing' : 'Timing'}</span><b>${slot.startLabel || '—'} – ${slot.endLabel || '—'}</b></div>`);
+      rows.push(`<div class="bk-row"><span>Duration</span><b>${slot.hours ? (slot.hours + ' hour' + (slot.hours > 1 ? 's' : '')) : '—'}</b></div>`);
+      rows.push(`<div class="bk-row"><span>Rate</span><b>₹${((slot.hours || 0) * getSiteRate()).toLocaleString('en-IN')}</b></div>`);
+    });
     holder.innerHTML = rows.join('');
   }
   function bkFillSummary(){
@@ -4666,12 +5018,9 @@
     if(dateEl) dateEl.textContent = bkState.dateLabel || '—';
     const tabs = document.getElementById('bkSumSlots');
     const combined = document.getElementById('bkSumCombined');
-    const count = bkSlots.length ? bkSlots.length : 1;
-    if(bkSummaryActiveSlot >= count) bkSummaryActiveSlot = 0;
     if(tabs){
-      tabs.innerHTML = Array.from({ length: count }, (_,i)=>
-        '<button type="button" class="bk-slot-tab' + (i === bkSummaryActiveSlot ? ' active' : '') + '" role="tab" aria-selected="' + (i === bkSummaryActiveSlot) + '" onclick="bkSelectSummarySlot(' + i + ')">SLOT ' + (i + 1) + '</button>'
-      ).join('');
+      // With all slots displayed clearly in order, separate tabs are no longer required
+      tabs.style.display = 'none';
     }
     renderActiveSlotSummary();
     if(combined){
@@ -4878,7 +5227,7 @@
   function bkResetBooking(){
     bkState = { date:null, dateLabel:'', duration:0, start:null, end:null, selectedRange:null };
     bkDurationHours = 0; bkSelectedRange = null; bkSlots = []; bkAddingSlot = false;
-    bkMultiEnabled = false; bkSlotCount = 2; bkActiveSlotPage = 0;
+    bkMultiEnabled = false; bkSlotCount = 1; bkActiveSlotPage = 0;
     bkOtpVerified = false;
     bkOtpReqId = null;
     bkVerifiedMobile = '';

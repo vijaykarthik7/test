@@ -116,22 +116,27 @@ export default async function handler(req, res) {
     try {
       const db = await getDb()
       const followingDate = nextDateKey(date)
+      const currentDraftRef = String(req.query?.draftReference || '').trim()
       const [bookings, sessions] = await Promise.all([
         db.collection('bookings').find(
           { date: { $in: [date, followingDate] } },
-          { projection: { paymentReference: 1, bookingStatus: 1, slotKeys: 1, slots: 1, time: 1, duration: 1 } },
+          { projection: { paymentReference: 1, bookingStatus: 1, paymentStatus: 1, draftReference: 1, slotKeys: 1, slots: 1, time: 1, duration: 1 } },
         ).toArray(),
         db.collection('payment_sessions').find(
           { 'bookingData.date': { $in: [date, followingDate] }, status: { $in: ['PAYMENT_PENDING', 'PAID'] } },
           { projection: { reference: 1, bookingData: 1 } },
         ).toArray(),
       ])
-      const cancelledReferences = new Set(bookings.filter((booking) => booking.bookingStatus === 'CANCELLED').map((booking) => booking.paymentReference).filter(Boolean))
-      const activeBookings = bookings.filter((booking) => booking.bookingStatus !== 'CANCELLED')
+      const cancelledReferences = new Set(bookings.filter((booking) => booking.bookingStatus === 'CANCELLED' || booking.paymentStatus === 'CANCELLED').map((booking) => booking.paymentReference).filter(Boolean))
+      const activeBookings = bookings.filter((booking) => {
+        if (currentDraftRef && booking.draftReference === currentDraftRef) return false
+        if (booking.bookingStatus === 'CANCELLED' || booking.paymentStatus === 'CANCELLED') return false
+        return booking.bookingStatus === 'CONFIRMED' || booking.bookingStatus === 'COMPLETED' || booking.paymentStatus === 'PAID'
+      })
       const activeReferences = new Set(activeBookings.map((booking) => booking.paymentReference).filter(Boolean))
       const occupiedSlotKeys = [...new Set([
         ...activeBookings.flatMap((booking) => recordSlotKeys(booking.date || date, booking)),
-        ...sessions.filter((session) => !cancelledReferences.has(session.reference) && !activeReferences.has(session.reference)).flatMap((session) => recordSlotKeys(session.bookingData?.date || date, session)),
+        ...sessions.filter((session) => !cancelledReferences.has(session.reference) && !activeReferences.has(session.reference) && (!currentDraftRef || session.reference !== currentDraftRef)).flatMap((session) => recordSlotKeys(session.bookingData?.date || date, session)),
       ])]
       return res.status(200).json({ date, occupiedSlotKeys })
     } catch (error) {

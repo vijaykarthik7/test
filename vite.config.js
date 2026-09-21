@@ -48,7 +48,7 @@ export default defineConfig(({ mode }) => {
           res.status = (status) => { res.statusCode = status; return res }
           res.json = (payload) => { res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify(payload)) }
           try {
-            const { default: handler } = await import(pathToFileURL(resolve(process.cwd(), modulePath)).href)
+            const { default: handler } = await import(pathToFileURL(resolve(process.cwd(), modulePath)).href + '?t=' + Date.now())
             await handler(req, res)
           } catch (error) {
             next(error)
