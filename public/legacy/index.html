@@ -602,204 +602,212 @@
   .bk-slot-pills .pill{width:100%; min-width:0; min-height:38px; box-sizing:border-box; text-align:center; white-space:pre-line; line-height:1.3; font-size:12px; display:flex; align-items:center; justify-content:center;}
   .bk-slot-empty{grid-column:1 / -1; font-size:12px; color:var(--muted); font-style:italic; padding:8px 2px;}
 
-  /* ---- TURFON24 "THE 24-HOUR TURF RUNWAY" ---- */
-  .bk-runway-console{
-    background:#080F0A;
-    background:radial-gradient(ellipse at 50% -15%, rgba(57,247,42,0.12) 0%, #080F0A 75%);
-    border:1px solid rgba(57,247,42,0.22);
-    border-radius:24px;
-    box-shadow:0 24px 60px rgba(0,0,0,0.7), 0 0 35px rgba(57,247,42,0.06);
-    backdrop-filter:blur(24px);
+  /* ---- TURFON24 "THE STREAMLINE CONSOLE" ---- */
+  .bk-streamline-console{
+    background:#0A0F0D;
+    border:1px solid #1E2E21;
+    border-radius:18px;
+    box-shadow:0 24px 60px rgba(0,0,0,0.85), 0 0 35px rgba(57,247,42,0.06);
     display:flex;
     flex-direction:column;
     width:100%;
+    max-width:760px;
+    margin:0 auto;
     box-sizing:border-box;
-    padding:24px 28px 24px;
-    gap:18px;
+    padding:24px 22px;
+    gap:22px;
     position:relative;
+    overflow:hidden;
   }
 
-  /* Header */
-  .bk-runway-head{
+  /* Console Header */
+  .bk-streamline-head{
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:14px;
-    padding-bottom:14px;
-    border-bottom:1px solid rgba(57,247,42,0.12);
+    padding-bottom:16px;
+    border-bottom:1px solid #1E2E21;
     flex-wrap:wrap;
   }
-  .bk-runway-head-titles{display:flex; flex-direction:column; gap:3px;}
-  .bk-runway-title{margin:0; font-size:21px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--white); font-family:'Space Grotesk',sans-serif;}
-  .bk-runway-subtitle{margin:0; font-size:12.5px; color:var(--muted); font-family:'Inter',sans-serif;}
-  
-  .bk-runway-badge{
+  .bk-streamline-head-titles{display:flex; flex-direction:column; gap:3px;}
+  .bk-streamline-title{
+    margin:0;
+    font-size:20px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--white);
+    font-family:'Space Grotesk',sans-serif;
+  }
+  .bk-streamline-subtitle{
+    margin:0;
+    font-size:12.5px;
+    color:#94A3B8;
+    font-family:'Inter',sans-serif;
+  }
+  .bk-streamline-badge{
     display:inline-flex;
     align-items:center;
-    gap:7px;
-    background:rgba(57,247,42,0.1);
-    border:1px solid rgba(57,247,42,0.28);
+    gap:6px;
+    background:rgba(57,247,42,0.08);
+    border:1px solid rgba(57,247,42,0.25);
     border-radius:100px;
     padding:5px 12px;
     font-family:'JetBrains Mono',monospace;
     font-size:10.5px;
     color:#39F72A;
     font-weight:700;
-    letter-spacing:0.04em;
+    letter-spacing:0.05em;
   }
 
-  /* 1. Date Ribbon Compass */
-  .bk-runway-date-section{
+  /* Slat Section Architecture */
+  .bk-slat-section{
     display:flex;
     flex-direction:column;
-    gap:8px;
+    gap:12px;
     width:100%;
-  }
-  .bk-date-ribbon-wrap{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    width:100%;
-  }
-  .bk-date-ribbon-nav{
-    width:32px;
-    height:36px;
-    border-radius:10px;
-    background:rgba(255,255,255,0.04);
-    border:1px solid rgba(255,255,255,0.1);
-    color:var(--white);
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    transition:all .18s ease;
-    flex-shrink:0;
-  }
-  .bk-date-ribbon-nav:hover{
-    background:rgba(57,247,42,0.15);
-    border-color:#39F72A;
-    color:#39F72A;
-  }
-  .bk-date-stream{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    overflow-x:auto;
-    scrollbar-width:none;
-    -ms-overflow-style:none;
-    flex:1;
-    padding:2px 0;
-  }
-  .bk-date-stream::-webkit-scrollbar{display:none;}
-
-  .bk-date-capsule{
-    display:inline-flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    padding:6px 14px;
-    min-width:92px;
-    border-radius:12px;
-    background:rgba(255,255,255,0.035);
-    border:1px solid rgba(255,255,255,0.08);
-    color:var(--muted);
-    cursor:pointer;
-    transition:all .18s ease;
-    flex-shrink:0;
-    text-align:center;
-  }
-  .bk-date-capsule:hover{
-    border-color:rgba(57,247,42,0.4);
-    background:rgba(57,247,42,0.08);
-    color:var(--white);
-    transform:translateY(-1px);
-  }
-  .bk-date-capsule.active{
-    background:linear-gradient(135deg, rgba(23,107,2,0.9), rgba(57,247,42,0.85));
-    border-color:#39F72A;
-    color:#04140D;
-    font-weight:800;
-    box-shadow:0 0 16px rgba(57,247,42,0.35);
-  }
-  .bk-date-capsule-day{
-    font-family:'JetBrains Mono',monospace;
-    font-size:9.5px;
-    text-transform:uppercase;
-    letter-spacing:0.06em;
-    line-height:1;
-  }
-  .bk-date-capsule-num{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:13px;
-    font-weight:700;
-    margin-top:2px;
-    line-height:1;
-  }
-  .bk-date-capsule.active .bk-date-capsule-day,
-  .bk-date-capsule.active .bk-date-capsule-num{color:#04140D; font-weight:800;}
-
-  .bk-date-more-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    width:36px;
-    min-width:36px;
-    height:36px;
-    padding:0;
     box-sizing:border-box;
-    border-radius:10px;
-    background:rgba(57,247,42,0.08);
-    border:1px solid rgba(57,247,42,0.25);
-    color:#39F72A;
-    font-size:16px;
-    cursor:pointer;
-    transition:all .18s ease;
-    flex-shrink:0;
+    border-bottom:1px solid #1E2E21;
+    padding-bottom:20px;
   }
-  .bk-date-more-btn:hover{
-    background:#39F72A;
-    color:#04140D;
-    box-shadow:0 0 12px rgba(57,247,42,0.3);
-  }
-
-  /* 2. Duration Ribbon (Slim Horizontal Control) */
-  .bk-runway-dur-section{
+  .bk-slat-head{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:12px;
+    gap:10px;
     width:100%;
-    max-width:100%;
-    background:rgba(0,0,0,0.3);
-    border:1px solid rgba(57,247,42,0.15);
-    border-radius:14px;
-    padding:6px 14px;
-    box-sizing:border-box;
-    overflow:hidden;
   }
-  .bk-dur-tag{
-    font-family:'JetBrains Mono',monospace;
-    font-size:10.5px;
+  .bk-slat-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:13px;
     font-weight:800;
-    color:#39F72A;
-    letter-spacing:0.06em;
-    flex-shrink:0;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:#94A3B8;
+    margin:0;
   }
-  .bk-dur-chips-scroll{
-    display:flex;
+  .bk-slat-readout{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    font-weight:700;
+    color:#39F72A;
+    letter-spacing:0.04em;
+  }
+  .bk-slat-month-btn{
+    background:rgba(255,255,255,0.04);
+    border:1px solid #1E2E21;
+    border-radius:8px;
+    padding:5px 12px;
+    color:#39F72A;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+    transition:all .18s ease;
+    display:inline-flex;
     align-items:center;
     gap:6px;
-    overflow-x:auto;
-    scrollbar-width:none;
-    -ms-overflow-style:none;
-    flex:1;
-    min-width:0;
-    max-width:100%;
-    padding:2px 0;
-    -webkit-overflow-scrolling:touch;
   }
-  .bk-dur-chips-scroll::-webkit-scrollbar{display:none;}
+  .bk-slat-month-btn:hover{
+    background:rgba(57,247,42,0.1);
+    border-color:#39F72A;
+  }
 
+  /* SECTION 1: DATE (Symmetrical 7-Day Horizon) */
+  .bk-streamline-date-grid{
+    display:grid;
+    grid-template-columns:repeat(7, 1fr);
+    gap:8px;
+    width:100%;
+    box-sizing:border-box;
+  }
+  .bk-date-card{
+    height:68px;
+    border-radius:12px;
+    background:#131C15;
+    border:1px solid #1E2E21;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+    cursor:pointer;
+    transition:all .16s ease;
+    user-select:none;
+    text-align:center;
+    padding:6px 2px;
+    box-sizing:border-box;
+  }
+  .bk-date-card:hover{
+    border-color:rgba(57,247,42,0.4);
+    background:rgba(57,247,42,0.06);
+    transform:translateY(-1px);
+  }
+  .bk-date-card.active{
+    border-color:#39F72A;
+    background:rgba(57,247,42,0.12);
+    box-shadow:0 0 16px rgba(57,247,42,0.22);
+  }
+  .bk-date-card-day{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    color:#94A3B8;
+    font-weight:700;
+    line-height:1;
+  }
+  .bk-date-card-num{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:18px;
+    font-weight:800;
+    color:#FFFFFF;
+    line-height:1.1;
+  }
+  .bk-date-card.active .bk-date-card-day,
+  .bk-date-card.active .bk-date-card-num{
+    color:#39F72A;
+  }
+
+  /* SECTION 2: DURATION (Uniform 6x2 / 4x3 Matrix) */
+  .bk-streamline-dur-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:8px;
+    width:100%;
+    box-sizing:border-box;
+  }
+  .bk-dur-matrix-btn{
+    height:44px;
+    border-radius:10px;
+    background:#131C15;
+    border:1px solid #1E2E21;
+    color:#FFFFFF;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    transition:all .16s ease;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    box-sizing:border-box;
+    padding:0 4px;
+  }
+  .bk-dur-matrix-btn:hover{
+    border-color:rgba(57,247,42,0.45);
+    background:rgba(57,247,42,0.08);
+  }
+  .bk-dur-matrix-btn.active{
+    background:#39F72A;
+    border-color:#39F72A;
+    color:#0A0F0D;
+    font-weight:800;
+    box-shadow:0 0 16px rgba(57,247,42,0.35);
+  }
+
+  /* Compact Multi-slot Toggle */
   .bk-compact-toggle{
     display:inline-flex;
     align-items:center;
@@ -848,465 +856,206 @@
     color:#39F72A;
   }
 
-  .bk-dur-chip-btn{
-    padding:5px 12px;
-    height:32px;
-    border-radius:8px;
-    background:rgba(255,255,255,0.035);
-    border:1px solid rgba(255,255,255,0.08);
-    color:var(--muted);
-    font-family:'Space Grotesk',sans-serif;
-    font-size:12px;
-    font-weight:700;
-    cursor:pointer;
-    transition:all .18s ease;
-    white-space:nowrap;
-    display:inline-flex;
-    align-items:center;
-    gap:4px;
-  }
-  .bk-dur-chip-btn:hover{
-    border-color:rgba(57,247,42,0.4);
-    background:rgba(57,247,42,0.08);
-    color:var(--white);
-  }
-  .bk-dur-chip-btn.active{
-    background:linear-gradient(135deg, #176B02, #39F72A);
-    border-color:#39F72A;
-    color:#04140D;
-    font-weight:800;
-    box-shadow:0 0 14px rgba(57,247,42,0.35);
-  }
-  .bk-dur-pop-badge{
-    font-size:9.5px;
-    color:#C7F42D;
-    font-weight:800;
-  }
-  .bk-dur-chip-btn.active .bk-dur-pop-badge{color:#04140D;}
-
-  /* 3. Time Zone Quick Jump Anchors */
-  .bk-zone-anchors{
+  /* SECTION 3: TIMING (Aligned Monospace Time Grid) */
+  .bk-time-filter-bar{
     display:flex;
     align-items:center;
     gap:8px;
-    width:100%;
     overflow-x:auto;
     scrollbar-width:none;
+    width:100%;
+    box-sizing:border-box;
     padding-bottom:2px;
+    -webkit-overflow-scrolling:touch;
   }
-  .bk-zone-anchors::-webkit-scrollbar{display:none;}
-  .bk-zone-btn{
-    padding:4px 10px;
+  .bk-time-filter-bar::-webkit-scrollbar{display:none;}
+  .bk-time-filter-chip{
+    height:32px;
+    padding:0 12px;
     border-radius:8px;
-    background:rgba(255,255,255,0.03);
-    border:1px solid rgba(255,255,255,0.08);
-    color:var(--muted);
+    background:#131C15;
+    border:1px solid #1E2E21;
+    color:#94A3B8;
     font-family:'JetBrains Mono',monospace;
     font-size:11px;
+    font-weight:700;
     cursor:pointer;
-    transition:all .18s ease;
+    transition:all .16s ease;
     white-space:nowrap;
     display:inline-flex;
     align-items:center;
-    gap:5px;
+    justify-content:center;
+    flex-shrink:0;
   }
-  .bk-zone-btn:hover{
-    background:rgba(57,247,42,0.08);
-    border-color:rgba(57,247,42,0.3);
+  .bk-time-filter-chip:hover{
+    border-color:rgba(57,247,42,0.4);
     color:var(--white);
   }
-
-  /* 4. THE 24-HOUR TURF RUNWAY (HERO INTERACTION) */
-  .bk-runway-viewport-wrap{
-    display:flex;
-    flex-direction:column;
-    width:100%;
-    background:rgba(0,0,0,0.45);
-    border:1px solid rgba(57,247,42,0.2);
-    border-radius:18px;
-    padding:16px 14px 18px;
-    box-sizing:border-box;
-    position:relative;
-    overflow:hidden;
-  }
-  .bk-runway-legend-bar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    margin-bottom:10px;
-    flex-wrap:wrap;
-  }
-  .bk-runway-legend-items{
-    display:inline-flex;
-    align-items:center;
-    gap:14px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:10px;
-    color:var(--muted);
-  }
-  .bk-legend-item{display:inline-flex; align-items:center; gap:5px;}
-  .bk-leg-dot{width:8px; height:8px; border-radius:50%;}
-  .bk-leg-avail{background:#39F72A; box-shadow:0 0 8px #39F72A;}
-  .bk-leg-booked{background:#ff4d4d; border:1px solid #ff7777;}
-  .bk-leg-prime{background:#18AAC0; box-shadow:0 0 8px #18AAC0;}
-  .bk-runway-hint{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:11.5px;
-    font-weight:700;
+  .bk-time-filter-chip.active{
+    background:rgba(57,247,42,0.12);
+    border-color:#39F72A;
     color:#39F72A;
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
+    box-shadow:0 0 10px rgba(57,247,42,0.2);
   }
 
-  /* Runway Track Viewport */
-  .bk-runway-viewport{
+  .bk-streamline-time-grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:10px;
     width:100%;
-    overflow-x:auto;
-    overflow-y:hidden;
-    position:relative;
-    scrollbar-width:thin;
-    scrollbar-color:rgba(57,247,42,0.3) rgba(0,0,0,0.3);
-    padding-bottom:8px;
+    box-sizing:border-box;
+  }
+  .bk-time-pill{
+    min-height:48px;
     border-radius:12px;
-  }
-  .bk-runway-viewport::-webkit-scrollbar{height:5px;}
-  .bk-runway-viewport::-webkit-scrollbar-track{background:rgba(0,0,0,0.3); border-radius:4px;}
-  .bk-runway-viewport::-webkit-scrollbar-thumb{background:rgba(57,247,42,0.35); border-radius:4px;}
-
-  .bk-runway-track{
-    display:flex;
-    position:relative;
-    width:1824px; /* 24 hours * 76px */
-    height:152px;
-    background:#0A120D;
-    border:1px solid rgba(57,247,42,0.18);
-    border-radius:14px;
-    overflow:hidden;
-    user-select:none;
-    box-sizing:border-box;
-  }
-
-  /* Environmental Horizon Zones (Tier 1: strictly top row 0 to 24px) */
-  .bk-track-zone-bg{
-    position:absolute;
-    top:0;
-    height:24px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 14px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:9.5px;
-    font-weight:800;
-    letter-spacing:0.08em;
-    box-sizing:border-box;
-    z-index:2;
-    pointer-events:none;
-    white-space:nowrap;
-  }
-  .bk-zone-daylight{
-    left:0;
-    width:836px; /* 11 hours: 06 AM to 05 PM */
-    background:linear-gradient(90deg, rgba(245,158,11,0.18), rgba(245,158,11,0.06));
-    border-bottom:1px solid rgba(245,158,11,0.3);
-    color:#FBBF24;
-    text-shadow:0 0 10px rgba(245,158,11,0.35);
-  }
-  .bk-zone-floodlights{
-    left:836px;
-    width:988px; /* 13 hours: 05 PM to 06 AM */
-    background:linear-gradient(90deg, rgba(24,170,192,0.2), rgba(57,247,42,0.08));
-    border-bottom:1px solid rgba(24,170,192,0.35);
-    color:#38BDF8;
-    text-shadow:0 0 10px rgba(24,170,192,0.35);
-  }
-
-  /* Runway Columns Wrapper (Starts strictly below Zone Header at y = 24px) */
-  .bk-runway-cols-wrap{
-    display:flex;
-    width:100%;
-    height:calc(100% - 24px);
-    margin-top:24px;
-    box-sizing:border-box;
-    position:relative;
-    z-index:3;
-  }
-
-  /* Track Hour Column (Tier 2 & 3) */
-  .bk-runway-hour-col{
-    width:76px;
-    height:100%;
-    border-right:1px solid rgba(255,255,255,0.05);
-    display:flex;
-    flex-direction:column;
-    box-sizing:border-box;
-    position:relative;
+    background:#131C15;
+    border:1px solid #1E2E21;
+    color:#FFFFFF;
+    font-family:'Space Grotesk', -apple-system, sans-serif;
+    font-size:12.5px;
+    font-weight:700;
     cursor:pointer;
-    transition:background .15s ease;
-  }
-  .bk-runway-hour-col:hover{
-    background:rgba(57,247,42,0.05);
-  }
-  /* Tier 2: Dedicated Hour Labels (24px to 50px) */
-  .bk-hour-col-header{
-    height:26px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:'JetBrains Mono',monospace;
-    font-size:10px;
-    font-weight:700;
-    color:rgba(255,255,255,0.7);
-    background:rgba(0,0,0,0.28);
-    border-bottom:1px solid rgba(255,255,255,0.07);
-    box-sizing:border-box;
-  }
-  /* Tier 3: Pitch Body for Match Placement (50px to 152px) */
-  .bk-hour-col-body{
-    flex:1;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-  }
-
-  /* Booked Slot Segment */
-  .bk-runway-hour-col.booked{
-    background:repeating-linear-gradient(
-      -45deg,
-      rgba(255,255,255,0.018),
-      rgba(255,255,255,0.018) 6px,
-      rgba(0,0,0,0.35) 6px,
-      rgba(0,0,0,0.35) 12px
-    );
-    cursor:not-allowed;
-    border-right:1px solid rgba(255,80,80,0.12);
-  }
-  .bk-runway-hour-col.booked:hover{
-    background:repeating-linear-gradient(
-      -45deg,
-      rgba(255,80,80,0.05),
-      rgba(255,80,80,0.05) 6px,
-      rgba(0,0,0,0.4) 6px,
-      rgba(0,0,0,0.4) 12px
-    );
-  }
-  .bk-booked-marker{
-    font-family:'JetBrains Mono',monospace;
-    font-size:9px;
-    color:rgba(255,100,100,0.6);
+    transition:all .16s ease;
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:2px;
-    font-weight:700;
-    pointer-events:none;
-  }
-
-  /* 5. THE ACTIVE "MATCH BLOCK" (Positioned in Tier 3 with 0 overlap with headers) */
-  .bk-match-block{
-    position:absolute;
-    top:54px;
-    height:88px;
-    background:linear-gradient(135deg, rgba(8,38,14,0.95), rgba(23,107,2,0.94));
-    border:2px solid #39F72A;
-    border-radius:14px;
-    box-shadow:0 0 28px rgba(57,247,42,0.45), inset 0 0 16px rgba(57,247,42,0.2);
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    padding:8px 10px;
+    justify-content:center;
+    text-align:center;
     box-sizing:border-box;
-    cursor:grab;
-    z-index:20;
-    touch-action:none;
-    transition:transform .12s ease, box-shadow .15s ease, border-color .15s ease;
+    padding:6px 8px;
+    min-width:0;
+    width:100%;
     overflow:hidden;
   }
-  .bk-match-block:active{cursor:grabbing;}
-  .bk-match-block.dragging{
-    box-shadow:0 0 36px rgba(57,247,42,0.7), 0 10px 24px rgba(0,0,0,0.6);
-    transform:scale(1.02);
-  }
-  .bk-match-block.overlapping{
-    border-color:#ff4d4d !important;
-    background:linear-gradient(135deg, rgba(60,10,10,0.95), rgba(120,20,20,0.92)) !important;
-    box-shadow:0 0 30px rgba(255,77,77,0.6) !important;
-    animation:bkVibrate .2s infinite ease-in-out;
-  }
-  @keyframes bkVibrate{
-    0%{transform:translateX(0);}
-    25%{transform:translateX(-2px);}
-    75%{transform:translateX(2px);}
-    100%{transform:translateX(0);}
-  }
-
-  .bk-mblock-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:6px;
-  }
-  .bk-mblock-badge{
-    font-family:'JetBrains Mono',monospace;
-    font-size:9px;
-    font-weight:800;
-    color:#C7F42D;
-    letter-spacing:0.04em;
-    line-height:1;
-  }
-  .bk-mblock-rate{
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;
-    font-weight:800;
-    color:#39F72A;
-    line-height:1;
-  }
-  .bk-mblock-times{
-    display:flex;
-    align-items:center;
-    gap:5px;
-    font-family:'Space Grotesk',sans-serif;
-    font-size:13.5px;
-    font-weight:800;
-    color:var(--white);
-    line-height:1.1;
-    white-space:nowrap;
-  }
-  .bk-mblock-foot{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    font-family:'JetBrains Mono',monospace;
-    font-size:9px;
-    color:rgba(255,255,255,0.7);
-    line-height:1;
-  }
-  .bk-mblock-handle{
-    color:#39F72A;
-    font-size:9px;
-    letter-spacing:0.04em;
-  }
-
-  /* 6. Quick Pick Chips */
-  .bk-runway-quick-picks{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    width:100%;
-    flex-wrap:wrap;
-  }
-  .bk-qpick-title{
-    font-family:'JetBrains Mono',monospace;
-    font-size:10.5px;
+  .bk-time-pill .bk-time-range{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:12.5px;
     font-weight:700;
-    color:#C7F42D;
-    letter-spacing:0.06em;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:100%;
+    line-height:1.2;
+    letter-spacing:-0.01em;
+  }
+  .bk-time-pill .bk-time-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:9px;
+    font-weight:800;
+    color:#39F72A;
+    letter-spacing:0.04em;
     text-transform:uppercase;
+    line-height:1;
+    margin-top:2.5px;
   }
-  .bk-qpick-btn{
-    padding:5px 12px;
-    border-radius:8px;
+  .bk-time-pill:hover{
+    border-color:#39F72A;
     background:rgba(57,247,42,0.06);
-    border:1px solid rgba(57,247,42,0.22);
-    color:var(--white);
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;
-    font-weight:600;
-    cursor:pointer;
-    transition:all .18s ease;
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
   }
-  .bk-qpick-btn:hover{
-    background:#39F72A;
-    color:#04140D;
-    box-shadow:0 0 12px rgba(57,247,42,0.3);
+  .bk-time-pill.active{
+    border:2px solid #39F72A;
+    background:rgba(57,247,42,0.12);
+    color:#39F72A;
+    box-shadow:0 0 18px rgba(57,247,42,0.25);
+  }
+  .bk-time-pill.active .bk-time-range{
+    color:#39F72A;
+  }
+  .bk-time-pill.booked{
+    opacity:0.35;
+    pointer-events:none;
+    border-color:rgba(255,80,80,0.2);
+    text-decoration:line-through;
+    background:#0E1410;
+  }
+  .bk-time-empty-note{
+    grid-column:1 / -1;
+    padding:24px 14px;
+    text-align:center;
+    color:#94A3B8;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    background:rgba(255,255,255,0.02);
+    border-radius:12px;
+    border:1px solid #1E2E21;
   }
 
-  /* 7. Docked Match Pass Strip (Bottom) */
-  .bk-runway-dock{
-    border-top:1px solid rgba(57,247,42,0.2);
-    background:rgba(4,14,8,0.96);
-    border-radius:16px;
-    padding:16px 22px;
+  /* SECTION 4: MATCH SUMMARY & ACTION BAR */
+  .bk-streamline-summary-bar{
+    border-radius:14px;
+    background:#131C15;
+    border:1px solid #1E2E21;
+    padding:16px 20px;
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:16px;
     box-sizing:border-box;
     width:100%;
-    flex-wrap:wrap;
-    box-shadow:0 12px 30px rgba(0,0,0,0.6);
+    margin-top:4px;
   }
-  .bk-dock-left{
+  .bk-streamline-sum-info{
     display:flex;
     flex-direction:column;
     gap:4px;
+    min-width:0;
   }
-  .bk-dock-kicker{
+  .bk-streamline-sum-kicker{
     font-family:'JetBrains Mono',monospace;
     font-size:9.5px;
-    font-weight:700;
+    font-weight:800;
     letter-spacing:0.12em;
     color:#39F72A;
     text-transform:uppercase;
   }
-  .bk-dock-items{
-    display:flex;
-    align-items:center;
-    gap:10px;
+  .bk-streamline-sum-details{
     font-family:'Space Grotesk',sans-serif;
-    font-size:14px;
-    color:var(--white);
-    flex-wrap:wrap;
+    font-size:13.5px;
+    color:#FFFFFF;
+    font-weight:600;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
   }
-  .bk-dock-bullet{color:rgba(255,255,255,0.25); font-weight:700;}
-  .bk-dock-right{
-    display:flex;
-    align-items:center;
-    gap:16px;
-    flex-shrink:0;
-  }
-  .bk-dock-price{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-end;
-    gap:1px;
-  }
-  .bk-dock-price-lbl{
+  .bk-streamline-sum-price{
     font-family:'JetBrains Mono',monospace;
-    font-size:9.5px;
-    letter-spacing:0.1em;
-    color:var(--muted);
-    text-transform:uppercase;
-  }
-  .bk-dock-price-val{
-    font-family:'JetBrains Mono',monospace;
-    font-size:22px;
+    font-size:18px;
     font-weight:800;
     color:#39F72A;
-    line-height:1;
+    line-height:1.1;
   }
-  .bk-dock-btn{
-    padding:12px 22px;
-    font-size:13px;
+  .bk-streamline-go-btn{
+    height:48px;
+    padding:0 28px;
+    border-radius:100px;
+    background:#39F72A;
+    color:#0A0F0D;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:13.5px;
     font-weight:800;
     letter-spacing:0.04em;
+    border:none;
+    cursor:pointer;
+    transition:all .18s ease;
+    box-shadow:0 0 24px rgba(57,247,42,0.4);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    flex-shrink:0;
     white-space:nowrap;
-    min-width:0;
-    box-sizing:border-box;
   }
-  .bk-dock-btn:disabled{
+  .bk-streamline-go-btn:hover{
+    transform:translateY(-1px);
+    box-shadow:0 0 30px rgba(57,247,42,0.6);
+  }
+  .bk-streamline-go-btn:disabled{
     opacity:0.35;
     cursor:not-allowed;
     filter:grayscale(0.8);
+    box-shadow:none;
+    transform:none;
   }
-  .bk-dock-btn-short{display:none;}
-  .bk-dock-btn-full{display:inline;}
 
   /* Popover Calendar for "More Dates" */
   .bk-runway-popover{
@@ -1322,6 +1071,166 @@
     max-width:360px;
     width:calc(100% - 56px);
     box-sizing:border-box;
+  }
+
+  /* Mobile Responsive Adaptations */
+  @media (max-width: 768px){
+    #book{
+      padding-left:10px !important;
+      padding-right:10px !important;
+      padding-bottom:120px !important;
+    }
+    #book .booking-shell{
+      max-width:100% !important;
+      padding:44px 8px 36px !important;
+      border-radius:18px !important;
+      box-sizing:border-box !important;
+      overflow:hidden !important;
+    }
+    .bk-streamline-console{
+      padding:14px 8px 24px !important;
+      border-radius:16px !important;
+      gap:16px !important;
+      max-width:100% !important;
+      box-sizing:border-box !important;
+      margin-bottom:28px !important;
+    }
+
+    /* Date row horizontal scroll snap on smaller screens */
+    .bk-streamline-date-grid{
+      display:flex;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      gap:8px;
+      scrollbar-width:none;
+      padding-bottom:4px;
+      width:100%;
+      box-sizing:border-box;
+    }
+    .bk-streamline-date-grid::-webkit-scrollbar{display:none;}
+    .bk-date-card{
+      flex:1 0 74px;
+      scroll-snap-align:start;
+      height:64px;
+    }
+
+    /* Duration 4 cols x 3 rows with explicit minmax so no column pushes out */
+    .bk-streamline-dur-grid{
+      grid-template-columns:repeat(4, minmax(0, 1fr)) !important;
+      gap:8px !important;
+      width:100% !important;
+      box-sizing:border-box !important;
+    }
+    .bk-dur-matrix-btn{
+      height:42px !important;
+      font-size:13px !important;
+      padding:0 2px !important;
+    }
+
+    /* Timing 2 columns with minmax(0, 1fr) - NO HORIZONTAL OVERFLOW */
+    .bk-streamline-time-grid{
+      grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+      gap:8px !important;
+      width:100% !important;
+      box-sizing:border-box !important;
+    }
+    .bk-time-pill{
+      min-height:48px !important;
+      padding:6px 4px !important;
+      border-radius:10px !important;
+    }
+    .bk-time-pill .bk-time-range{
+      font-size:11.5px !important;
+      letter-spacing:-0.02em !important;
+    }
+    .bk-time-pill .bk-time-tag{
+      font-size:8.5px !important;
+      margin-top:2px !important;
+    }
+
+    /* Filter chips */
+    .bk-time-filter-bar{
+      gap:6px;
+      padding-bottom:4px;
+    }
+    .bk-time-filter-chip{
+      height:30px;
+      padding:0 10px;
+      font-size:10.5px;
+    }
+    .bk-filter-sub{
+      display:none;
+    }
+
+    /* Summary Bar Full Width Stack with ample padding */
+    .bk-streamline-summary-bar{
+      flex-direction:column;
+      align-items:stretch;
+      gap:14px;
+      padding:16px 14px;
+      margin-top:14px;
+      border-radius:14px;
+      width:100%;
+      box-sizing:border-box;
+    }
+    .bk-streamline-sum-info{
+      width:100%;
+    }
+    .bk-streamline-sum-details{
+      font-size:12.5px;
+      white-space:normal;
+      line-height:1.35;
+    }
+    .bk-streamline-sum-price{
+      font-size:20px;
+    }
+    .bk-streamline-go-btn{
+      width:100%;
+      height:48px;
+      font-size:14px;
+      padding:0 20px;
+      margin-top:2px;
+    }
+
+    /* Keep floating buttons from overlapping summary card on mobile */
+    .comm-fab-wrap{
+      right:14px !important;
+      bottom:16px !important;
+      width:48px !important;
+      height:48px !important;
+    }
+    #backToTop{
+      right:16px !important;
+      bottom:72px !important;
+      width:38px !important;
+      height:38px !important;
+    }
+
+    .bk-runway-popover{right:8px; top:75px; width:calc(100% - 16px); max-width:340px;}
+  }
+
+  /* Ultra-small mobile screens <= 375px (iPhone SE / older Android) */
+  @media (max-width: 375px){
+    #book .booking-shell{
+      padding:38px 6px 26px !important;
+    }
+    .bk-streamline-console{
+      padding:12px 6px 20px !important;
+    }
+    .bk-streamline-time-grid{
+      gap:6px !important;
+    }
+    .bk-time-pill{
+      min-height:46px !important;
+      padding:5px 2px !important;
+    }
+    .bk-time-pill .bk-time-range{
+      font-size:10.5px !important;
+    }
+    .bk-time-pill .bk-time-tag{
+      font-size:8px !important;
+    }
   }
 
   /* Wide Desktop Limit */
@@ -2444,26 +2353,30 @@
       <!-- PANE 2 — "THE 24-HOUR TURF RUNWAY" -->
       <div id="bkPane2" class="bk-pane" style="display:none;">
         
-        <div class="bk-runway-console">
+        <div class="bk-streamline-console">
           
-          <!-- Header -->
-          <div class="bk-runway-head">
-            <div class="bk-runway-head-titles">
-              <h2 class="bk-runway-title">TURFON24 ARENA</h2>
-              <p class="bk-runway-subtitle">Interactive 24-Hour Pitch Runway • Drag or tap to set your kickoff</p>
+          <!-- Console Header -->
+          <div class="bk-streamline-head">
+            <div class="bk-streamline-head-titles">
+              <h2 class="bk-streamline-title">BOOK YOUR PLAY</h2>
+              <p class="bk-streamline-subtitle">Select date, duration, and time slot • Turfon24 Arena</p>
             </div>
-            <div class="bk-runway-badge">
-              <span>● LIVE RUNWAY</span>
+            <div class="bk-streamline-badge">
+              <span>● TURFON24 ARENA</span>
             </div>
           </div>
 
-          <!-- 1. Date Ribbon Compass -->
-          <div class="bk-runway-date-section">
-            <div class="bk-date-ribbon-wrap">
-              <button type="button" class="bk-date-ribbon-nav" id="bkDateStreamPrev" onclick="bkScrollDateStream(-1)" aria-label="Previous dates">‹</button>
-              <div class="bk-date-stream" id="bkDateStream"></div>
-              <button type="button" class="bk-date-ribbon-nav" id="bkDateStreamNext" onclick="bkScrollDateStream(1)" aria-label="Next dates">›</button>
-              <button type="button" class="bk-date-more-btn" onclick="bkToggleDatePopover()" aria-label="Open Calendar" title="Select date from calendar">📅</button>
+          <!-- 01. SELECT DATE (Symmetrical 7-Day Horizon) -->
+          <div class="bk-slat-section">
+            <div class="bk-slat-head">
+              <span class="bk-slat-title">01. SELECT DATE</span>
+              <button type="button" class="bk-slat-month-btn" id="bkStreamlineMonthBtn" onclick="bkToggleDatePopover()" aria-label="Choose month" title="Pick from full calendar">
+                <span id="bkStreamlineMonthText">September 2026</span> ▾
+              </button>
+            </div>
+
+            <div class="bk-streamline-date-grid" id="bkStreamlineDateGrid">
+              <!-- Dynamically rendered 7 symmetrical date cards -->
             </div>
           </div>
 
@@ -2486,146 +2399,95 @@
             </div>
           </div>
 
-          <!-- 2. Duration Compass Ribbon -->
-          <div class="bk-runway-dur-section">
-            <span class="bk-dur-tag">DURATION:</span>
-            <div class="bk-dur-chips-scroll" id="bkRunwayDurRibbon">
-              <button type="button" class="bk-dur-chip-btn" data-dur="1" onclick="bkSetRunwayDuration(1)">1h</button>
-              <button type="button" class="bk-dur-chip-btn active" data-dur="2" onclick="bkSetRunwayDuration(2)">2h <span class="bk-dur-pop-badge">★</span></button>
-              <button type="button" class="bk-dur-chip-btn" data-dur="3" onclick="bkSetRunwayDuration(3)">3h</button>
-              <button type="button" class="bk-dur-chip-btn" data-dur="4" onclick="bkSetRunwayDuration(4)">4h</button>
-              <button type="button" class="bk-dur-chip-btn" data-dur="5" onclick="bkSetRunwayDuration(5)">5h</button>
-              <button type="button" class="bk-dur-chip-btn" data-dur="6" onclick="bkSetRunwayDuration(6)">6h</button>
-              <button type="button" class="bk-dur-chip-btn" data-dur="7" onclick="bkSetRunwayDuration(7)">7h</button>
-              <button type="button" class="bk-dur-chip-btn" data-dur="8" onclick="bkSetRunwayDuration(8)">8h</button>
-              <button type="button" class="bk-dur-chip-btn" data-dur="9" onclick="bkSetRunwayDuration(9)">9h</button>
-              <button type="button" class="bk-dur-chip-btn" data-dur="10" onclick="bkSetRunwayDuration(10)">10h</button>
-              <button type="button" class="bk-dur-chip-btn" data-dur="11" onclick="bkSetRunwayDuration(11)">11h</button>
-              <button type="button" class="bk-dur-chip-btn" data-dur="12" onclick="bkSetRunwayDuration(12)">12h</button>
-            </div>
-            <label class="bk-compact-toggle" title="Book multiple slots on the same date">
-              <input type="checkbox" id="bkMultiToggle" onchange="bkSetMulti(this.checked)">
-              <span class="bk-toggle-pill">
-                <span class="bk-toggle-icon">＋</span>
-                <span class="bk-toggle-label">Multi-slot</span>
-              </span>
-            </label>
-          </div>
-
-          <!-- 3. Time Zone Quick Jump Anchors -->
-          <div class="bk-zone-anchors">
-            <span style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted);">JUMP ZONE:</span>
-            <button type="button" class="bk-zone-btn" onclick="bkJumpRunwayHour(6)">🌅 Morning (06-12)</button>
-            <button type="button" class="bk-zone-btn" onclick="bkJumpRunwayHour(12)">☀️ Afternoon (12-17)</button>
-            <button type="button" class="bk-zone-btn" onclick="bkJumpRunwayHour(17)">⚡ Floodlights Prime (17-00)</button>
-            <button type="button" class="bk-zone-btn" onclick="bkJumpRunwayHour(24)">🌙 Late Night (00-06)</button>
-          </div>
-
-          <!-- 4. THE 24-HOUR TURF RUNWAY (HERO INTERACTION) -->
-          <div class="bk-runway-viewport-wrap">
-            <div class="bk-runway-legend-bar">
-              <div class="bk-runway-legend-items">
-                <span class="bk-legend-item"><span class="bk-leg-dot bk-leg-avail"></span> Available Track</span>
-                <span class="bk-legend-item"><span class="bk-leg-dot bk-leg-booked"></span> Occupied (Locked)</span>
-                <span class="bk-legend-item"><span class="bk-leg-dot bk-leg-prime"></span> Floodlight Prime</span>
-              </div>
-              <div class="bk-runway-hint">
-                <span>◀ Drag or tap track to snap kickoff ▶</span>
+          <!-- 02. DURATION (Uniform 6x2 / 4x3 Matrix) -->
+          <div class="bk-slat-section">
+            <div class="bk-slat-head">
+              <span class="bk-slat-title">02. DURATION</span>
+              <div style="display:inline-flex; align-items:center; gap:12px;">
+                <span class="bk-slat-readout" id="bkStreamlineDurReadout">2 HOURS SELECTED</span>
+                <label class="bk-compact-toggle" title="Book multiple slots on the same date">
+                  <input type="checkbox" id="bkMultiToggle" onchange="bkSetMulti(this.checked)">
+                  <span class="bk-toggle-pill">
+                    <span class="bk-toggle-icon">＋</span>
+                    <span class="bk-toggle-label">Multi-slot</span>
+                  </span>
+                </label>
               </div>
             </div>
 
-            <div class="bk-runway-viewport" id="bkRunwayViewport">
-              <div class="bk-runway-track" id="bkRunwayTrack">
-                <!-- Zone ambient headers (Tier 1: strictly top row 0-24px) -->
-                <div class="bk-track-zone-bg bk-zone-daylight">
-                  <span>🌅 MORNING (06:00 AM – 12:00 PM)</span>
-                  <span>☀️ AFTERNOON (12:00 PM – 05:00 PM)</span>
-                </div>
-                <div class="bk-track-zone-bg bk-zone-floodlights">
-                  <span>⚡ FLOODLIGHTS PRIME (05:00 PM – 12:00 AM)</span>
-                  <span>🌙 LATE NIGHT (12:00 AM – 06:00 AM)</span>
-                </div>
+            <!-- 12 Uniform Duration Buttons -->
+            <div class="bk-streamline-dur-grid" id="bkStreamlineDurGrid">
+              <button type="button" class="bk-dur-matrix-btn" data-dur="1" onclick="bkSetStreamlineDuration(1)">1h</button>
+              <button type="button" class="bk-dur-matrix-btn active" data-dur="2" onclick="bkSetStreamlineDuration(2)">2h ★</button>
+              <button type="button" class="bk-dur-matrix-btn" data-dur="3" onclick="bkSetStreamlineDuration(3)">3h</button>
+              <button type="button" class="bk-dur-matrix-btn" data-dur="4" onclick="bkSetStreamlineDuration(4)">4h</button>
+              <button type="button" class="bk-dur-matrix-btn" data-dur="5" onclick="bkSetStreamlineDuration(5)">5h</button>
+              <button type="button" class="bk-dur-matrix-btn" data-dur="6" onclick="bkSetStreamlineDuration(6)">6h</button>
+              <button type="button" class="bk-dur-matrix-btn" data-dur="7" onclick="bkSetStreamlineDuration(7)">7h</button>
+              <button type="button" class="bk-dur-matrix-btn" data-dur="8" onclick="bkSetStreamlineDuration(8)">8h</button>
+              <button type="button" class="bk-dur-matrix-btn" data-dur="9" onclick="bkSetStreamlineDuration(9)">9h</button>
+              <button type="button" class="bk-dur-matrix-btn" data-dur="10" onclick="bkSetStreamlineDuration(10)">10h</button>
+              <button type="button" class="bk-dur-matrix-btn" data-dur="11" onclick="bkSetStreamlineDuration(11)">11h</button>
+              <button type="button" class="bk-dur-matrix-btn" data-dur="12" onclick="bkSetStreamlineDuration(12)">12h</button>
+            </div>
 
-                <!-- 24 Hour Column Cells dynamically rendered (Tier 2 & 3) -->
-                <div id="bkRunwayColsWrapper" class="bk-runway-cols-wrap"></div>
-
-                <!-- THE ACTIVE GLOWING MATCH BLOCK -->
-                <div class="bk-match-block" id="bkMatchBlock">
-                  <div class="bk-mblock-top">
-                    <span class="bk-mblock-badge" id="bkMblockZone">⚡ FLOODLIGHT PRIME</span>
-                    <span class="bk-mblock-rate" id="bkMblockPrice">₹1,600</span>
-                  </div>
-                  <div class="bk-mblock-times" id="bkMblockTimes">
-                    <span>07:00 PM ➔ 09:00 PM</span>
-                  </div>
-                  <div class="bk-mblock-foot">
-                    <span id="bkMblockDur">2 HOURS WIDE</span>
-                    <span class="bk-mblock-handle">◀ SLIDE KICKOFF ▶</span>
-                  </div>
-                </div>
+            <!-- Multi-slot panel (if toggled) -->
+            <div id="bkMultiPanel" style="display:none; padding:10px 0;">
+              <label class="field-label">Number of Slots</label>
+              <div class="ms-count-row">
+                <button type="button" class="ms-step" id="bkSlotMinus" onclick="bkStepSlotCount(-1)" aria-label="Remove a slot" disabled>−</button>
+                <div class="ms-count" id="bkSlotCount">2</div>
+                <button type="button" class="ms-step" id="bkSlotPlus" onclick="bkStepSlotCount(1)" aria-label="Add a slot">+</button>
               </div>
+              <div class="ms-hint" id="bkSlotCountHint">2 to 5 slots on the same date.</div>
+              <div id="bkSlotDurations"></div>
             </div>
           </div>
 
-          <!-- 5. Quick Pick Chips -->
-          <div class="bk-runway-quick-picks">
-            <span class="bk-qpick-title">POPULAR KICKOFFS:</span>
-            <div id="bkRunwayQuickPicksWrap" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
-          </div>
-
-          <!-- Multi-slot panel (if toggled) -->
-          <div id="bkMultiPanel" style="display:none; padding:10px 0;">
-            <label class="field-label">Number of Slots</label>
-            <div class="ms-count-row">
-              <button type="button" class="ms-step" id="bkSlotMinus" onclick="bkStepSlotCount(-1)" aria-label="Remove a slot" disabled>−</button>
-              <div class="ms-count" id="bkSlotCount">2</div>
-              <button type="button" class="ms-step" id="bkSlotPlus" onclick="bkStepSlotCount(1)" aria-label="Add a slot">+</button>
+          <!-- 03. AVAILABLE TIMINGS (Aligned Monospace Grid) -->
+          <div class="bk-slat-section" style="border-bottom:none; padding-bottom:4px;">
+            <div class="bk-slat-head">
+              <span class="bk-slat-title">03. AVAILABLE TIMINGS</span>
+              <span class="bk-slat-readout" id="bkStreamlineSlotsCount">8 SLOTS OPEN</span>
             </div>
-            <div class="ms-hint" id="bkSlotCountHint">2 to 5 slots on the same date.</div>
-            <div id="bkSlotDurations"></div>
-          </div>
 
-          <!-- 6. DOCKED MATCH PASS STRIP (BOTTOM) -->
-          <div class="bk-runway-dock" id="bkLiveDock">
-            <div class="bk-dock-left">
-              <span class="bk-dock-kicker">YOUR MATCH PASS</span>
-              <div class="bk-dock-items">
-                <span>📅 <b id="bkTlSumDate">—</b></span>
-                <span class="bk-dock-bullet">•</span>
-                <span>⏱ <b id="bkTlSumDur">2 Hours</b></span>
-                <span class="bk-dock-bullet">•</span>
-                <span>⚽ <b id="bkTlSumTime">07:00 PM → 09:00 PM</b></span>
-              </div>
+            <!-- Time Period Filters -->
+            <div class="bk-time-filter-bar">
+              <button type="button" class="bk-time-filter-chip active" data-filter="all" onclick="bkFilterStreamlineTimings('all')">ALL</button>
+              <button type="button" class="bk-time-filter-chip" data-filter="morning" onclick="bkFilterStreamlineTimings('morning')">MORNING <span class="bk-filter-sub">(06–12)</span></button>
+              <button type="button" class="bk-time-filter-chip" data-filter="afternoon" onclick="bkFilterStreamlineTimings('afternoon')">AFTERNOON <span class="bk-filter-sub">(12–17)</span></button>
+              <button type="button" class="bk-time-filter-chip" data-filter="night" onclick="bkFilterStreamlineTimings('night')">NIGHT <span class="bk-filter-sub">(17–06)</span></button>
             </div>
-            <div class="bk-dock-right">
-              <div class="bk-dock-price">
-                <span class="bk-dock-price-lbl">TOTAL</span>
-                <span class="bk-dock-price-val" id="bkTlSumTotal">₹1,600</span>
-              </div>
-              <button class="btn btn-glow magnetic bk-dock-btn" id="bkGoSummaryBtn" onclick="bkConfirmSlots()">
-                <span class="bk-dock-btn-full">LOCK MATCH & CONTINUE →</span>
-                <span class="bk-dock-btn-short">LOCK & CONTINUE →</span>
-              </button>
+
+            <!-- Slot Grid (3-Col Desktop / 2-Col Mobile) -->
+            <div class="bk-streamline-time-grid" id="bkStreamlineTimeGrid">
+              <!-- Dynamically populated time pills -->
             </div>
           </div>
 
-        </div> <!-- /bk-runway-console -->
+          <!-- 04. MATCH SUMMARY & ACTION BAR -->
+          <div class="bk-streamline-summary-bar">
+            <div class="bk-streamline-sum-info">
+              <span class="bk-streamline-sum-kicker">MATCH SUMMARY</span>
+              <div class="bk-streamline-sum-details" id="bkStreamlineSumDetails">—</div>
+              <div class="bk-streamline-sum-price" id="bkStreamlineSumPrice">TOTAL: ₹1,600</div>
+            </div>
+            <button type="button" class="btn btn-glow magnetic bk-streamline-go-btn" id="bkStreamlineGoBtn" onclick="bkConfirmSlots()" disabled>
+              GO TO SUMMARY →
+            </button>
+          </div>
+
+        </div> <!-- /bk-streamline-console -->
 
         <!-- Compatibility Hooks kept safely hidden -->
         <span id="bkDateLabel" style="display:none;"><span class="booking-month" id="bkDateMonth"></span></span>
         <div id="bkSelectedDateBadge" style="display:none;"><span id="bkSelectedDateVal"></span></div>
-        <div id="bkConnector1" style="display:none;"></div>
-        <div id="bkConnector2" style="display:none;"></div>
-        <div id="bkDateCompletedCard" style="display:none;"></div>
-        <div id="bkDurCompletedCard" style="display:none;"></div>
-        <div id="bkTimeCompletedCard" style="display:none;"></div>
-        <div id="bkDateCompletedRow" style="display:none;"><span id="bkDateCompletedVal"></span></div>
-        <div id="bkDurCompletedRow" style="display:none;"><span id="bkDurCompletedVal"></span></div>
-        <span id="bkDateDisplayVal" style="display:none;"></span>
-        <span id="bkDurDisplayVal" style="display:none;"></span>
-        <span id="bkTimeDisplayVal" style="display:none;"></span>
-        <div id="bkRangeSummary" style="display:none;"></div>
-        <div id="bkTimelineSummary" style="display:none;"></div>
+        <div id="bkDateStream" style="display:none;"></div>
+        <div id="bkRunwayDurRibbon" style="display:none;"></div>
+        <div id="bkRunwayViewport" style="display:none;"><div id="bkRunwayTrack"><div id="bkRunwayColsWrapper"></div><div id="bkMatchBlock"></div></div></div>
+        <div id="bkRunwayQuickPicksWrap" style="display:none;"></div>
+        <div id="bkLiveDock" style="display:none;"><span id="bkTlSumDate"></span><span id="bkTlSumDur"></span><span id="bkTlSumTime"></span><span id="bkTlSumTotal"></span></div>
+        <button id="bkGoSummaryBtn" style="display:none;"></button>
         <div id="bkStepDate" style="display:none;"></div>
         <div id="bkStepDuration" style="display:none;"></div>
         <div id="bkStepTiming" style="display:none;"></div>
@@ -3442,6 +3304,10 @@
   let bkDraftReference = (window.crypto && window.crypto.randomUUID)
     ? `BK-${window.crypto.randomUUID().replaceAll('-', '').toUpperCase()}`
     : `BK-${Date.now()}-${Math.random().toString(36).slice(2).toUpperCase()}`;
+  const bkTimes = ['12:00 AM','01:00 AM','02:00 AM','03:00 AM','04:00 AM','05:00 AM','06:00 AM','07:00 AM','08:00 AM','09:00 AM','10:00 AM','11:00 AM','12:00 PM','01:00 PM','02:00 PM','03:00 PM','04:00 PM','05:00 PM','06:00 PM','07:00 PM','08:00 PM','09:00 PM','10:00 PM','11:00 PM'];
+  const bkUnavailable = [];
+  let bkBookedSlotKeys = new Set();
+  let bkAvailabilityRequest = 0;
 
   // ===== HOURLY BOOKING — MSG91 OTP (scoped to this step only) =====
   let bkOtpVerified = false;
@@ -3820,6 +3686,67 @@
     }
   }
 
+  function bkContinueFromVerification(){
+    const nameInput = document.getElementById('bkName');
+    const mobileInput = document.getElementById('bkMobile');
+    const name = (nameInput ? nameInput.value : '').trim();
+    const mobileRaw = (mobileInput ? mobileInput.value : '').trim();
+    if(!name){
+      if(nameInput) nameInput.focus();
+      bkOtpMsg('Please enter your full name.', 'err');
+      return;
+    }
+    if(!mobileRaw){
+      if(mobileInput) mobileInput.focus();
+      bkOtpMsg('Please enter your mobile number.', 'err');
+      return;
+    }
+    const normal = bkNormalizeMobile(mobileRaw);
+    if(!bkIsValidMobileInternational(normal)){
+      if(mobileInput) mobileInput.focus();
+      bkOtpMsg('Please enter a valid 10-digit mobile number.', 'err');
+      return;
+    }
+    bkOtpVerified = true;
+    bkVerifiedMobile = normal;
+    bkOtpAccessToken = 'direct_entry_' + Date.now();
+    bkOtpMsg('', 'ok');
+    bkPersist();
+    bkGoStep(2);
+  }
+  window.bkContinueFromVerification = bkContinueFromVerification;
+
+  function bkGoBack(){
+    if(bkCurrentStep === 5){
+      bkGoStep(4);
+      return;
+    }
+    if(bkCurrentStep === 4){
+      bkGoStep(3);
+      return;
+    }
+    if(bkCurrentStep === 3){
+      bkGoStep(2);
+      return;
+    }
+    if(bkCurrentStep === 2){
+      bkGoStep(1);
+      return;
+    }
+  }
+  window.bkGoBack = bkGoBack;
+
+  function bkToggleDatePopover(){
+    const pop = document.getElementById('bkDatePopover');
+    if(pop){
+      pop.style.display = (pop.style.display === 'none') ? 'block' : 'none';
+      if(pop.style.display === 'block'){
+        if(typeof renderBkCalendar === 'function') renderBkCalendar();
+      }
+    }
+  }
+  window.bkToggleDatePopover = bkToggleDatePopover;
+
   const BK_STEP_PANES = {
     1: 'bkPane1',
     2: 'bkPane2',
@@ -3865,414 +3792,298 @@
     }, 120);
   }
 
-  // ---- TURFON24 "THE 24-HOUR TURF RUNWAY" ENGINE ----
-  const RUNWAY_START_HOUR = 6; // Runway begins at 06:00 AM
-  const RUNWAY_TOTAL_HOURS = 24; // 24 continuous hours
-  const RUNWAY_COL_WIDTH = 76; // Width of 1 hour column in pixels
+  // ---- TURFON24 "THE STREAMLINE CONSOLE" ENGINE ----
+  let streamlineActiveFilter = 'all';
 
-  let runwayCurrentSlotIndex = 13; // Default 07:00 PM (hour 19 = index 19 - 6 = 13)
-  let runwayIsDragging = false;
-  let runwayDragStartX = 0;
-  let runwayBlockStartLeft = 0;
-
-  function bkScrollDateStream(direction){
-    const stream = document.getElementById('bkDateStream');
-    if(stream){
-      stream.scrollBy({ left: direction * 240, behavior: 'smooth' });
+  function bkInitStreamlineConsole(){
+    if(!bkState.date){
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      bkState.date = today;
     }
-  }
-  window.bkScrollDateStream = bkScrollDateStream;
-
-  function bkToggleDatePopover(){
-    const pop = document.getElementById('bkDatePopover');
-    if(pop){
-      pop.style.display = (pop.style.display === 'none') ? 'block' : 'none';
+    if(!bkState.dateLabel && bkState.date){
+      bkState.dateLabel = new Intl.DateTimeFormat('en-US', { month:'short', day:'numeric', year:'numeric' }).format(bkState.date);
     }
-  }
-  window.bkToggleDatePopover = bkToggleDatePopover;
+    if(!bkDurationHours) bkDurationHours = 2;
+    bkState.duration = bkDurationHours;
 
-  function bkRenderDateStream(){
-    const stream = document.getElementById('bkDateStream');
-    if(!stream) return;
-    stream.innerHTML = '';
+    bkRenderStreamlineDates();
+    bkRenderStreamlineDuration();
+    bkLoadAvailability().then(() => {
+      bkRenderStreamlineTimings();
+      bkUpdateStreamlineSummary();
+    });
+  }
+  window.bkInitStreamlineConsole = bkInitStreamlineConsole;
+
+  // 1. Render 7-Day Symmetrical Horizon
+  function bkRenderStreamlineDates(){
+    const grid = document.getElementById('bkStreamlineDateGrid');
+    const monthText = document.getElementById('bkStreamlineMonthText');
+    if(!grid) return;
+    grid.innerHTML = '';
 
     const today = new Date();
     today.setHours(0,0,0,0);
 
-    if(!bkState.date){
-      bkState.date = new Date(today);
-    }
     const selDate = bkState.date ? new Date(bkState.date) : today;
     selDate.setHours(0,0,0,0);
 
-    for(let i = 0; i < 14; i++){
-      const d = new Date(today);
-      d.setDate(today.getDate() + i);
+    // Update month text readout
+    if(monthText){
+      monthText.textContent = selDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    }
 
-      const isToday = i === 0;
-      const isTomorrow = i === 1;
+    // Determine start day for the 7-day strip
+    // If selected date is within next 7 days, start from today.
+    // Otherwise center or start near selected date.
+    let startDay = new Date(today);
+    const diffDays = Math.round((selDate.getTime() - today.getTime()) / (24 * 60 * 60 * 1000));
+    if(diffDays >= 7){
+      startDay = new Date(selDate);
+      startDay.setDate(startDay.getDate() - 3); // Center around selected date
+      if(startDay < today) startDay = new Date(today);
+    }
+
+    for(let i = 0; i < 7; i++){
+      const d = new Date(startDay);
+      d.setDate(startDay.getDate() + i);
+
+      const isToday = d.getTime() === today.getTime();
       const isSelected = d.getTime() === selDate.getTime();
 
-      let dayLabel = d.toLocaleDateString('en-US', { weekday: 'short' });
-      if(isToday) dayLabel = 'TODAY';
-      else if(isTomorrow) dayLabel = 'TOMORROW';
+      let dayName = d.toLocaleDateString('en-US', { weekday: 'short' });
+      if(isToday) dayName = 'TODAY';
 
-      const numLabel = d.toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
+      const dayNum = d.getDate();
 
-      const capsule = document.createElement('button');
-      capsule.type = 'button';
-      capsule.className = 'bk-date-capsule' + (isSelected ? ' active' : '');
-      capsule.innerHTML = `<span class="bk-date-capsule-day">${dayLabel}</span><span class="bk-date-capsule-num">${numLabel}</span>`;
-      capsule.onclick = () => bkSelectRunwayDate(d);
-      stream.appendChild(capsule);
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'bk-date-card' + (isSelected ? ' active' : '');
+      card.setAttribute('aria-label', d.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }));
+      card.innerHTML = `<span class="bk-date-card-day">${dayName}</span><span class="bk-date-card-num">${dayNum}</span>`;
+      card.onclick = () => bkSelectStreamlineDate(d);
+      grid.appendChild(card);
     }
   }
 
-  function bkSelectRunwayDate(date){
+  function bkSelectStreamlineDate(date){
     bkState.date = date;
     bkState.dateLabel = new Intl.DateTimeFormat('en-US', { month:'short', day:'numeric', year:'numeric' }).format(date);
     
-    // Highlight calendar grid date if calendar exists
-    document.querySelectorAll('#bkCalGrid .rc-day').forEach(dayElement=>dayElement.classList.remove('range-edge'));
-    const selectedDay = document.querySelector(`#bkCalGrid [data-day="${date.getDate()}"]`);
-    if(selectedDay) selectedDay.classList.add('range-edge');
+    // Clear selection
+    bkSelectedRange = null;
+    bkState.start = null;
+    bkState.end = null;
+    bkState.selectedRange = null;
 
     const pop = document.getElementById('bkDatePopover');
     if(pop) pop.style.display = 'none';
 
-    bkRenderDateStream();
-
-    // Reload availability for this date and refresh runway
+    bkRenderStreamlineDates();
     bkLoadAvailability().then(() => {
-      bkRenderRunwayTrack();
-      bkValidateAndSnapMatchBlock();
+      bkRenderStreamlineTimings();
+      bkUpdateStreamlineSummary();
     });
     bkPersist();
   }
-  window.bkSelectRunwayDate = bkSelectRunwayDate;
-  window.pickBkDay = bkSelectRunwayDate;
+  window.bkSelectStreamlineDate = bkSelectStreamlineDate;
 
-  function bkSetRunwayDuration(hours){
-    bkDurationHours = hours;
-    bkState.duration = hours;
-
-    document.querySelectorAll('#bkRunwayDurRibbon .bk-dur-chip-btn').forEach(btn => {
-      btn.classList.toggle('active', Number(btn.dataset.dur) === hours);
+  // 2. Duration Matrix Control
+  function bkRenderStreamlineDuration(){
+    const dur = bkDurationHours || 2;
+    const readout = document.getElementById('bkStreamlineDurReadout');
+    if(readout){
+      readout.textContent = `${dur} HOUR${dur > 1 ? 'S' : ''} SELECTED`;
+    }
+    document.querySelectorAll('#bkStreamlineDurGrid .bk-dur-matrix-btn').forEach(btn => {
+      const bDur = parseInt(btn.dataset.dur, 10);
+      btn.classList.toggle('active', bDur === dur);
     });
+  }
 
-    bkRenderRunwayTrack();
-    bkValidateAndSnapMatchBlock();
+  function bkSetStreamlineDuration(dur){
+    bkDurationHours = dur;
+    bkState.duration = dur;
+    bkSelectedRange = null;
+    bkState.start = null;
+    bkState.end = null;
+    bkState.selectedRange = null;
+
+    bkRenderStreamlineDuration();
+    bkRenderStreamlineTimings();
+    bkUpdateStreamlineSummary();
     bkPersist();
   }
-  window.bkSetRunwayDuration = bkSetRunwayDuration;
+  window.bkSetStreamlineDuration = bkSetStreamlineDuration;
 
-  function bkJumpRunwayHour(hour){
-    const viewport = document.getElementById('bkRunwayViewport');
-    if(!viewport) return;
-    let targetIndex = hour - RUNWAY_START_HOUR;
-    if(targetIndex < 0) targetIndex += 24;
-    const scrollTarget = Math.max(0, targetIndex * RUNWAY_COL_WIDTH - 60);
-    viewport.scrollTo({ left: scrollTarget, behavior: 'smooth' });
+  // 3. Timings Grid & Filter Control
+  function bkFilterStreamlineTimings(filter){
+    streamlineActiveFilter = filter;
+    document.querySelectorAll('.bk-time-filter-chip').forEach(chip => {
+      chip.classList.toggle('active', chip.dataset.filter === filter);
+    });
+    bkRenderStreamlineTimings();
   }
-  window.bkJumpRunwayHour = bkJumpRunwayHour;
+  window.bkFilterStreamlineTimings = bkFilterStreamlineTimings;
 
-  function bkGetRunwayHourDate(slotIndex){
-    const baseDate = bkState.date ? new Date(bkState.date) : new Date();
-    baseDate.setHours(0,0,0,0);
-    const hour = (RUNWAY_START_HOUR + slotIndex) % 24;
-    const dayOffset = (RUNWAY_START_HOUR + slotIndex) >= 24 ? 1 : 0;
-    
-    const d = new Date(baseDate);
-    d.setDate(baseDate.getDate() + dayOffset);
-    d.setHours(hour, 0, 0, 0);
-    return d;
-  }
-
-  function bkIsHourBooked(slotIndex){
-    const startDate = bkGetRunwayHourDate(slotIndex);
-    const endDate = new Date(startDate.getTime() + 60 * 60 * 1000);
-    return bkRangeBooked({ start: startDate, end: endDate });
-  }
-
-  function bkIsSpanBooked(slotIndex, durationHours){
-    for(let i = 0; i < durationHours; i++){
-      if(slotIndex + i >= RUNWAY_TOTAL_HOURS) return true;
-      if(bkIsHourBooked(slotIndex + i)) return true;
-    }
-    return false;
-  }
-
-  function bkRenderRunwayTrack(){
-    const colsWrap = document.getElementById('bkRunwayColsWrapper');
-    if(!colsWrap) return;
-    colsWrap.innerHTML = '';
-
-    for(let i = 0; i < RUNWAY_TOTAL_HOURS; i++){
-      const hourVal = (RUNWAY_START_HOUR + i) % 24;
-      const isPm = hourVal >= 12;
-      const displayHour = (hourVal % 12 === 0) ? 12 : (hourVal % 12);
-      const ampm = isPm ? 'PM' : 'AM';
-      const timeLabel = `${displayHour.toString().padStart(2,'0')} ${ampm}`;
-
-      const isBooked = bkIsHourBooked(i);
-
-      const col = document.createElement('div');
-      col.className = 'bk-runway-hour-col' + (isBooked ? ' booked' : '');
-      col.dataset.slotIndex = i;
-
-      col.innerHTML = `
-        <div class="bk-hour-col-header">${timeLabel}</div>
-        <div class="bk-hour-col-body">
-          ${isBooked ? '<div class="bk-booked-marker"><span>🔒</span><span>BOOKED</span></div>' : ''}
-        </div>
-      `;
-
-      col.onclick = (e) => {
-        if(!isBooked){
-          bkSnapMatchBlockToIndex(i);
-        }
-      };
-
-      colsWrap.appendChild(col);
-    }
-
-    bkRenderQuickPicks();
-  }
-
-  function bkRenderQuickPicks(){
-    const wrap = document.getElementById('bkRunwayQuickPicksWrap');
-    if(!wrap) return;
-    wrap.innerHTML = '';
+  function bkRenderStreamlineTimings(){
+    const grid = document.getElementById('bkStreamlineTimeGrid');
+    const countEl = document.getElementById('bkStreamlineSlotsCount');
+    if(!grid) return;
+    grid.innerHTML = '';
 
     const dur = bkDurationHours || 2;
     const availableRanges = getAvailableTimeRanges();
 
-    // Prefer prime evening slots
-    const primeRanges = availableRanges.filter(r => r.start.getHours() >= 17 && r.start.getHours() <= 22);
-    let candidateRanges = primeRanges.length ? primeRanges : availableRanges;
-    const displayRanges = candidateRanges.slice(0, 4);
+    // Filter ranges based on active period
+    let filteredRanges = availableRanges;
+    if(streamlineActiveFilter === 'morning'){
+      filteredRanges = availableRanges.filter(r => r.start.getHours() >= 6 && r.start.getHours() < 12);
+    } else if(streamlineActiveFilter === 'afternoon'){
+      filteredRanges = availableRanges.filter(r => r.start.getHours() >= 12 && r.start.getHours() < 17);
+    } else if(streamlineActiveFilter === 'night'){
+      filteredRanges = availableRanges.filter(r => (r.start.getHours() >= 17 && r.start.getHours() <= 23) || (r.start.getHours() >= 0 && r.start.getHours() < 6));
+    }
 
-    const container = wrap.closest ? wrap.closest('.bk-runway-quick-picks') : wrap.parentElement;
-    if(!displayRanges.length){
-      if(container) container.style.display = 'none';
+    if(countEl){
+      countEl.textContent = `${filteredRanges.length} SLOT${filteredRanges.length === 1 ? '' : 'S'} OPEN`;
+    }
+
+    if(!filteredRanges.length){
+      grid.innerHTML = `<div class="bk-time-empty-note">No available ${dur}h slots open in this period. Choose another filter or duration above.</div>`;
       return;
     }
-    if(container) container.style.display = 'flex';
 
-    displayRanges.forEach(range => {
-      let slotIdx = range.start.getHours() - RUNWAY_START_HOUR;
-      if(slotIdx < 0) slotIdx += 24;
+    filteredRanges.forEach(range => {
+      const pill = document.createElement('button');
+      pill.type = 'button';
+      pill.className = 'bk-time-pill';
+      pill.dataset.start = String(range.start.getTime());
 
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'bk-qpick-btn';
-      btn.innerHTML = `<span>⚡ ${formatBookingTime(range.start)} → ${formatBookingTime(range.end)}</span>`;
-      btn.onclick = () => {
-        bkSnapMatchBlockToIndex(slotIdx);
-        bkJumpRunwayHour(range.start.getHours());
-      };
-      wrap.appendChild(btn);
+      const isSelected = bkSelectedRange && bkSelectedRange.start && (bkSelectedRange.start.getTime() === range.start.getTime());
+      if(isSelected) pill.classList.add('active');
+
+      const startBase = range.start.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+      const endBase = range.end.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+      const baseDate = bkState.date || new Date();
+      const nextDay = range.end.getFullYear() !== baseDate.getFullYear() || range.end.getMonth() !== baseDate.getMonth() || range.end.getDate() !== baseDate.getDate();
+
+      if(nextDay){
+        pill.innerHTML = `<span class="bk-time-range">${startBase} – ${endBase}</span><span class="bk-time-tag">+1 DAY</span>`;
+      } else {
+        pill.innerHTML = `<span class="bk-time-range">${startBase} – ${endBase}</span>`;
+      }
+
+      pill.onclick = () => bkSelectStreamlineSlot(range);
+      grid.appendChild(pill);
     });
-  }
 
-  function bkSnapMatchBlockToIndex(slotIndex){
-    const dur = bkDurationHours || 2;
-    
-    // Check if valid unbooked slot
-    const isOverlapping = bkIsSpanBooked(slotIndex, dur);
-    if(isOverlapping){
-      // Find nearest unbooked slot
-      let nearest = -1;
-      for(let delta = 1; delta < RUNWAY_TOTAL_HOURS; delta++){
-        if(slotIndex + delta < RUNWAY_TOTAL_HOURS && !bkIsSpanBooked(slotIndex + delta, dur)){
-          nearest = slotIndex + delta; break;
-        }
-        if(slotIndex - delta >= 0 && !bkIsSpanBooked(slotIndex - delta, dur)){
-          nearest = slotIndex - delta; break;
-        }
-      }
-      if(nearest !== -1){
-        slotIndex = nearest;
-      } else {
-        bkTriggerOverlapWarning();
-        return;
-      }
-    }
-
-    runwayCurrentSlotIndex = slotIndex;
-    bkUpdateMatchBlockUI();
-  }
-
-  function bkTriggerOverlapWarning(){
-    const block = document.getElementById('bkMatchBlock');
-    if(block){
-      block.classList.add('overlapping');
-      setTimeout(() => block.classList.remove('overlapping'), 450);
+    // If a range was previously selected and is still in filteredRanges, preserve it.
+    // Otherwise auto-select the first prime evening slot (or first available)
+    if(!bkSelectedRange && filteredRanges.length){
+      const prime = filteredRanges.find(r => r.start.getHours() >= 17 && r.start.getHours() <= 22);
+      bkSelectStreamlineSlot(prime || filteredRanges[0]);
     }
   }
 
-  function bkValidateAndSnapMatchBlock(){
-    const dur = bkDurationHours || 2;
-    if(bkIsSpanBooked(runwayCurrentSlotIndex, dur)){
-      // Try evening prime first (13 = 7 PM)
-      if(!bkIsSpanBooked(13, dur)){
-        runwayCurrentSlotIndex = 13;
-      } else if(!bkIsSpanBooked(12, dur)){
-        runwayCurrentSlotIndex = 12;
-      } else if(!bkIsSpanBooked(14, dur)){
-        runwayCurrentSlotIndex = 14;
-      } else {
-        // Find any available slot
-        for(let i = 0; i < RUNWAY_TOTAL_HOURS; i++){
-          if(!bkIsSpanBooked(i, dur)){
-            runwayCurrentSlotIndex = i;
-            break;
-          }
-        }
-      }
-    }
-    bkUpdateMatchBlockUI();
+  function bkSelectStreamlineSlot(range){
+    bkSelectedRange = range;
+    bkState.start = formatBookingTime(range.start);
+    bkState.end = formatBookingTime(range.end);
+    bkState.selectedRange = range;
+
+    // Highlight active pill by matching dataset.start
+    document.querySelectorAll('#bkStreamlineTimeGrid .bk-time-pill').forEach(pill => {
+      pill.classList.toggle('active', pill.dataset.start === String(range.start.getTime()));
+    });
+
+    bkUpdateStreamlineSummary();
+    bkPersist();
   }
+  window.bkSelectStreamlineSlot = bkSelectStreamlineSlot;
 
-  function bkUpdateMatchBlockUI(){
-    const block = document.getElementById('bkMatchBlock');
-    if(!block) return;
+  // 4. Update Summary Readout & Action Button
+  function bkUpdateStreamlineSummary(){
+    const detailsEl = document.getElementById('bkStreamlineSumDetails');
+    const priceEl = document.getElementById('bkStreamlineSumPrice');
+    const goBtn = document.getElementById('bkStreamlineGoBtn');
 
     const dur = bkDurationHours || 2;
-    const widthPx = Math.max(72, dur * RUNWAY_COL_WIDTH - 8);
-    const leftPx = runwayCurrentSlotIndex * RUNWAY_COL_WIDTH + 4;
-
-    block.style.width = widthPx + 'px';
-    block.style.left = leftPx + 'px';
-
-    const startDate = bkGetRunwayHourDate(runwayCurrentSlotIndex);
-    const endDate = new Date(startDate.getTime() + dur * 60 * 60 * 1000);
-
-    const isFloodlight = startDate.getHours() >= 17 || startDate.getHours() < 6;
     const rate = typeof getSiteRate === 'function' ? getSiteRate() : 800;
     const totalPrice = dur * rate;
 
-    // Update Match Block internal texts
-    const badgeEl = document.getElementById('bkMblockZone');
-    const priceEl = document.getElementById('bkMblockPrice');
-    const timesEl = document.getElementById('bkMblockTimes');
-    const durEl = document.getElementById('bkMblockDur');
+    if(priceEl){
+      priceEl.textContent = `TOTAL: ₹${totalPrice.toLocaleString('en-IN')}`;
+    }
 
-    if(badgeEl) badgeEl.textContent = isFloodlight ? '⚡ FLOODLIGHT PRIME' : '☀️ DAYLIGHT PLAY';
-    if(priceEl) priceEl.textContent = `₹${totalPrice.toLocaleString('en-IN')}`;
-    if(timesEl) timesEl.innerHTML = `<span>${formatBookingTime(startDate)} ➔ ${formatBookingTime(endDate)}</span>`;
-    if(durEl) durEl.textContent = `${dur} HOUR${dur > 1 ? 'S' : ''} WIDE`;
-
-    // Save into standard booking state
-    const range = { start: startDate, end: endDate };
-    bkSelectedRange = range;
-    bkState.start = formatBookingTime(startDate);
-    bkState.end = formatBookingTime(endDate);
-    bkState.duration = dur;
-    bkState.selectedRange = range;
-
-    // Update bottom Match Pass dock
-    const sumDate = document.getElementById('bkTlSumDate');
-    const sumDur = document.getElementById('bkTlSumDur');
-    const sumTime = document.getElementById('bkTlSumTime');
-    const sumTotal = document.getElementById('bkTlSumTotal');
-
-    if(sumDate){
-      const rawDate = bkState.date || (typeof selectedDate !== 'undefined' ? selectedDate : null);
-      const d = (rawDate instanceof Date) ? rawDate : (rawDate ? new Date(rawDate) : new Date());
-      if(!isNaN(d.getTime())){
-        sumDate.textContent = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    if(detailsEl){
+      if(bkState.date && bkSelectedRange){
+        const dStr = bkState.date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+        const timeStr = `${formatBookingTime(bkSelectedRange.start)} - ${formatBookingTime(bkSelectedRange.end)}`;
+        detailsEl.textContent = `${dStr} • ${dur} Hour${dur > 1 ? 's' : ''} • ${timeStr}`;
+      } else if(bkState.date){
+        const dStr = bkState.date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+        detailsEl.textContent = `${dStr} • ${dur} Hour${dur > 1 ? 's' : ''} • Choose Time Slot`;
+      } else {
+        detailsEl.textContent = '—';
       }
     }
-    if(sumDur){
-      sumDur.textContent = `${dur} Hour${dur > 1 ? 's' : ''}`;
-    }
-    if(sumTime){
-      sumTime.textContent = `${formatBookingTime(startDate)} → ${formatBookingTime(endDate)}`;
-    }
-    if(sumTotal){
-      sumTotal.textContent = `₹${totalPrice.toLocaleString('en-IN')}`;
-    }
 
-    const goBtn = document.getElementById('bkGoSummaryBtn');
     if(goBtn){
-      const isFree = !bkIsSpanBooked(runwayCurrentSlotIndex, dur);
-      if(isFree){
+      if(bkSelectedRange){
         goBtn.removeAttribute('disabled');
       } else {
         goBtn.setAttribute('disabled', '');
       }
     }
 
-    bkPersist();
+    // Mirror to compatibility elements
+    const sumDate = document.getElementById('bkTlSumDate');
+    const sumDur = document.getElementById('bkTlSumDur');
+    const sumTime = document.getElementById('bkTlSumTime');
+    const sumTotal = document.getElementById('bkTlSumTotal');
+    if(sumDate && bkState.date) sumDate.textContent = bkState.date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    if(sumDur) sumDur.textContent = `${dur} Hour${dur > 1 ? 's' : ''}`;
+    if(sumTime && bkSelectedRange) sumTime.textContent = `${formatBookingTime(bkSelectedRange.start)} → ${formatBookingTime(bkSelectedRange.end)}`;
+    if(sumTotal) sumTotal.textContent = `₹${totalPrice.toLocaleString('en-IN')}`;
   }
 
-  // Pointer drag & scrub handling for Match Block
-  function bkInitMatchBlockDrag(){
-    const block = document.getElementById('bkMatchBlock');
-    if(!block) return;
-
-    block.onpointerdown = (e) => {
-      runwayIsDragging = true;
-      runwayDragStartX = e.clientX;
-      runwayBlockStartLeft = block.offsetLeft;
-      block.classList.add('dragging');
-      block.setPointerCapture(e.pointerId);
-    };
-
-    block.onpointermove = (e) => {
-      if(!runwayIsDragging) return;
-      const deltaX = e.clientX - runwayDragStartX;
-      let newLeft = runwayBlockStartLeft + deltaX;
-
-      const dur = bkDurationHours || 2;
-      const maxLeft = (RUNWAY_TOTAL_HOURS - dur) * RUNWAY_COL_WIDTH + 4;
-      newLeft = Math.max(4, Math.min(maxLeft, newLeft));
-
-      block.style.left = newLeft + 'px';
-
-      // Estimate live index while dragging
-      const liveIndex = Math.round((newLeft - 4) / RUNWAY_COL_WIDTH);
-      const isOverlap = bkIsSpanBooked(liveIndex, dur);
-      block.classList.toggle('overlapping', isOverlap);
-    };
-
-    block.onpointerup = (e) => {
-      if(!runwayIsDragging) return;
-      runwayIsDragging = false;
-      block.classList.remove('dragging');
-      block.releasePointerCapture(e.pointerId);
-
-      const dur = bkDurationHours || 2;
-      const liveIndex = Math.round((block.offsetLeft - 4) / RUNWAY_COL_WIDTH);
-      bkSnapMatchBlockToIndex(liveIndex);
-    };
-
-    block.onpointercancel = (e) => {
-      runwayIsDragging = false;
-      block.classList.remove('dragging');
-      bkUpdateMatchBlockUI();
-    };
+  // Compatibility Stubs for bridge / automated checks
+  function bkRenderDateStream(){ bkRenderStreamlineDates(); }
+  window.bkRenderDateStream = bkRenderDateStream;
+  function bkSelectRunwayDate(date){ bkSelectStreamlineDate(date); }
+  window.bkSelectRunwayDate = bkSelectRunwayDate;
+  function bkSetRunwayDuration(dur){ bkSetStreamlineDuration(dur); }
+  window.bkSetRunwayDuration = bkSetRunwayDuration;
+  function bkRenderRunwayTrack(){ bkRenderStreamlineTimings(); }
+  window.bkRenderRunwayTrack = bkRenderRunwayTrack;
+  function bkSnapMatchBlockToIndex(slotIndex){
+    const dur = bkDurationHours || 2;
+    const ranges = getAvailableTimeRanges();
+    if(ranges.length) bkSelectStreamlineSlot(ranges[0]);
   }
-
-  // General stubs for compatibility
-  function bkSetDeckStage(stage){ /* compatibility stub */ }
+  window.bkSnapMatchBlockToIndex = bkSnapMatchBlockToIndex;
+  function bkInitMatchBlockDrag(){ }
+  window.bkInitMatchBlockDrag = bkInitMatchBlockDrag;
+  function bkValidateAndSnapMatchBlock(){ bkRenderStreamlineTimings(); }
+  window.bkValidateAndSnapMatchBlock = bkValidateAndSnapMatchBlock;
+  function bkJumpRunwayHour(hour){ }
+  window.bkJumpRunwayHour = bkJumpRunwayHour;
+  function bkScrollDateStream(dir){
+    const d = new Date(bkState.date || Date.now());
+    d.setDate(d.getDate() + (dir * 7));
+    bkSelectStreamlineDate(d);
+  }
+  window.bkScrollDateStream = bkScrollDateStream;
+  function bkSetDeckStage(stage){ }
   window.bkSetDeckStage = bkSetDeckStage;
-
-  function bkUpdateDeckUI(){
-    bkUpdateMatchBlockUI();
-  }
+  function bkUpdateDeckUI(){ bkUpdateStreamlineSummary(); }
   window.bkUpdateDeckUI = bkUpdateDeckUI;
-
-  function bkUpdateFocusFlowProgress(){
-    bkUpdateMatchBlockUI();
-  }
+  function bkUpdateFocusFlowProgress(){ bkUpdateStreamlineSummary(); }
   window.bkUpdateFocusFlowProgress = bkUpdateFocusFlowProgress;
-
-  function bkUpdateSubflowProgress(){
-    bkUpdateMatchBlockUI();
-  }
-
+  function bkUpdateSubflowProgress(){ bkUpdateStreamlineSummary(); }
+  window.bkUpdateSubflowProgress = bkUpdateSubflowProgress;
   function bkSetSectionState(){ }
   function bkReopenStep(){ }
   function bkSwitchDeckStage(){ }
@@ -4284,173 +4095,40 @@
     bkCurrentStep = n;
     const allPanes = ['bkPane1', 'bkPane2', 'bkPane5', 'bkPane6', 'bkPane7'];
     const activePaneId = BK_STEP_PANES[n] || 'bkPane1';
-        if(n === 2){
-      bkRenderDateStream();
-      bkRenderRunwayTrack();
-      bkInitMatchBlockDrag();
-      bkValidateAndSnapMatchBlock();
-      setTimeout(() => bkJumpRunwayHour(17), 100);
+    if(n === 2){
+      bkInitStreamlineConsole();
+    }
+    if(n === 3 && typeof bkFillSummary === 'function'){
+      bkFillSummary();
+    }
+    if(n === 4 && typeof bkFillPayment === 'function'){
+      bkFillPayment();
     }
     allPanes.forEach(id => {
       const el = document.getElementById(id);
       if(el) el.style.display = (id === activePaneId) ? 'block' : 'none';
     });
 
-    document.getElementById('bkBackButton').style.display = (n > 1 && n < 5) ? 'flex' : 'none';
+    const backBtn = document.getElementById('bkBackButton');
+    if(backBtn) backBtn.style.display = (n > 1 && n < 5) ? 'flex' : 'none';
     document.querySelectorAll('#bkStepsRow .bstep').forEach(s => {
       const sn = parseInt(s.dataset.step);
       s.classList.toggle('active', sn === n);
       s.classList.toggle('done', sn < n);
       const dot = s.querySelector('.bstep-dot');
       if(dot){
-        dot.textContent = (sn < n) ? '✓' : String(sn);
+        dot.textContent = sn < n ? '✓' : sn;
       }
     });
-    document.getElementById('bkStepsRow').classList.toggle('done-through', n > 1);
-
-    if(n === 2){
-      // Initialize Step 1 Date expanded, Step 2 & 3 locked
-      const dateExp = document.getElementById('bkDateExpanded');
-      const dateComp = document.getElementById('bkDateCompletedRow');
-      const stepDur = document.getElementById('bkStepDuration');
-      const durExp = document.getElementById('bkDurExpanded');
-      const durComp = document.getElementById('bkDurCompletedRow');
-      const stepTime = document.getElementById('bkStepTiming');
-
-      if(bkState.date){
-        if(dateExp) dateExp.style.display = 'none';
-        if(dateComp) dateComp.style.display = 'flex';
-        if(stepDur) stepDur.style.display = 'flex';
-        if(bkDurationHours > 0){
-          if(durExp) durExp.style.display = 'none';
-          if(durComp) durComp.style.display = 'flex';
-          if(stepTime) stepTime.style.display = 'flex';
-          bkLoadAvailability().then(() => {
-            if(bkMultiEnabled) renderMultiSlotArea();
-            else renderAvailableTimeRanges();
-            bkUpdateFocusFlowProgress();
-          });
-        } else {
-          if(durExp) durExp.style.display = 'flex';
-          if(durComp) durComp.style.display = 'none';
-          if(stepTime) stepTime.style.display = 'none';
-        }
-      } else {
-        if(dateExp) dateExp.style.display = 'flex';
-        if(dateComp) dateComp.style.display = 'none';
-        if(stepDur) stepDur.style.display = 'none';
-        if(stepTime) stepTime.style.display = 'none';
-      }
-
-      renderBkCalendar();
-      bkUpdateFocusFlowProgress();
-      const pane2 = document.getElementById('bkPane2');
-      if(pane2) bkRevealElementMinimal(pane2, 25, false);
-    }
-    if(n === 3) bkFillSummary();
-    if(n === 4) bkFillPayment();
     bkPersist();
-    bkSaveDraft();
-  }
-
-  function bkContinueFromVerification(){
-    const nameInput = document.getElementById('bkName');
-    const mobileInput = document.getElementById('bkMobile');
-    const name = (nameInput ? nameInput.value : '').trim();
-    const mobileRaw = (mobileInput ? mobileInput.value : '').trim();
-    if(!name){
-      if(nameInput) nameInput.focus();
-      bkOtpMsg('Please enter your full name.', 'err');
-      return;
-    }
-    if(!mobileRaw){
-      if(mobileInput) mobileInput.focus();
-      bkOtpMsg('Please enter your mobile number.', 'err');
-      return;
-    }
-    const normal = bkNormalizeMobile(mobileRaw);
-    if(!bkIsValidMobileInternational(normal)){
-      if(mobileInput) mobileInput.focus();
-      bkOtpMsg('Please enter a valid 10-digit mobile number.', 'err');
-      return;
-    }
-    bkOtpVerified = true;
-    bkVerifiedMobile = normal;
-    bkOtpAccessToken = 'direct_entry_' + Date.now();
-    bkOtpMsg('', 'ok');
-    bkPersist();
-    bkGoStep(2);
-  }
-  window.bkContinueFromVerification = bkContinueFromVerification;
-
-  function bkGoBack(){
-    if(bkCurrentStep === 3){
-      bkGoStep(2);
-      return;
-    }
-    if(bkCurrentStep === 4){
-      bkGoStep(3);
-      return;
-    }
-    if(bkCurrentStep === 2){
-      bkGoStep(1);
-      return;
-    }
-    if(bkCurrentStep > 1 && bkCurrentStep < 5){
-      bkGoStep(bkCurrentStep - 1);
+    if(typeof bkSaveDraft === 'function') bkSaveDraft();
+    const targetAnchor = document.getElementById('book') || document.getElementById('bookingShell');
+    if(targetAnchor && typeof targetAnchor.scrollIntoView === 'function'){
+      targetAnchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
   window.bkGoStep = bkGoStep;
-  window.bkGoBack = bkGoBack;
-  window.bkHandleHeaderClick = bkHandleHeaderClick;
-  window.bkHandleSubstepClick = bkHandleSubstepClick;
-  window.bkSetSubStage = bkSetSubStage;
-  window.bkReopenStep = bkReopenStep;
-  window.bkToggleDatePopover = function(){};
-  window.renderDateHorizonReel = function(){};
-  window.updateMatchPassDock = function(){};
-  window.bkFocusSection = function(){};
-  window.bkSwitchDeckStage = bkSwitchDeckStage;
-  window.renderBkCalendar = renderBkCalendar;
 
-  // date calendar — single-select, past dates disabled, dynamic month navigation
-  renderBkCalendar();
-
-  // time slots — 06:00 AM to 11:00 PM hourly; a few pre-booked/unavailable
-  const bkTimes = ['12:00 AM','01:00 AM','02:00 AM','03:00 AM','04:00 AM','05:00 AM','06:00 AM','07:00 AM','08:00 AM','09:00 AM','10:00 AM','11:00 AM','12:00 PM','01:00 PM','02:00 PM','03:00 PM','04:00 PM','05:00 PM','06:00 PM','07:00 PM','08:00 PM','09:00 PM','10:00 PM','11:00 PM'];
-  const bkUnavailable = [];
-  let bkBookedSlotKeys = new Set();
-  let bkAvailabilityRequest = 0;
-  const bkTimePills = document.getElementById('bkTimePills');
-  document.getElementById('bkDurationPills').addEventListener('click', (event)=>{
-    const pill = event.target.closest('.pill');
-    if(!pill) return;
-    document.querySelectorAll('#bkDurationPills .pill').forEach(item=>item.classList.remove('sel'));
-    pill.classList.add('sel');
-    bkDurationHours = Number(pill.dataset.duration);
-    bkState.duration = bkDurationHours;
-    bkSelectedRange = null;
-    bkState.start = null;
-    bkState.end = null;
-    if(!bkAddingSlot){
-      bkSlots = [];
-      bkRenderSlotsList();
-    }
-    bkAddingSlot = false;
-
-    // Immediately render available time ranges
-    renderAvailableTimeRanges();
-    bkUpdateDeckUI();
-
-    // Automatically transition central workspace to Stage 3 (Time)
-    setTimeout(() => {
-      bkSetDeckStage(3);
-    }, 240);
-
-    bkPersist();
-  });
-
-  function bkSlotAvailable(hour){ return !bkUnavailable.includes(bkTimes[hour]); }
   function bkTimeLabel(hour){ return bkTimes[((hour % bkTimes.length) + bkTimes.length) % bkTimes.length]; }
   function bkStartDateTime(hour){ return new Date(bkState.date.getFullYear(), bkState.date.getMonth(), bkState.date.getDate(), hour); }
     function bkBookedKey(dateTime){
@@ -4929,23 +4607,38 @@
       bkState.end = bkSlots[bkSlots.length - 1].endLabel;
       bkState.duration = bkTotalHours();
     } else {
-      if(bkSelectedRange){
-        bkSlots.push({
-          start: new Date(bkSelectedRange.start.getTime()),
-          end: new Date(bkSelectedRange.end.getTime()),
-          startLabel: formatBookingTime(bkSelectedRange.start),
-          endLabel: formatBookingTime(bkSelectedRange.end),
-          hours: bkDuration()
-        });
-        bkSelectedRange = null;
+      const dur = bkDurationHours || (typeof bkDuration === 'function' ? bkDuration() : 2) || 2;
+      let slotRange = bkSelectedRange;
+      if(!slotRange && bkSlots.length && bkSlots[0].start && bkSlots[0].end){
+        slotRange = { start: bkSlots[0].start, end: bkSlots[0].end };
       }
-      if(!bkSlots.length) return;
-      bkState.start = bkSlots[0].startLabel;
-      bkState.end = bkSlots[bkSlots.length - 1].endLabel;
-      bkState.duration = bkTotalHours();
+      if(!slotRange && typeof getAvailableTimeRanges === 'function'){
+        const av = getAvailableTimeRanges();
+        if(av && av.length){
+          slotRange = av.find(r => r.start.getHours() >= 17 && r.start.getHours() <= 22) || av[0];
+          bkSelectedRange = slotRange;
+        }
+      }
+      if(slotRange && slotRange.start && slotRange.end){
+        bkSelectedRange = slotRange;
+        bkSlots = [{
+          start: new Date(slotRange.start.getTime()),
+          end: new Date(slotRange.end.getTime()),
+          startLabel: formatBookingTime(slotRange.start),
+          endLabel: formatBookingTime(slotRange.end),
+          hours: dur
+        }];
+        bkState.start = bkSlots[0].startLabel;
+        bkState.end = bkSlots[0].endLabel;
+        bkState.duration = dur;
+      } else {
+        alert('Please choose an available time slot to continue.');
+        return;
+      }
     }
     bkGoStep(3);
   }
+  window.bkConfirmSlots = bkConfirmSlots;
   function bkSelectSummarySlot(i){
     if(!bkSlots[i]) return;
     bkSummaryActiveSlot = i;
