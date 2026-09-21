@@ -21,8 +21,8 @@ function App() {
   }
   const [route, setRoute] = useState(getRoute)
   const pageTitle = 'TurfOn24'
-  const adminUrl = `${import.meta.env.BASE_URL}legacy/admin.html?v=timing-active-v17`
-  const homeUrl = `${import.meta.env.BASE_URL}legacy/index.html?v=timing-active-v17`
+  const adminUrl = `${import.meta.env.BASE_URL}legacy/admin.html?v=timing-active-v25`
+  const homeUrl = `${import.meta.env.BASE_URL}legacy/index.html?v=timing-active-v25`
 
   useEffect(() => {
     const onPop = () => setRoute(getRoute())

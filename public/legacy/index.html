@@ -619,7 +619,6 @@
     padding:28px 24px;
     gap:32px;
     position:relative;
-    overflow:hidden;
     font-family:'Inter',sans-serif;
   }
 
@@ -983,19 +982,20 @@
     border:1px solid #1E2E21;
   }
 
-  /* Multi-Slot Cards inside Streamline Console (Always ABOVE Summary Bar) */
   #bkMultiSlotArea{
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:24px;
     width:100%;
+    margin-bottom:20px;
     box-sizing:border-box;
   }
   .bk-slot-card{
     background:#131C15;
     border:1px solid #1E2E21;
-    border-radius:14px;
-    padding:16px 14px;
+    border-radius:16px;
+    padding:18px 18px 20px;
+    margin-bottom:24px;
     box-sizing:border-box;
     width:100%;
     transition:all .18s ease;
@@ -1009,11 +1009,13 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:8px;
+    margin-bottom:20px;
+    gap:12px;
+    flex-wrap:wrap;
   }
   .bk-slot-num{
     font-family:'Inter',sans-serif;
-    font-size:13px;
+    font-size:13.5px;
     font-weight:700;
     color:#39FF7A;
     letter-spacing:0.04em;
@@ -1029,12 +1031,36 @@
     border-radius:6px;
     border:1px solid #1E2E21;
   }
+  .bk-slot-time-card{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:#0D1711;
+    border:1.5px solid #39FF7A;
+    border-radius:8px;
+    padding:5px 12px;
+    color:#39FF7A;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:13px;
+    line-height:1.2;
+    box-shadow:0 0 14px rgba(57,255,122,0.18);
+    letter-spacing:-0.01em;
+  }
+  .bk-slot-time-card.empty{
+    background:rgba(255,255,255,0.025);
+    border:1px dashed rgba(255,255,255,0.14);
+    color:#94A3B8;
+    font-weight:500;
+    font-size:12px;
+    box-shadow:none;
+  }
   .bk-slot-chosen{
     font-family:'Inter',sans-serif;
     font-size:13px;
     font-weight:500;
     color:#FFFFFF;
-    margin-bottom:12px;
+    margin-bottom:14px;
     line-height:1.25;
   }
   .bk-slot-selected{
@@ -1196,20 +1222,129 @@
     transform:none;
   }
 
-  /* Popover Calendar for "More Dates" */
+  /* Popover Calendar for "More Dates" — Floating Dropdown Anchored Inside Console Frame */
   .bk-runway-popover{
     position:absolute;
-    top:90px;
-    right:28px;
-    z-index:50;
+    top:48px;
+    right:0;
+    z-index:90;
     background:#07120A;
-    border:1px solid rgba(57, 255, 122,0.3);
-    border-radius:18px;
+    border:1px solid rgba(57, 255, 122, 0.35);
+    border-radius:16px;
     padding:16px;
-    box-shadow:0 20px 50px rgba(0,0,0,0.8), 0 0 24px rgba(57, 255, 122,0.15);
-    max-width:360px;
-    width:calc(100% - 56px);
+    box-shadow:0 18px 45px rgba(0,0,0,0.92), 0 0 22px rgba(57, 255, 122, 0.14);
+    max-width:320px;
+    width:100%;
     box-sizing:border-box;
+  }
+  @media (max-width: 480px){
+    .bk-runway-popover{
+      top:44px;
+      left:0;
+      right:0;
+      max-width:100%;
+      width:100%;
+      padding:12px;
+    }
+  }
+  .bk-runway-popover .rc-cal{
+    background:transparent !important;
+    border:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    box-shadow:none !important;
+    width:100% !important;
+  }
+  .bk-runway-popover .rc-head{
+    margin-bottom:12px !important;
+    display:flex !important;
+    justify-content:space-between !important;
+    align-items:center !important;
+    gap:8px !important;
+    padding-bottom:10px !important;
+    border-bottom:1px solid #1E2E21 !important;
+  }
+  .bk-runway-popover .rc-nav-group{
+    display:flex !important;
+    align-items:center !important;
+    gap:8px !important;
+  }
+  .bk-runway-popover .rc-nav{
+    width:28px !important;
+    height:28px !important;
+    border-radius:6px !important;
+    border:1px solid #1E2E21 !important;
+    background:#131C15 !important;
+    color:#FFFFFF !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    cursor:pointer !important;
+    transition:all .15s ease !important;
+  }
+  .bk-runway-popover .rc-nav:hover:not(:disabled){
+    border-color:#39FF7A !important;
+    color:#39FF7A !important;
+  }
+  .bk-runway-popover .rc-nav:disabled{
+    opacity:0.25 !important;
+    cursor:not-allowed !important;
+  }
+  .bk-runway-popover #bkCalendarMonth{
+    font-family:'Inter',sans-serif !important;
+    font-size:12.5px !important;
+    font-weight:700 !important;
+    letter-spacing:0.04em !important;
+    color:#FFFFFF !important;
+  }
+  .bk-runway-popover .rc-grid{
+    display:grid !important;
+    grid-template-columns:repeat(7, 1fr) !important;
+    gap:4px !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+  }
+  .bk-runway-popover .rc-grid .rc-h{
+    font-family:'Inter',sans-serif !important;
+    font-size:10px !important;
+    font-weight:600 !important;
+    color:#64748B !important;
+    text-align:center !important;
+    padding:4px 0 !important;
+  }
+  .bk-runway-popover .rc-day{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    height:32px !important;
+    border-radius:6px !important;
+    font-size:12px !important;
+    font-family:'Inter',sans-serif !important;
+    font-weight:500 !important;
+    border:1px solid transparent !important;
+    cursor:pointer !important;
+    transition:all .15s ease !important;
+  }
+  .bk-runway-popover .rc-day.avail{
+    color:#FFFFFF !important;
+    background:rgba(255,255,255,0.02) !important;
+  }
+  .bk-runway-popover .rc-day.avail:hover{
+    background:rgba(57,255,122,0.15) !important;
+    border-color:rgba(57,255,122,0.4) !important;
+    color:#39FF7A !important;
+  }
+  .bk-runway-popover .rc-day.range-edge{
+    background:#39FF7A !important;
+    border-color:#39FF7A !important;
+    color:#04140D !important;
+    font-weight:700 !important;
+    box-shadow:0 0 14px rgba(57,255,122,0.5) !important;
+  }
+  .bk-runway-popover .rc-day.disabled{
+    color:#334155 !important;
+    opacity:0.35 !important;
+    cursor:not-allowed !important;
   }
 
   /* Mobile Responsive Adaptations */
@@ -1368,8 +1503,6 @@
       width:38px !important;
       height:38px !important;
     }
-
-    .bk-runway-popover{right:8px; top:75px; width:calc(100% - 16px); max-width:340px;}
   }
 
   /* Ultra-small mobile screens <= 375px (iPhone SE / older Android) */
@@ -1504,7 +1637,6 @@
     }
     .bk-dock-btn-full{display:none;}
     .bk-dock-btn-short{display:inline;}
-    .bk-runway-popover{right:10px; top:80px; width:calc(100% - 20px); max-width:340px;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -2530,35 +2662,35 @@
           </div>
 
           <!-- 01. SELECT DATE (Symmetrical 7-Day Horizon) -->
-          <div class="bk-slat-section">
+          <div class="bk-slat-section" style="position:relative;">
             <div class="bk-slat-head">
               <span class="bk-slat-title">01. SELECT DATE</span>
-              <button type="button" class="bk-slat-month-btn" id="bkStreamlineMonthBtn" onclick="bkToggleDatePopover()" aria-label="Choose month" title="Pick from full calendar">
+              <button type="button" class="bk-slat-month-btn" id="bkStreamlineMonthBtn" onclick="event.stopPropagation(); bkToggleDatePopover()" aria-label="Choose month" title="Pick from full calendar">
                 <span id="bkStreamlineMonthText">September 2026</span> ▾
               </button>
             </div>
 
+            <!-- Popover calendar for picking distant dates — Old Dropdown Popover Design -->
+            <div class="bk-runway-popover" id="bkDatePopover" style="display:none;" onclick="event.stopPropagation()">
+              <div class="rc-cal" id="bkCalWrapper">
+                <div class="rc-head rc-head--bk">
+                  <div class="rc-nav-group">
+                    <button class="rc-nav" id="bkPrevMonth" type="button" aria-label="Previous month" onclick="event.stopPropagation(); bkStepMonth(-1)">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+                    </button>
+                    <span id="bkCalendarMonth"></span>
+                    <button class="rc-nav" id="bkNextMonth" type="button" aria-label="Next month" onclick="event.stopPropagation(); bkStepMonth(1)">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                  </div>
+                  <button type="button" class="btn btn-outline" style="font-size:11px; padding:3px 8px; border-radius:6px; min-height:unset; color:#94A3B8; border-color:rgba(255,255,255,0.18);" onclick="event.stopPropagation(); bkToggleDatePopover()">✕</button>
+                </div>
+                <div class="rc-grid" id="bkCalGrid"></div>
+              </div>
+            </div>
+
             <div class="bk-streamline-date-grid" id="bkStreamlineDateGrid">
               <!-- Dynamically rendered 7 symmetrical date cards -->
-            </div>
-          </div>
-
-          <!-- Popover calendar for picking distant dates -->
-          <div class="bk-runway-popover" id="bkDatePopover" style="display:none;">
-            <div class="rc-cal" id="bkCalWrapper">
-              <div class="rc-head rc-head--bk">
-                <div class="rc-nav-group">
-                  <button class="rc-nav" id="bkPrevMonth" type="button" aria-label="Previous month" onclick="event.stopPropagation(); bkStepMonth(-1)">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
-                  </button>
-                  <span id="bkCalendarMonth"></span>
-                  <button class="rc-nav" id="bkNextMonth" type="button" aria-label="Next month" onclick="event.stopPropagation(); bkStepMonth(1)">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-                  </button>
-                </div>
-                <button type="button" class="btn btn-outline" style="font-size:10px; padding:3px 8px;" onclick="bkToggleDatePopover()">✕</button>
-              </div>
-              <div class="rc-grid" id="bkCalGrid"></div>
             </div>
           </div>
 
@@ -2616,6 +2748,12 @@
 
             <!-- Single-Slot Timing Container (3-Col Desktop / 2-Col Mobile Grid) -->
             <div id="bkSingleTimeWrap">
+              <!-- Selected slot label — shown above the grid when a pill is picked -->
+              <div id="bkSingleSlotLabel" style="display:none; align-items:center; gap:10px; margin-bottom:14px; flex-wrap:wrap;">
+                <span style="color:#39FF7A; font-weight:700; font-size:13px; font-family:'Inter',sans-serif; letter-spacing:0.03em;">SLOT 1</span>
+                <span style="color:#64748B; font-size:14px; font-weight:600;">→</span>
+                <span id="bkSingleSlotLabelTime" style="display:inline-flex; align-items:center; gap:6px; background:rgba(57,255,122,0.07); border:1.5px solid rgba(57,255,122,0.45); border-radius:8px; padding:5px 14px; color:#FFFFFF; font-weight:600; font-size:13px; font-family:'Inter',sans-serif;"></span>
+              </div>
               <!-- Slot Grid (3-Col Desktop / 2-Col Mobile) -->
               <div class="bk-streamline-time-grid" id="bkStreamlineTimeGrid">
                 <!-- Dynamically populated time pills -->
@@ -3157,7 +3295,8 @@
         dayElement.classList.add('disabled');
       } else {
         dayElement.classList.add('avail');
-        if(bkState.date && date.getTime() === bkState.date.getTime()){
+        const selTime = bkState.date ? new Date(bkState.date).setHours(0, 0, 0, 0) : null;
+        if(selTime && date.getTime() === selTime){
           dayElement.classList.add('range-edge');
         }
         dayElement.onclick = () => pickBkDay(date);
@@ -3165,15 +3304,18 @@
       bkCalGrid.appendChild(dayElement);
     }
     const renderedMonthLabel = bkMonthName();
-    document.getElementById('bkCalendarMonth').textContent = renderedMonthLabel.toUpperCase();
-    document.getElementById('bkDateMonth').textContent = renderedMonthLabel;
+    const calMonthEl = document.getElementById('bkCalendarMonth');
+    if(calMonthEl) calMonthEl.textContent = renderedMonthLabel.toUpperCase();
+    const dateMonthEl = document.getElementById('bkDateMonth');
+    if(dateMonthEl) dateMonthEl.textContent = renderedMonthLabel;
     updateBkNav();
   }
   function updateBkNav(){
-    const currentMonth = new Date(calendarYear, calendarMonth, 1).getTime();
+    const todayNow = new Date();
+    const currentMonth = new Date(todayNow.getFullYear(), todayNow.getMonth(), 1).getTime();
     const displayedMonth = new Date(bkCalYear, bkCalMonth, 1).getTime();
-    bkPrevBtn.disabled = displayedMonth <= currentMonth;
-    bkNextBtn.disabled = false;
+    if(bkPrevBtn) bkPrevBtn.disabled = displayedMonth <= currentMonth;
+    if(bkNextBtn) bkNextBtn.disabled = false;
   }
   function bkStepMonth(direction){
     const next = new Date(bkCalYear, bkCalMonth + direction, 1);
@@ -3182,43 +3324,8 @@
     renderBkCalendar();
   }
   function pickBkDay(date){
-    bkState.date = date;
-    bkState.dateLabel = new Intl.DateTimeFormat('en-US', { month:'short', day:'numeric', year:'numeric' }).format(date);
-    
-    // Highlight calendar grid date
-    document.querySelectorAll('#bkCalGrid .rc-day').forEach(dayElement=>dayElement.classList.remove('range-edge'));
-    const selectedDay = document.querySelector(`#bkCalGrid [data-day="${date.getDate()}"]`);
-    if(selectedDay) selectedDay.classList.add('range-edge');
-
-    const subVal = document.getElementById('bkDateSelectedSubVal');
-    if(subVal){
-      subVal.textContent = date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
-    }
-
-    // Reset selected timing since date changed
-    bkSelectedRange = null;
-    bkState.start = null;
-    bkState.end = null;
-    bkState.selectedRange = null;
-    document.querySelectorAll('#bkTimePills .pill').forEach(pill=>pill.classList.remove('sel'));
-
-    bkUpdateDeckUI();
-
-    // Automatically transition the central workspace to Stage 2 (Duration)
-    setTimeout(() => {
-      bkSetDeckStage(2);
-    }, 240);
-
-    // Load availability in background
-    bkLoadAvailability().then(() => {
-      if(bkMultiEnabled){
-        renderMultiSlotArea();
-      } else if(bkDurationHours > 0){
-        renderAvailableTimeRanges();
-      }
-      bkUpdateDeckUI();
-    });
-    bkPersist();
+    bkSelectStreamlineDate(date);
+    if(typeof renderBkCalendar === 'function') renderBkCalendar();
   }
 
   function bkIsoDate(date){
@@ -3899,13 +4006,28 @@
   function bkToggleDatePopover(){
     const pop = document.getElementById('bkDatePopover');
     if(pop){
-      pop.style.display = (pop.style.display === 'none') ? 'block' : 'none';
-      if(pop.style.display === 'block'){
+      const isOpening = (pop.style.display === 'none' || !pop.style.display);
+      pop.style.display = isOpening ? 'block' : 'none';
+      if(isOpening){
+        const base = bkState.date ? new Date(bkState.date) : new Date();
+        bkCalYear = base.getFullYear();
+        bkCalMonth = base.getMonth();
         if(typeof renderBkCalendar === 'function') renderBkCalendar();
       }
     }
   }
   window.bkToggleDatePopover = bkToggleDatePopover;
+
+  // Dismiss calendar popover when clicking anywhere outside
+  document.addEventListener('click', function(e){
+    const pop = document.getElementById('bkDatePopover');
+    const btn = document.getElementById('bkStreamlineMonthBtn');
+    if(pop && pop.style.display === 'block'){
+      if(!pop.contains(e.target) && (!btn || !btn.contains(e.target))){
+        pop.style.display = 'none';
+      }
+    }
+  });
 
   const BK_STEP_PANES = {
     1: 'bkPane1',
@@ -4072,32 +4194,52 @@
 
       const dayNum = d.getDate();
 
+      const isPast = d < today;
+
       const card = document.createElement('button');
       card.type = 'button';
-      card.className = 'bk-date-card' + (isSelected ? ' active' : '');
+      card.className = 'bk-date-card' + (isSelected ? ' active' : '') + (isPast ? ' disabled' : '');
       card.setAttribute('aria-label', d.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }));
       card.innerHTML = `<span class="bk-date-card-day">${dayName}</span><span class="bk-date-card-num">${dayNum}</span>`;
-      card.onclick = () => bkSelectStreamlineDate(d);
+      if(isPast){
+        card.disabled = true;
+      } else {
+        card.onclick = () => bkSelectStreamlineDate(d);
+      }
       grid.appendChild(card);
     }
   }
 
   function bkSelectStreamlineDate(date){
-    bkState.date = date;
-    bkState.dateLabel = new Intl.DateTimeFormat('en-US', { month:'short', day:'numeric', year:'numeric' }).format(date);
+    const d = (date instanceof Date) ? new Date(date.getTime()) : new Date(date);
+    d.setHours(0, 0, 0, 0);
+    bkState.date = d;
+    bkState.dateLabel = new Intl.DateTimeFormat('en-US', { month:'short', day:'numeric', year:'numeric' }).format(d);
     
     // Clear selection
     bkSelectedRange = null;
     bkState.start = null;
     bkState.end = null;
     bkState.selectedRange = null;
+    if(!bkMultiEnabled){
+      bkSlots = [];
+    }
 
     const pop = document.getElementById('bkDatePopover');
     if(pop) pop.style.display = 'none';
 
+    // Synchronize calendar month state so re-opening starts in selected month
+    bkCalYear = d.getFullYear();
+    bkCalMonth = d.getMonth();
+
     bkRenderStreamlineDates();
     bkLoadAvailability().then(() => {
-      bkRenderStreamlineTimings();
+      if(bkMultiEnabled){
+        renderMultiSlotArea();
+      } else {
+        bkRenderStreamlineTimings();
+      }
+      bkUpdateSingleSlotUI();
       bkUpdateStreamlineSummary();
     });
     bkPersist();
@@ -4205,14 +4347,7 @@
 
       const startBase = range.start.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
       const endBase = range.end.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
-      const baseDate = bkState.date || new Date();
-      const nextDay = range.end.getFullYear() !== baseDate.getFullYear() || range.end.getMonth() !== baseDate.getMonth() || range.end.getDate() !== baseDate.getDate();
-
-      if(nextDay){
-        pill.innerHTML = `<span class="bk-time-range">${startBase} – ${endBase}</span><span class="bk-time-tag">+1 DAY</span>`;
-      } else {
-        pill.innerHTML = `<span class="bk-time-range">${startBase} – ${endBase}</span>`;
-      }
+      pill.innerHTML = `<span class="bk-time-range">${startBase} – ${endBase}</span>`;
 
       pill.onclick = () => bkSelectStreamlineSlot(range);
       grid.appendChild(pill);
@@ -4231,20 +4366,48 @@
         bkState.start = null; bkState.end = null; bkState.selectedRange = null;
       }
     }
+    bkUpdateSingleSlotUI();
     bkUpdateStreamlineSummary();
   }
 
+  function bkUpdateSingleSlotUI(){
+    const label = document.getElementById('bkSingleSlotLabel');
+    const labelTime = document.getElementById('bkSingleSlotLabelTime');
+    if(!label) return;
+    if(bkSelectedRange && bkSelectedRange.start && bkSelectedRange.end && !bkMultiEnabled){
+      const sLabel = formatBookingTime(bkSelectedRange.start);
+      const eLabel = formatBookingTime(bkSelectedRange.end);
+      if(labelTime) labelTime.innerHTML = `<span style="color:#39FF7A;font-weight:700;margin-right:4px;">✓</span>${sLabel} – ${eLabel}`;
+      label.style.display = 'flex';
+    } else {
+      label.style.display = 'none';
+    }
+  }
+  window.bkUpdateSingleSlotUI = bkUpdateSingleSlotUI;
+
   function bkSelectStreamlineSlot(range){
     bkSelectedRange = range;
-    bkState.start = formatBookingTime(range.start);
-    bkState.end = formatBookingTime(range.end);
+    const sLabel = formatBookingTime(range.start);
+    const eLabel = formatBookingTime(range.end);
+    const dur = bkDurationHours || (typeof bkDuration === 'function' ? bkDuration() : 2) || 2;
+    bkState.start = sLabel;
+    bkState.end = eLabel;
+    bkState.duration = dur;
     bkState.selectedRange = range;
+    bkSlots = [{
+      start: new Date(range.start.getTime()),
+      end: new Date(range.end.getTime()),
+      startLabel: sLabel,
+      endLabel: eLabel,
+      hours: dur
+    }];
 
     // Highlight active pill by matching dataset.start
     document.querySelectorAll('#bkStreamlineTimeGrid .bk-time-pill').forEach(pill => {
       pill.classList.toggle('active', pill.dataset.start === String(range.start.getTime()));
     });
 
+    bkUpdateSingleSlotUI();
     bkUpdateStreamlineSummary();
     bkPersist();
   }
@@ -4613,15 +4776,12 @@
 
   function formatBookingTime(dateTime){
     if(!dateTime) return '—';
-    if(typeof dateTime === 'string' && (dateTime.includes('AM') || dateTime.includes('PM'))){
-      return dateTime;
+    if(typeof dateTime === 'string'){
+      return dateTime.replace(/\s*\(\+1d\)/gi, '').replace(/\s*\+1\s*day/gi, '').trim();
     }
     const d = (dateTime instanceof Date) ? dateTime : new Date(dateTime);
-    if(isNaN(d.getTime())) return String(dateTime);
-    const time = d.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
-    const baseDate = bkState.date || new Date();
-    const nextDay = d.getFullYear() !== baseDate.getFullYear() || d.getMonth() !== baseDate.getMonth() || d.getDate() !== baseDate.getDate();
-    return nextDay ? `${time} (+1d)` : time;
+    if(isNaN(d.getTime())) return String(dateTime).replace(/\s*\(\+1d\)/gi, '').replace(/\s*\+1\s*day/gi, '').trim();
+    return d.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
   }
     const bkDurationOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   function bkCreateMultiSlot(i){
@@ -4663,6 +4823,7 @@
       if(timingsTitle) timingsTitle.textContent = '03. AVAILABLE TIMINGS';
       bkRenderStreamlineDuration();
       bkRenderStreamlineTimings();
+      bkUpdateSingleSlotUI();
     }
     bkUpdateStreamlineSummary();
     bkPersist();
@@ -4756,9 +4917,6 @@
     bkSlots.forEach((slot, i)=>{
       const card = document.createElement('div');
       card.className = 'bk-slot-card' + (slot.start ? ' has-sel' : '');
-      const chosen = slot.start
-        ? '<span class="bk-slot-selected">✓ ' + slot.startLabel + ' – ' + slot.endLabel + '</span>'
-        : '<span style="color:#94A3B8; font-size:12px;">Choose timing below</span>';
 
       let pillsHtml = '';
       if(!slot.hours){
@@ -4772,21 +4930,15 @@
 
           const startBase = range.start.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
           const endBase = range.end.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
-          const baseDate = bkState.date || new Date();
-          const nextDay = range.end.getFullYear() !== baseDate.getFullYear() || range.end.getMonth() !== baseDate.getMonth() || range.end.getDate() !== baseDate.getDate();
-          const tagHtml = nextDay ? '<span class="bk-time-tag">+1 DAY</span>' : '';
 
-          pillsHtml += '<div class="pill" data-i="' + i + '" data-start="' + range.start.getTime() + '"><span class="bk-time-range">' + startBase + ' – ' + endBase + '</span>' + tagHtml + '</div>';
+          pillsHtml += '<div class="pill" data-i="' + i + '" data-start="' + range.start.getTime() + '"><span class="bk-time-range">' + startBase + ' – ' + endBase + '</span></div>';
         });
 
         if(slot.start){
           const startBase = slot.start.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
           const endBase = slot.end.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
-          const baseDate = bkState.date || new Date();
-          const nextDay = slot.end.getFullYear() !== baseDate.getFullYear() || slot.end.getMonth() !== baseDate.getMonth() || slot.end.getDate() !== baseDate.getDate();
-          const tagHtml = nextDay ? '<span class="bk-time-tag">+1 DAY</span>' : '';
 
-          pillsHtml = '<div class="pill sel" data-i="' + i + '" data-start="' + slot.start.getTime() + '"><span class="bk-time-range">' + startBase + ' – ' + endBase + '</span>' + tagHtml + '</div>' + pillsHtml;
+          pillsHtml = '<div class="pill sel" data-i="' + i + '" data-start="' + slot.start.getTime() + '"><span class="bk-time-range">' + startBase + ' – ' + endBase + '</span></div>' + pillsHtml;
         }
 
         if(!pillsHtml){
@@ -4794,9 +4946,18 @@
         }
       }
 
+      const timingPart = slot.start
+        ? '<span style="color:#64748B; font-size:13px; font-weight:600; margin:0 4px;">--></span> <span class="bk-slot-time-card">✓ ' + slot.startLabel + ' – ' + slot.endLabel + '</span>'
+        : '<span style="color:#64748B; font-size:13px; font-weight:600; margin:0 4px;">--></span> <span class="bk-slot-time-card empty">Select timing below</span>';
+
       card.innerHTML =
-        '<div class="bk-slot-card-head"><span class="bk-slot-num">SLOT ' + (i + 1) + '</span><span class="bk-slot-dur">' + (slot.hours ? slot.hours + ' hour' + (slot.hours > 1 ? 's' : '') : 'No duration') + '</span></div>' +
-        '<div class="bk-slot-chosen">' + chosen + '</div>' +
+        '<div class="bk-slot-card-head" style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:20px;">' +
+          '<div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">' +
+            '<span class="bk-slot-num" style="color:#39FF7A; font-weight:700; font-size:14px; letter-spacing:0.04em;">SLOT ' + (i + 1) + '</span>' +
+            timingPart +
+          '</div>' +
+          '<span class="bk-slot-dur">' + (slot.hours ? slot.hours + ' hour' + (slot.hours > 1 ? 's' : '') : 'No duration') + '</span>' +
+        '</div>' +
         '<div class="pill-row bk-slot-pills">' + pillsHtml + '</div>';
       area.appendChild(card);
     });
@@ -4999,7 +5160,17 @@
   function renderActiveSlotSummary(){
     const holder = document.getElementById('bkSumActive');
     if(!holder) return;
-    const slots = (bkSlots && bkSlots.length) ? bkSlots : [{ startLabel: bkState.start || '—', endLabel: bkState.end || '—', hours: bkState.duration || 1 }];
+    const fallbackSlot = {
+      startLabel: bkState.start || '—',
+      endLabel: bkState.end || '—',
+      hours: bkState.duration || bkDurationHours || 2
+    };
+    const rawSlots = (bkSlots && bkSlots.length) ? bkSlots : [fallbackSlot];
+    const slots = rawSlots.map(s => ({
+      startLabel: (s && s.startLabel) || bkState.start || '—',
+      endLabel: (s && s.endLabel) || bkState.end || '—',
+      hours: (s && s.hours) || bkState.duration || bkDurationHours || 2
+    }));
     const rows = [];
     slots.forEach((slot, idx) => {
       const isMulti = slots.length > 1;
@@ -5007,9 +5178,9 @@
       if(isMulti){
         rows.push(`<div class="bk-row bk-slot-head" style="${headMargin}"><span>Slot ${idx + 1}</span></div>`);
       }
-      rows.push(`<div class="bk-row" style="${!isMulti && idx === 0 ? '' : ''}"><span>${isMulti ? 'Timing' : 'Timing'}</span><b>${slot.startLabel || '—'} – ${slot.endLabel || '—'}</b></div>`);
-      rows.push(`<div class="bk-row"><span>Duration</span><b>${slot.hours ? (slot.hours + ' hour' + (slot.hours > 1 ? 's' : '')) : '—'}</b></div>`);
-      rows.push(`<div class="bk-row"><span>Rate</span><b>₹${((slot.hours || 0) * getSiteRate()).toLocaleString('en-IN')}</b></div>`);
+      rows.push(`<div class="bk-row"><span>Timing</span><b>${slot.startLabel} – ${slot.endLabel}</b></div>`);
+      rows.push(`<div class="bk-row"><span>Duration</span><b>${slot.hours} hour${slot.hours > 1 ? 's' : ''}</b></div>`);
+      rows.push(`<div class="bk-row"><span>Rate</span><b>₹${(slot.hours * getSiteRate()).toLocaleString('en-IN')}</b></div>`);
     });
     holder.innerHTML = rows.join('');
   }
