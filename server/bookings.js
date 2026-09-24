@@ -208,6 +208,71 @@ export default async function handler(req, res) {
     }
   }
 
+  if (req.body?.action === 'confirm-direct') {
+    const draftReference = String(req.body?.draftReference || '').trim()
+    const now = new Date()
+    const bookingData = cleanDraftData(req.body?.data)
+    if (!bookingData.name || !bookingData.mobile || !bookingData.date) {
+      return jsonError(res, 400, 'Name, mobile and date are required.')
+    }
+
+    try {
+      const db = await getDb()
+      const slotKeys = draftSlotKeys(bookingData)
+      const existing = await db.collection('bookings').find({
+        date: bookingData.date,
+        slotKeys: { $in: slotKeys },
+        bookingStatus: { $in: ['CONFIRMED', 'COMPLETED'] },
+        draftReference: { $ne: draftReference }
+      }).toArray()
+      if (existing.length > 0) {
+        return jsonError(res, 409, 'One or more of the selected time slots are already booked. Please choose another time.')
+      }
+
+      const ref = draftReference || `BK-${Date.now()}`
+      const amount = (bookingData.duration || 1) * 800
+      const bookingDoc = {
+        draftReference: ref,
+        name: bookingData.name,
+        customerName: bookingData.name,
+        mobile: bookingData.mobile,
+        date: bookingData.date,
+        dateLabel: bookingData.dateLabel || '',
+        time: bookingData.slots.map((s) => `${s.start} - ${s.end}`).join(', ') || (bookingData.start && bookingData.end ? `${bookingData.start} - ${bookingData.end}` : ''),
+        duration: bookingData.duration,
+        amount,
+        slots: bookingData.slots,
+        slotKeys,
+        paymentStatus: 'PAY_AT_VENUE',
+        bookingStatus: 'CONFIRMED',
+        paymentMethod: 'DIRECT',
+        source: 'online_direct',
+        notes: 'Confirmed directly without online payment. Team will contact player.',
+        updatedAt: now,
+      }
+
+      await db.collection('bookings').createIndex(
+        { draftReference: 1 },
+        { unique: true, sparse: true, name: 'draft_reference_unique' }
+      )
+      await db.collection('bookings').updateOne(
+        { draftReference: ref },
+        { $set: bookingDoc, $setOnInsert: { createdAt: now } },
+        { upsert: true }
+      )
+
+      return res.status(200).json({
+        success: true,
+        bookingId: ref,
+        amount,
+        bookingStatus: 'CONFIRMED'
+      })
+    } catch (error) {
+      console.error('Direct booking confirmation failed:', error)
+      return jsonError(res, 500, 'Unable to confirm booking right now.')
+    }
+  }
+
   const paymentReference = String(req.body?.paymentReference || '').trim()
   if (!paymentReference || paymentReference.length > 100) {
     return jsonError(res, 400, 'Payment reference is required.')

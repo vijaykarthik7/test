@@ -507,8 +507,8 @@
   .booking-close{position:absolute; top:16px; right:16px; width:32px; height:32px; padding:0; z-index:10; border:1px solid var(--border); border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.04); color:var(--muted); transition:all .2s ease;}
   .booking-close:hover{border-color:var(--neon); color:var(--neon); background:rgba(57,255,122,0.08); transform:rotate(90deg);}
   .booking-close svg{width:16px; height:16px;}
-  .steps-row{position:relative; display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:0; margin-bottom:38px;}
-  .steps-row::before{content:""; position:absolute; top:13px; left:10%; right:10%; height:2px; background:var(--border); z-index:0; transform:translateY(-50%);}
+  .steps-row{position:relative; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:0; margin-bottom:38px;}
+  .steps-row::before{content:""; position:absolute; top:13px; left:12.5%; right:12.5%; height:2px; background:var(--border); z-index:0; transform:translateY(-50%);}
   .bstep{display:flex; flex-direction:column; align-items:center; gap:7px; position:relative; z-index:1; min-width:0;}
   .bstep-dot{width:27px;height:27px;border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Inter',sans-serif; font-size:11px; font-weight:600; border:1px solid var(--border); background:#06110A; color:var(--muted); transition:all .3s ease;}
   #book .bstep.active .bstep-dot,
@@ -679,14 +679,15 @@
     justify-content:space-between;
     gap:10px;
     width:100%;
+    flex-wrap:wrap;
   }
   .bk-slat-title{
-    font-family:'Inter',sans-serif;
+    font-family:'Space Grotesk',sans-serif;
     font-size:12.5px;
     font-weight:600;
     text-transform:uppercase;
-    letter-spacing:0.08em;
-    color:#94A3B8;
+    letter-spacing:0.06em;
+    color:var(--white);
     margin:0;
   }
   .bk-slat-readout{
@@ -1190,19 +1191,19 @@
     margin-top:4px;
   }
   .bk-streamline-go-btn{
-    height:48px;
-    padding:0 28px;
+    height:38px;
+    padding:0 20px;
     border-radius:100px;
     background:#39FF7A;
     color:#0A0F0D;
     font-family:'Inter',sans-serif;
-    font-size:13.5px;
+    font-size:12px;
     font-weight:600;
     letter-spacing:0.04em;
     border:none;
     cursor:pointer;
     transition:all .18s ease;
-    box-shadow:0 0 24px rgba(57, 255, 122,0.4);
+    box-shadow:0 0 16px rgba(57, 255, 122,0.35);
     display:inline-flex;
     align-items:center;
     justify-content:center;
@@ -1483,10 +1484,10 @@
     }
     .bk-streamline-go-btn{
       width:100%;
-      height:50px;
-      font-size:14.5px;
+      height:42px;
+      font-size:12.5px;
       font-weight:600;
-      padding:0 20px;
+      padding:0 18px;
       margin-top:4px;
     }
 
@@ -1906,8 +1907,8 @@
     .comm-fab-wrap{right:18px; bottom:18px;}
     #book{width:100%; max-width:100%; padding-left:2.25vw; padding-right:2.25vw;}
     #book .booking-shell{width:100%; max-width:none; margin-left:0; margin-right:0; padding:76px 16px 34px;}
-    #book .steps-row{width:100%; max-width:100%; margin:0 0 42px; gap:0; grid-template-columns:repeat(5, minmax(0,1fr));}
-    #book .steps-row::before{top:16px; left:10%; right:10%;}
+    #book .steps-row{width:100%; max-width:100%; margin:0 0 42px; gap:0; grid-template-columns:repeat(4, minmax(0,1fr));}
+    #book .steps-row::before{top:16px; left:12.5%; right:12.5%;}
     #book .bstep-dot{width:32px; height:32px; font-size:12px;}
     #book .bstep-label{font-size:9px; letter-spacing:0.02em;}
     #book .field-label{font-size:14px; margin-bottom:12px;}
@@ -1971,10 +1972,10 @@
   @media(max-width:480px){
     .bk-range-row{grid-template-columns:1fr; gap:8px;}
     .bk-range-arrow{transform:rotate(90deg);}
-    #book .steps-row{grid-template-columns:repeat(5, minmax(0,1fr)); gap:0;}
+    #book .steps-row{grid-template-columns:repeat(4, minmax(0,1fr)); gap:0;}
     #book .bstep-dot{width:28px; height:28px; font-size:12px; font-family:'Inter',sans-serif; background:#06110A;}
     #book .bstep.active .bstep-dot{background:var(--neon) !important; color:#04140D !important; font-weight:700 !important;}
-    #book .steps-row::before{top:14px; left:10%; right:10%;}
+    #book .steps-row::before{top:14px; left:12.5%; right:12.5%;}
     #book .bstep-label{font-size:8px; letter-spacing:0.01em; font-family:'Inter',sans-serif; font-weight:500;}
     #book #bkDurationPills{grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-bottom:8px;}
     #book #bkDurationPills .pill{padding:12px 6px;}
@@ -2626,8 +2627,7 @@
         <div class="bstep active" data-step="1"><div class="bstep-dot">1</div><div class="bstep-label">Details</div></div>
         <div class="bstep" data-step="2"><div class="bstep-dot">2</div><div class="bstep-label">Book Slot</div></div>
         <div class="bstep" data-step="3"><div class="bstep-dot">3</div><div class="bstep-label">Summary</div></div>
-        <div class="bstep" data-step="4"><div class="bstep-dot">4</div><div class="bstep-label">Pay</div></div>
-        <div class="bstep" data-step="5"><div class="bstep-dot">5</div><div class="bstep-label">Confirmation</div></div>
+        <div class="bstep" data-step="4"><div class="bstep-dot">4</div><div class="bstep-label">Confirmation</div></div>
       </div>
 
       <!-- PANE 1 — DETAILS -->
@@ -2814,10 +2814,10 @@
         <div class="bk-slot-tabs" id="bkSumSlots" role="tablist" aria-label="Slots"></div>
         <div class="bk-summary" id="bkSumActive" style="margin-bottom:14px;"></div>
         <div class="bk-summary" id="bkSumCombined"></div>
-        <button class="btn btn-glow magnetic" style="width:100%; justify-content:center;" onclick="bkGoStep(4)">Confirm & proceed to payment →</button>
+        <button class="btn btn-glow magnetic" style="width:100%; justify-content:center;" onclick="bkGoStep(4)">Proceed to confirmation →</button>
       </div>
 
-      <!-- PANE 6 — UPI QR PAYMENT -->
+      <!-- PANE 6 — UPI QR PAYMENT (Kept as fallback) -->
       <div id="bkPane6" class="bk-pane" style="display:none;">
         <div class="qr-card">
           <div class="qr-glow-border"></div>
@@ -2842,13 +2842,61 @@
           <p class="payment-pending" id="bkPaymentStatus" style="display:none;">Payment pending. Scan the QR and complete payment in your UPI app.</p>
         </div>
       </div>
+
+      <!-- PANE 7 — DIRECT CONFIRMATION -->
       <div id="bkPane7" class="bk-pane bk-confirmation-pane" style="display:none;">
-        <div class="bk-confirmation-card">
-          <div class="modal-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></div>
-          <h3>Payment successful</h3>
-          <p class="bk-confirmation-title">Payment successful. Our team will contact you soon.</p>
-          <p>Your payment was verified by our team.</p>
-          <button class="btn btn-glow magnetic" type="button" onclick="bkFinishPayment()">Start a new booking</button>
+        <div class="bk-confirmation-card" style="text-align:left; max-width:540px; margin:0 auto; padding:28px 24px; background:#0A0F0D; border:1px solid #1E2E21; border-radius:20px; box-shadow:0 24px 60px rgba(0,0,0,0.85);">
+          
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; border-bottom:1px solid #1E2E21; padding-bottom:14px;">
+            <div>
+              <span class="bk-slat-title" style="display:block; margin-bottom:4px;">04. CONFIRMATION</span>
+              <h3 style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; color:var(--white); margin:0;">Booking Confirmation</h3>
+            </div>
+            <div class="bk-streamline-badge">
+              <span>● TURFON24 ARENA</span>
+            </div>
+          </div>
+
+          <div style="background:#131C15; border:1px solid #1E2E21; border-radius:14px; padding:18px 20px; margin-bottom:20px; display:flex; flex-direction:column; gap:12px;">
+            <div style="font-size:14px; color:var(--white); line-height:1.55;">
+              You have booked this slot <span id="bkConfTimingText" style="color:#39FF7A; font-weight:700;">—</span> on <span id="bkConfDateText" style="color:#39FF7A; font-weight:700;">—</span>.
+            </div>
+
+            <div style="border-top:1px solid rgba(255,255,255,0.07); padding-top:12px; display:flex; flex-direction:column; gap:8px;">
+              <div style="display:flex; justify-content:space-between; font-size:12.5px; color:var(--muted);">
+                <span>Player Name</span>
+                <b id="bkConfNameVal" style="color:var(--white); font-family:'Inter',sans-serif;">—</b>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:12.5px; color:var(--muted);">
+                <span>Mobile Number</span>
+                <b id="bkConfMobileVal" style="color:var(--white); font-family:'Inter',sans-serif;">—</b>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:12.5px; color:var(--muted);">
+                <span>Total Duration</span>
+                <b id="bkConfDurationVal" style="color:var(--white); font-family:'Inter',sans-serif;">—</b>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.07); padding-top:10px; margin-top:2px;">
+                <span style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; color:var(--white);">Total Amount</span>
+                <b id="bkConfAmountVal" style="font-size:22px; color:#39FF7A; font-weight:700; font-family:'Space Grotesk',sans-serif;">₹0</b>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align:center; padding:10px 4px 4px;">
+            <p style="font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:600; color:var(--white); margin-bottom:16px;">
+              Would you like to book?
+            </p>
+            <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+              <button type="button" class="btn btn-glow magnetic" id="bkDirectConfirmYesBtn" style="flex:1; min-width:140px; justify-content:center; padding:12px 24px; font-size:13.5px;" onclick="bkExecuteDirectBooking()">
+                Yes
+              </button>
+              <button type="button" class="btn btn-outline" style="flex:1; min-width:140px; justify-content:center; padding:12px 24px; font-size:13.5px; color:#94A3B8; border-color:#1E2E21;" onclick="bkCancelConfirmation()">
+                No
+              </button>
+            </div>
+            <div id="bkConfirmationErrMsg" style="display:none; color:#FF5C5C; font-size:12.5px; margin-top:12px; font-weight:500;"></div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -2950,6 +2998,24 @@
     <h3>Request Submitted Successfully</h3>
     <p>Thank you for your enquiry. Our support team has received your request and will contact you shortly regarding your extended booking requirements.</p>
     <button class="btn btn-glow magnetic" onclick="closeModal('extendedSuccessModal')">Done</button>
+  </div>
+</div>
+
+<!-- DIRECT BOOKING SUCCESS POPUP MODAL -->
+<div class="modal-overlay" id="bkDirectSuccessModal">
+  <div class="modal-box" style="text-align:center; position:relative; overflow:hidden;">
+    <button class="modal-close" onclick="bkFinishDirectBooking()" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+    <canvas id="directSuccessConfettiCanvas" style="position:absolute; inset:0; pointer-events:none; width:100%; height:100%; z-index:0;"></canvas>
+    <div class="modal-icon" style="position:relative; z-index:1; margin:0 auto 16px; width:52px; height:52px; background:rgba(57,255,122,0.12); border:1px solid rgba(57,255,122,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--neon);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></div>
+    <h3 style="position:relative; z-index:1; font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:var(--white); margin-bottom:8px;">Booking Confirmed!</h3>
+    <p style="position:relative; z-index:1; font-size:15px; color:var(--white); font-weight:600; line-height:1.45; margin-bottom:6px;">
+      Our team will contact you. Thank you!
+    </p>
+    <p style="position:relative; z-index:1; font-size:12.5px; color:var(--muted); line-height:1.5; margin-bottom:18px;">
+      We have received your booking details. Our team will contact you on your mobile number to confirm your turf reservation.
+    </p>
+    <div id="bkDirectSuccessDetails" style="position:relative; z-index:1; background:#131C15; border:1px solid #1E2E21; border-radius:14px; padding:14px 18px; margin-bottom:22px; text-align:left; font-size:12.5px; display:flex; flex-direction:column; gap:6px;"></div>
+    <button class="btn btn-glow magnetic" type="button" style="position:relative; z-index:1; width:100%; justify-content:center;" onclick="bkFinishDirectBooking()">Done</button>
   </div>
 </div>
 
@@ -3192,8 +3258,14 @@
 
   function openModal(id){ document.getElementById(id).classList.add('open'); }
   function closeModal(id){
-    document.getElementById(id).classList.remove('open');
+    const el = document.getElementById(id);
+    if(!el) return;
+    const wasOpen = el.classList.contains('open');
+    el.classList.remove('open');
     if(id === 'extendedModal' || id === 'extendedSuccessModal') resetExtendedBooking();
+    if(id === 'bkDirectSuccessModal' && wasOpen && typeof bkFinishDirectBooking === 'function'){
+      bkFinishDirectBooking();
+    }
   }
   document.querySelectorAll('.modal-overlay').forEach(ov=>{
     ov.addEventListener('click', (e)=>{ if(e.target===ov) closeModal(ov.id); });
@@ -3984,10 +4056,6 @@
   window.bkContinueFromVerification = bkContinueFromVerification;
 
   function bkGoBack(){
-    if(bkCurrentStep === 5){
-      bkGoStep(4);
-      return;
-    }
     if(bkCurrentStep === 4){
       bkGoStep(3);
       return;
@@ -4033,8 +4101,7 @@
     1: 'bkPane1',
     2: 'bkPane2',
     3: 'bkPane5',
-    4: 'bkPane6',
-    5: 'bkPane7'
+    4: 'bkPane7'
   };
 
   let bkSubStage = 'date'; // 'date' | 'duration' | 'timing'
@@ -4557,8 +4624,8 @@
     if(n === 3 && typeof bkFillSummary === 'function'){
       bkFillSummary();
     }
-    if(n === 4 && typeof bkFillPayment === 'function'){
-      bkFillPayment();
+    if(n === 4 && typeof bkFillConfirmationDetails === 'function'){
+      bkFillConfirmationDetails();
     }
     allPanes.forEach(id => {
       const el = document.getElementById(id);
@@ -4566,7 +4633,7 @@
     });
 
     const backBtn = document.getElementById('bkBackButton');
-    if(backBtn) backBtn.style.display = (n > 1 && n < 5) ? 'flex' : 'none';
+    if(backBtn) backBtn.style.display = (n > 1 && n <= 4) ? 'flex' : 'none';
     document.querySelectorAll('#bkStepsRow .bstep').forEach(s => {
       const sn = parseInt(s.dataset.step);
       s.classList.toggle('active', sn === n);
@@ -5202,6 +5269,155 @@
       combined.innerHTML = rows.join('');
     }
   }
+
+  function bkFillConfirmationDetails(){
+    const nameEl = document.getElementById('bkConfNameVal');
+    const mobileEl = document.getElementById('bkConfMobileVal');
+    const dateEl = document.getElementById('bkConfDateText');
+    const timingEl = document.getElementById('bkConfTimingText');
+    const durEl = document.getElementById('bkConfDurationVal');
+    const amountEl = document.getElementById('bkConfAmountVal');
+
+    const name = (document.getElementById('bkName')?.value || '').trim() || 'Player';
+    const mobile = (document.getElementById('bkMobile')?.value || '').trim() || '—';
+    const date = bkState.dateLabel || (bkState.date ? bkIsoDate(bkState.date) : 'Selected Date');
+
+    if(nameEl) nameEl.textContent = name;
+    if(mobileEl) mobileEl.textContent = mobile;
+    if(dateEl) dateEl.textContent = date;
+
+    let timingStr = '—';
+    if(bkSlots && bkSlots.length > 0){
+      if(bkSlots.length === 1){
+        const s = bkSlots[0];
+        timingStr = `from ${s.startLabel || bkState.start || '—'} to ${s.endLabel || bkState.end || '—'}`;
+      } else {
+        timingStr = bkSlots.map((s, idx) => `Slot ${idx + 1}: ${s.startLabel} to ${s.endLabel}`).join(', ');
+      }
+    } else if(bkState.start && bkState.end){
+      timingStr = `from ${bkState.start} to ${bkState.end}`;
+    }
+    if(timingEl) timingEl.textContent = timingStr;
+
+    const totalHours = bkTotalHours() || bkDurationHours || 1;
+    if(durEl) durEl.textContent = `${totalHours} hour${totalHours > 1 ? 's' : ''}`;
+
+    const totalAmount = totalHours * getSiteRate();
+    if(amountEl) amountEl.textContent = `₹${totalAmount.toLocaleString('en-IN')}`;
+
+    const errBox = document.getElementById('bkConfirmationErrMsg');
+    if(errBox) errBox.style.display = 'none';
+  }
+  window.bkFillConfirmationDetails = bkFillConfirmationDetails;
+
+  async function bkExecuteDirectBooking(){
+    const yesBtn = document.getElementById('bkDirectConfirmYesBtn');
+    if(yesBtn){
+      yesBtn.disabled = true;
+      yesBtn.textContent = 'Booking...';
+    }
+
+    const name = (document.getElementById('bkName')?.value || '').trim() || 'Player';
+    const mobile = (document.getElementById('bkMobile')?.value || '').trim();
+    const date = bkIsoDate(bkState.date);
+    const slots = (bkSlots && bkSlots.length > 0)
+      ? bkSlots.map(s => ({ start: s.startLabel, end: s.endLabel, hours: s.hours }))
+      : [{ start: bkState.start, end: bkState.end, hours: bkTotalHours() || 1 }];
+    const duration = bkTotalHours() || bkDurationHours || 1;
+
+    const payload = {
+      action: 'confirm-direct',
+      draftReference: bkDraftReference,
+      data: {
+        name,
+        mobile,
+        date,
+        dateLabel: bkState.dateLabel || '',
+        start: bkState.start || (slots[0] && slots[0].start) || '',
+        end: bkState.end || (slots[slots.length - 1] && slots[slots.length - 1].end) || '',
+        duration,
+        slots
+      }
+    };
+
+    try {
+      const res = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if(!res.ok || !data.success){
+        throw new Error(data.message || 'Booking confirmation failed.');
+      }
+
+      // Populate details in the success popup
+      const detailsBox = document.getElementById('bkDirectSuccessDetails');
+      if(detailsBox){
+        let slotLine = (slots && slots.length === 1)
+          ? `${slots[0].start} to ${slots[0].end}`
+          : slots.map((s, i) => `Slot ${i+1}: ${s.start} - ${s.end}`).join('<br>');
+        detailsBox.innerHTML = `
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;"><span style="color:var(--muted);">Player:</span><b>${name}</b></div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;"><span style="color:var(--muted);">Date:</span><b>${bkState.dateLabel || date}</b></div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;"><span style="color:var(--muted);">Timing:</span><b>${slotLine}</b></div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;"><span style="color:var(--muted);">Duration:</span><b>${duration} hour${duration > 1 ? 's' : ''}</b></div>
+          <div style="display:flex; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.07); padding-top:6px; margin-top:2px;"><span style="color:var(--muted);">Total Amount:</span><b style="color:var(--neon);">₹${(duration * getSiteRate()).toLocaleString('en-IN')}</b></div>
+        `;
+      }
+
+      // Open the success popup modal
+      openModal('bkDirectSuccessModal');
+      fireConfetti('directSuccessConfettiCanvas');
+
+      // Pre-reset the underlying booking section so it is already back at step 1
+      bkResetBooking();
+      bkGoStep(1);
+    } catch(err){
+      console.error('Booking confirmation failed:', err);
+      const errBox = document.getElementById('bkConfirmationErrMsg');
+      if(errBox){
+        errBox.textContent = err.message || 'Unable to confirm booking. Please try again.';
+        errBox.style.display = 'block';
+      }
+    } finally {
+      if(yesBtn){
+        yesBtn.disabled = false;
+        yesBtn.textContent = 'Yes';
+      }
+    }
+  }
+  window.bkExecuteDirectBooking = bkExecuteDirectBooking;
+
+  function bkFinishDirectBooking(){
+    const modal = document.getElementById('bkDirectSuccessModal');
+    if(modal) modal.classList.remove('open');
+    bkResetBooking();
+    const nameEl = document.getElementById('bkName');
+    const mobileEl = document.getElementById('bkMobile');
+    if(nameEl) nameEl.value = '';
+    if(mobileEl) mobileEl.value = '';
+    bkGoStep(1);
+    const target = document.getElementById('book') || document.getElementById('bookingShell');
+    if(target && typeof target.scrollIntoView === 'function'){
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+  window.bkFinishDirectBooking = bkFinishDirectBooking;
+
+  function bkCancelConfirmation(){
+    bkResetBooking();
+    const nameEl = document.getElementById('bkName');
+    const mobileEl = document.getElementById('bkMobile');
+    if(nameEl) nameEl.value = '';
+    if(mobileEl) mobileEl.value = '';
+    bkGoStep(1);
+    const target = document.getElementById('book') || document.getElementById('bookingShell');
+    if(target && typeof target.scrollIntoView === 'function'){
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+  window.bkCancelConfirmation = bkCancelConfirmation;
   async function bkFillPayment(){
     const slotsEl = document.getElementById('bkPaySlots');
     const slotCount = bkSlots.length ? bkSlots.length : 1;
@@ -5396,107 +5612,134 @@
     }
   }
   function bkResetBooking(){
-    bkState = { date:null, dateLabel:'', duration:0, start:null, end:null, selectedRange:null };
-    bkDurationHours = 0; bkSelectedRange = null; bkSlots = []; bkAddingSlot = false;
-    bkMultiEnabled = false; bkSlotCount = 1; bkActiveSlotPage = 0;
-    bkOtpVerified = false;
-    bkOtpReqId = null;
-    bkVerifiedMobile = '';
-    bkOtpAccessToken = null;
-    bkPaymentIdempotencyKey = null;
-    bkPaymentIdempotencyFingerprint = '';
-    bkDraftReference = (window.crypto && window.crypto.randomUUID)
-      ? `BK-${window.crypto.randomUUID().replaceAll('-', '').toUpperCase()}`
-      : `BK-${Date.now()}-${Math.random().toString(36).slice(2).toUpperCase()}`;
-    bkMsg91Busy = false;
-    bkOtpResendCount = 0;
-    bkClearOtpCooldown();
-    bkOtpMsg('');
-    const sendOtpBtn = document.getElementById('bkSendOtpBtn');
-    if(sendOtpBtn){ sendOtpBtn.disabled = !(bkMsg91Ready || typeof window.sendOtp === 'function'); }
-    const verifyOtpBtn = document.getElementById('bkVerifyOtpBtn');
-    if(verifyOtpBtn) verifyOtpBtn.disabled = false;
-    const resendOtpBtn = document.getElementById('bkResendOtpBtn');
-    if(resendOtpBtn) resendOtpBtn.disabled = true;
-    const multiToggle = document.getElementById('bkMultiToggle');
-    if(multiToggle) multiToggle.checked = false;
-    const multiPanel = document.getElementById('bkMultiPanel');
-    if(multiPanel){ multiPanel.style.display = 'none'; }
-    const singleDurWrap = document.getElementById('bkSingleDurWrap');
-    if(singleDurWrap) singleDurWrap.style.display = 'block';
-    const multiArea = document.getElementById('bkMultiSlotArea');
-    if(multiArea){ multiArea.style.display = 'none'; multiArea.innerHTML = ''; }
-    const singleTimeArea = document.getElementById('bkSingleTimeArea');
-    if(singleTimeArea) singleTimeArea.style.display = 'block';
-    const slotDur = document.getElementById('bkSlotDurations');
-    if(slotDur){ slotDur.innerHTML = ''; }
-    const slotCount = document.getElementById('bkSlotCount');
-    if(slotCount) slotCount.textContent = '2';
-    const slotMinus = document.getElementById('bkSlotMinus');
-    if(slotMinus) slotMinus.disabled = true;
-    const slotPlus = document.getElementById('bkSlotPlus');
-    if(slotPlus) slotPlus.disabled = false;
-    const bkMobileEl = document.getElementById('bkMobile');
-    if(bkMobileEl) bkMobileEl.value = '';
-    const bkOtpEl = document.getElementById('bkOtp');
-    if(bkOtpEl) bkOtpEl.value = '';
-    const bkOtpBlockEl = document.getElementById('bkOtpBlock');
-    if(bkOtpBlockEl) bkOtpBlockEl.style.display = 'none';
-    const bkOtpStatusEl = document.getElementById('bkOtpStatus');
-    if(bkOtpStatusEl) bkOtpStatusEl.style.display = 'none';
-    bkApplyOtpGate();
-    document.querySelectorAll('#bkDurationPills .pill, #bkTimePills .pill').forEach(p=>p.classList.remove('sel'));
-    bkCalYear = calendarYear; bkCalMonth = calendarMonth;
-    renderBkCalendar();
-    document.getElementById('bkDateHint').textContent = 'Past dates are disabled';
-    document.getElementById('bkDateContinue')?.setAttribute('disabled', '');
-    document.getElementById('bkTimePills').innerHTML = '';
-    document.getElementById('bkDurationContinue')?.setAttribute('disabled', '');
-    document.getElementById('bkTimeContinue')?.setAttribute('disabled', '');
-    document.getElementById('bkTimeHint').textContent = 'Choose an available time range.';
-    document.getElementById('bkRangeSummary').style.display = 'none';
-    const submitRow = document.getElementById('bkSubmitRow');
-    if(submitRow) submitRow.style.display = 'none';
+    try {
+      if(typeof bkClearSession === 'function') bkClearSession();
+      bkState = { date:null, dateLabel:'', duration:0, start:null, end:null, selectedRange:null };
+      bkDurationHours = 0; bkSelectedRange = null; bkSlots = []; bkAddingSlot = false;
+      bkMultiEnabled = false; bkSlotCount = 1; bkActiveSlotPage = 0;
+      bkOtpVerified = false;
+      bkOtpReqId = null;
+      bkVerifiedMobile = '';
+      bkOtpAccessToken = null;
+      bkPaymentIdempotencyKey = null;
+      bkPaymentIdempotencyFingerprint = '';
+      bkDraftReference = (window.crypto && window.crypto.randomUUID)
+        ? `BK-${window.crypto.randomUUID().replaceAll('-', '').toUpperCase()}`
+        : `BK-${Date.now()}-${Math.random().toString(36).slice(2).toUpperCase()}`;
+      bkMsg91Busy = false;
+      bkOtpResendCount = 0;
+      if(typeof bkClearOtpCooldown === 'function') bkClearOtpCooldown();
+      if(typeof bkOtpMsg === 'function') bkOtpMsg('');
 
-    const selDateBadge = document.getElementById('bkSelectedDateBadge');
-    if(selDateBadge) selDateBadge.style.display = 'none';
-    const selDateVal = document.getElementById('bkSelectedDateVal');
-    if(selDateVal) selDateVal.textContent = '—';
-    const sumDate = document.getElementById('bkSummaryDate');
-    if(sumDate) sumDate.textContent = '📅 —';
-    const rangeSel = document.getElementById('bkRangeSel');
-    if(rangeSel) rangeSel.textContent = '⚽ —';
-    const durLabel = document.getElementById('bkDurLabel');
-    if(durLabel) durLabel.textContent = '⏱ —';
-    const durAmt = document.getElementById('bkDurAmt');
-    if(durAmt) durAmt.textContent = '₹—';
+      const sendOtpBtn = document.getElementById('bkSendOtpBtn');
+      if(sendOtpBtn){ sendOtpBtn.disabled = !(bkMsg91Ready || typeof window.sendOtp === 'function'); }
+      const verifyOtpBtn = document.getElementById('bkVerifyOtpBtn');
+      if(verifyOtpBtn) verifyOtpBtn.disabled = false;
+      const resendOtpBtn = document.getElementById('bkResendOtpBtn');
+      if(resendOtpBtn) resendOtpBtn.disabled = true;
 
-    bkSubStage = 'date';
-    if(typeof bkSetSubStage === 'function'){
-      bkSetSubStage('date', false);
-    } else if(typeof bkUpdateSubflowProgress === 'function'){
-      bkUpdateSubflowProgress();
+      const multiToggle = document.getElementById('bkMultiToggle');
+      if(multiToggle) multiToggle.checked = false;
+      const multiPanel = document.getElementById('bkMultiPanel');
+      if(multiPanel){ multiPanel.style.display = 'none'; }
+      const singleDurWrap = document.getElementById('bkSingleDurWrap');
+      if(singleDurWrap) singleDurWrap.style.display = 'block';
+      const multiArea = document.getElementById('bkMultiSlotArea');
+      if(multiArea){ multiArea.style.display = 'none'; multiArea.innerHTML = ''; }
+      const singleTimeArea = document.getElementById('bkSingleTimeArea');
+      if(singleTimeArea) singleTimeArea.style.display = 'block';
+      const slotDur = document.getElementById('bkSlotDurations');
+      if(slotDur){ slotDur.innerHTML = ''; }
+      const slotCount = document.getElementById('bkSlotCount');
+      if(slotCount) slotCount.textContent = '2';
+      const slotMinus = document.getElementById('bkSlotMinus');
+      if(slotMinus) slotMinus.disabled = true;
+      const slotPlus = document.getElementById('bkSlotPlus');
+      if(slotPlus) slotPlus.disabled = false;
+
+      const bkNameEl = document.getElementById('bkName');
+      if(bkNameEl) bkNameEl.value = '';
+      const bkMobileEl = document.getElementById('bkMobile');
+      if(bkMobileEl) bkMobileEl.value = '';
+      const bkOtpEl = document.getElementById('bkOtp');
+      if(bkOtpEl) bkOtpEl.value = '';
+      const bkOtpBlockEl = document.getElementById('bkOtpBlock');
+      if(bkOtpBlockEl) bkOtpBlockEl.style.display = 'none';
+      const bkOtpStatusEl = document.getElementById('bkOtpStatus');
+      if(bkOtpStatusEl) bkOtpStatusEl.style.display = 'none';
+      if(typeof bkApplyOtpGate === 'function') bkApplyOtpGate();
+
+      document.querySelectorAll('#bkDurationPills .pill, #bkTimePills .pill').forEach(p=>p.classList.remove('sel'));
+      if(typeof calendarYear !== 'undefined' && typeof calendarMonth !== 'undefined'){
+        bkCalYear = calendarYear; bkCalMonth = calendarMonth;
+      }
+      if(typeof renderBkCalendar === 'function') renderBkCalendar();
+
+      const dateHint = document.getElementById('bkDateHint');
+      if(dateHint) dateHint.textContent = 'Past dates are disabled';
+      const dateContinue = document.getElementById('bkDateContinue');
+      if(dateContinue) dateContinue.setAttribute('disabled', '');
+      const timePills = document.getElementById('bkTimePills');
+      if(timePills) timePills.innerHTML = '';
+      const durContinue = document.getElementById('bkDurationContinue');
+      if(durContinue) durContinue.setAttribute('disabled', '');
+      const timeContinue = document.getElementById('bkTimeContinue');
+      if(timeContinue) timeContinue.setAttribute('disabled', '');
+      const timeHint = document.getElementById('bkTimeHint');
+      if(timeHint) timeHint.textContent = 'Choose an available time range.';
+      const rangeSummary = document.getElementById('bkRangeSummary');
+      if(rangeSummary) rangeSummary.style.display = 'none';
+      const submitRow = document.getElementById('bkSubmitRow');
+      if(submitRow) submitRow.style.display = 'none';
+
+      const selDateBadge = document.getElementById('bkSelectedDateBadge');
+      if(selDateBadge) selDateBadge.style.display = 'none';
+      const selDateVal = document.getElementById('bkSelectedDateVal');
+      if(selDateVal) selDateVal.textContent = '—';
+      const sumDate = document.getElementById('bkSummaryDate');
+      if(sumDate) sumDate.textContent = '📅 —';
+      const rangeSel = document.getElementById('bkRangeSel');
+      if(rangeSel) rangeSel.textContent = '⚽ —';
+      const durLabel = document.getElementById('bkDurLabel');
+      if(durLabel) durLabel.textContent = '⏱ —';
+      const durAmt = document.getElementById('bkDurAmt');
+      if(durAmt) durAmt.textContent = '₹—';
+
+      bkSubStage = 'date';
+      if(typeof bkSetSubStage === 'function'){
+        bkSetSubStage('date', false);
+      } else if(typeof bkUpdateSubflowProgress === 'function'){
+        bkUpdateSubflowProgress();
+      }
+
+      document.getElementById('bkQrImage')?.removeAttribute?.('src');
+      const qrStatus = document.getElementById('bkQrStatus');
+      if(qrStatus) qrStatus.textContent = 'Generating QR...';
+      const payDate = document.getElementById('bkPayDate');
+      if(payDate) payDate.textContent = '—';
+      const payAmt = document.getElementById('bkPayAmt');
+      if(payAmt) payAmt.textContent = '—';
+      const payTotal = document.getElementById('bkPayTotal');
+      if(payTotal) payTotal.textContent = '—';
+      const payRate = document.getElementById('bkPayRate');
+      if(payRate) payRate.textContent = '—';
+      const payTotalDur = document.getElementById('bkPayTotalDur');
+      if(payTotalDur) payTotalDur.textContent = '—';
+      const completeBtn = document.getElementById('bkCompletePaymentButton');
+      if(completeBtn){ completeBtn.disabled = false; completeBtn.textContent = 'Submit payment verification'; }
+      const payStatus = document.getElementById('bkPaymentStatus');
+      if(payStatus) payStatus.textContent = 'Payment pending. Scan the QR and complete payment in your UPI app.';
+
+      const slotsList = document.getElementById('bkSlotsList');
+      if(slotsList){ slotsList.style.display = 'none'; slotsList.innerHTML = ''; }
+      if(typeof bkSetAddSlotBtn === 'function') bkSetAddSlotBtn(false);
+      const paySlots = document.getElementById('bkPaySlots');
+      if(paySlots) paySlots.innerHTML = '';
+      if(typeof stopPaymentPolling === 'function') stopPaymentPolling();
+      paymentSession = null;
+    } catch(err) {
+      console.warn('bkResetBooking non-critical warning:', err);
     }
-    document.getElementById('bkQrImage')?.removeAttribute?.('src');
-    document.getElementById('bkQrStatus').textContent = 'Generating QR...';
-    document.getElementById('bkPayDate').textContent = '—';
-    document.getElementById('bkPayAmt').textContent = '—';
-    document.getElementById('bkPayTotal').textContent = '—';
-    const payRate = document.getElementById('bkPayRate');
-    if(payRate) payRate.textContent = '—';
-    const payTotalDur = document.getElementById('bkPayTotalDur');
-    if(payTotalDur) payTotalDur.textContent = '—';
-    const completeBtn = document.getElementById('bkCompletePaymentButton');
-    if(completeBtn){ completeBtn.disabled = false; completeBtn.textContent = 'Submit payment verification'; }
-    const payStatus = document.getElementById('bkPaymentStatus');
-    if(payStatus) payStatus.textContent = 'Payment pending. Scan the QR and complete payment in your UPI app.';
-    const slotsList = document.getElementById('bkSlotsList');
-    if(slotsList){ slotsList.style.display = 'none'; slotsList.innerHTML = ''; }
-    bkSetAddSlotBtn(false);
-    const paySlots = document.getElementById('bkPaySlots');
-    if(paySlots) paySlots.innerHTML = '';
-    stopPaymentPolling();
-    paymentSession = null;
   }
   function bkFinishPayment(){
     bkResetBooking();
@@ -5505,6 +5748,7 @@
   }
   function bkCloseBooking(){
     closeModal('paymentConfirmModal');
+    closeModal('bkDirectSuccessModal');
     bkResetBooking();
     bkGoStep(1);
     document.getElementById('pricing').scrollIntoView({ behavior:'smooth', block:'start' });
