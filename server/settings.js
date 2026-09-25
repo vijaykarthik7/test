@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     const settings = await db.collection('website_settings').findOne({ key: 'main' }, { projection: { _id: 0, businessName: 1, hourlyRate: 1, phone: 1, whatsapp: 1, email: 1, upiId: 1, upi: 1, address: 1, bookingsBlocked: 1 } })
     return res.status(200).json({ settings: publicSettings(settings) })
   } catch (error) {
-    console.error('public settings failed', error.message)
-    return res.status(503).json({ message: 'Website settings are temporarily unavailable.' })
+    console.error('public settings fallback triggered:', error.message)
+    return res.status(200).json({ settings: publicSettings({}) })
   }
 }

@@ -62,10 +62,6 @@ function getRoute(req) {
 
 export default async function handler(req, res) {
   const route = getRoute(req)
-  if (route === 'bookings') {
-    const mod = await import(`../server/bookings.js?t=${Date.now()}`)
-    return mod.default(req, res)
-  }
   const routeHandler = handlers[route]
 
   if (!routeHandler) {

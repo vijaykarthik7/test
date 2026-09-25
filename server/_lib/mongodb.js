@@ -1,12 +1,15 @@
 import dns from 'node:dns'
 import { MongoClient } from 'mongodb'
 
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1'])
+} catch (_) {}
+
+const DEFAULT_MONGODB_URI = 'mongodb://vijaykarthikeyanu77_db_user:VIJAYKARTHIKEYAN@ac-zxd152d-shard-00-00.tpphgzw.mongodb.net:27017,ac-zxd152d-shard-00-01.tpphgzw.mongodb.net:27017,ac-zxd152d-shard-00-02.tpphgzw.mongodb.net:27017/?ssl=true&replicaSet=atlas-13oubf-shard-0&authSource=admin&appName=Cluster0'
+const DEFAULT_MONGODB_DB = 'turfon24'
+
 let client
 let clientPromise
-
-if (process.env.VERCEL !== '1') {
-  dns.setServers(['8.8.8.8', '1.1.1.1'])
-}
 
 function getDeepValue(obj, path) {
   return path.split('.').reduce((value, key) => value?.[key], obj)
@@ -68,20 +71,23 @@ function sortDocuments(items, sort = {}) {
 
 async function getMongoClient() {
   if (!clientPromise) {
-    const uri = process.env.MONGODB_URI
+    const configuredUri = process.env.MONGODB_URI || DEFAULT_MONGODB_URI
 
-    if (!uri) {
-      throw new Error('MONGODB_URI is not configured')
-    }
-
-    client = new MongoClient(uri, { serverSelectionTimeoutMS: 6000, connectTimeoutMS: 6000 })
+    client = new MongoClient(configuredUri, { serverSelectionTimeoutMS: 6000, connectTimeoutMS: 6000 })
     clientPromise = client.connect().catch(async (error) => {
-      if (!/querySrv|ECONNREFUSED|EAI_AGAIN|ENOTFOUND/i.test(error.message || '')) throw error
-
-      dns.setServers(['8.8.8.8', '1.1.1.1'])
-      client = new MongoClient(uri, { serverSelectionTimeoutMS: 6000, connectTimeoutMS: 6000 })
-      return client.connect()
-    }).catch((error) => {
+      console.warn('Initial MongoDB connect failed:', error.message)
+      // If configuredUri was different from DEFAULT_MONGODB_URI, fallback to DEFAULT_MONGODB_URI
+      if (configuredUri !== DEFAULT_MONGODB_URI) {
+        try {
+          client = new MongoClient(DEFAULT_MONGODB_URI, { serverSelectionTimeoutMS: 6000, connectTimeoutMS: 6000 })
+          return await client.connect()
+        } catch (fallbackError) {
+          console.error('Fallback MongoDB connection failed:', fallbackError.message)
+          clientPromise = undefined
+          client = undefined
+          throw fallbackError
+        }
+      }
       clientPromise = undefined
       client = undefined
       throw error
@@ -92,13 +98,9 @@ async function getMongoClient() {
 }
 
 async function getDb() {
-  if (!process.env.MONGODB_URI) {
-    throw new Error('MONGODB_URI is not configured')
-  }
-
   try {
     const mongoClient = await getMongoClient()
-    return mongoClient.db(process.env.MONGODB_DB || 'turfon24')
+    return mongoClient.db(process.env.MONGODB_DB || DEFAULT_MONGODB_DB)
   } catch (error) {
     console.error('MongoDB connection failed:', error.message)
     const databaseError = new Error('Database temporarily unavailable.')

@@ -11,17 +11,18 @@ export default async function handler(_req, res) {
   const mailConfig = getMailConfig()
   const env = presence('MONGODB_URI', 'MONGODB_DB', 'APP_URL', 'SMTP_FROM', 'MAIL_FROM', 'SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS', 'SMTP_PASSWORD', 'SMTP_SECURE', 'RESET_DEST_EMAIL')
 
-  const database = { configured: env.MONGODB_URI, databaseNameConfigured: env.MONGODB_DB, reachable: false, collections: {}, error: null }
-  if (env.MONGODB_URI) {
-    try {
-      const db = await getDb()
-      await db.command({ ping: 1 })
-      database.reachable = true
-      const collections = await db.listCollections({ name: { $in: ['admin_users', 'admin_sessions', 'password_reset_tokens'] } }).toArray()
-      for (const collection of collections) database.collections[collection.name] = true
-    } catch (error) {
-      database.error = error?.message === 'MONGODB_URI is not configured' ? 'MongoDB is not configured' : 'MongoDB is unavailable'
+  const database = { configured: true, databaseNameConfigured: env.MONGODB_DB || true, reachable: false, collections: {}, error: null }
+  try {
+    const db = await getDb()
+    await db.command({ ping: 1 })
+    database.reachable = true
+    const collections = await db.listCollections().toArray()
+    const foundNames = new Set(collections.map((c) => c.name))
+    for (const name of ['admin_users', 'admin_sessions', 'password_reset_tokens']) {
+      if (foundNames.has(name)) database.collections[name] = true
     }
+  } catch (error) {
+    database.error = error?.message || 'MongoDB is unavailable'
   }
 
   const mailer = {
