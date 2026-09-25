@@ -2950,9 +2950,6 @@
             <button type="button" class="btn btn-glow magnetic" id="bkDirectConfirmYesBtn" style="width:100%; justify-content:center; padding:15px 24px; font-size:14px; font-weight:700; border-radius:30px; letter-spacing:0.02em;" onclick="bkExecuteDirectBooking()">
               Submit Payment Confirmation Request
             </button>
-            <button type="button" class="btn btn-outline" style="width:100%; justify-content:center; margin-top:10px; font-size:12.5px; color:#8E9F93; border-color:#1E2E21; padding:9px 16px; border-radius:20px;" onclick="bkCancelConfirmation()">
-              Change Booking Details
-            </button>
             <div id="bkConfirmationErrMsg" style="display:none; color:#FF5C5C; font-size:12.5px; margin-top:12px; font-weight:500; text-align:center;"></div>
           </div>
 
@@ -3066,15 +3063,14 @@
     <button class="modal-close" onclick="bkFinishDirectBooking()" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
     <canvas id="directSuccessConfettiCanvas" style="position:absolute; inset:0; pointer-events:none; width:100%; height:100%; z-index:0;"></canvas>
     <div class="modal-icon" style="position:relative; z-index:1; margin:0 auto 16px; width:52px; height:52px; background:rgba(57,255,122,0.12); border:1px solid rgba(57,255,122,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--neon);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></div>
-    <h3 style="position:relative; z-index:1; font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:var(--white); margin-bottom:8px;">Payment Confirmation Submitted</h3>
-    <p style="position:relative; z-index:1; font-size:15px; color:var(--white); font-weight:600; line-height:1.45; margin-bottom:6px;">
+    <h3 style="position:relative; z-index:1; font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:var(--white); margin-bottom:12px;">Payment Confirmation Submitted Successfully!</h3>
+    <p style="position:relative; z-index:1; font-size:15px; color:var(--white); font-weight:600; line-height:1.5; margin-bottom:8px;">
       Thank you. We've received your payment confirmation request.
     </p>
-    <p style="position:relative; z-index:1; font-size:12.5px; color:var(--muted); line-height:1.5; margin-bottom:18px;">
+    <p style="position:relative; z-index:1; font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:24px;">
       Our team will verify the transaction and contact you shortly to confirm your booking.
     </p>
-    <div id="bkDirectSuccessDetails" style="position:relative; z-index:1; background:#131C15; border:1px solid #1E2E21; border-radius:14px; padding:14px 18px; margin-bottom:22px; text-align:left; font-size:12.5px; display:flex; flex-direction:column; gap:6px;"></div>
-    <button class="btn btn-glow magnetic" type="button" style="position:relative; z-index:1; width:100%; justify-content:center;" onclick="bkFinishDirectBooking()">Done</button>
+    <button class="btn btn-glow magnetic" type="button" style="position:relative; z-index:1; width:100%; justify-content:center; padding:14px 24px; font-weight:700; border-radius:30px;" onclick="bkFinishDirectBooking()">Done</button>
   </div>
 </div>
 
@@ -5420,21 +5416,6 @@
       const data = await res.json();
       if(!res.ok || !data.success){
         throw new Error(data.message || 'Booking confirmation failed.');
-      }
-
-      // Populate details in the success popup
-      const detailsBox = document.getElementById('bkDirectSuccessDetails');
-      if(detailsBox){
-        let slotLine = (slots && slots.length === 1)
-          ? `${slots[0].start} to ${slots[0].end}`
-          : slots.map((s, i) => `Slot ${i+1}: ${s.start} - ${s.end}`).join('<br>');
-        detailsBox.innerHTML = `
-          <div style="display:flex; justify-content:space-between; margin-bottom:6px;"><span style="color:var(--muted);">Player:</span><b>${name}</b></div>
-          <div style="display:flex; justify-content:space-between; margin-bottom:6px;"><span style="color:var(--muted);">Date:</span><b>${bkState.dateLabel || date}</b></div>
-          <div style="display:flex; justify-content:space-between; margin-bottom:6px;"><span style="color:var(--muted);">Timing:</span><b>${slotLine}</b></div>
-          <div style="display:flex; justify-content:space-between; margin-bottom:6px;"><span style="color:var(--muted);">Duration:</span><b>${duration} hour${duration > 1 ? 's' : ''}</b></div>
-          <div style="display:flex; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.07); padding-top:6px; margin-top:2px;"><span style="color:var(--muted);">Total Amount:</span><b style="color:var(--neon);">₹${(duration * getSiteRate()).toLocaleString('en-IN')}</b></div>
-        `;
       }
 
       // Open the success popup modal
