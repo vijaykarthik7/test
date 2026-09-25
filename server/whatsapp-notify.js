@@ -30,10 +30,18 @@ export default async function handler(req, res) {
 
   try {
     const { sendImage } = await import('./_lib/whatsapp-client.js')
-    await sendImage(ADMIN_WA_NUMBER, QR_IMAGE_PATH, caption)
-    return res.status(200).json({ success: true, message: 'WhatsApp notification sent.' })
+    try {
+      await sendImage(ADMIN_WA_NUMBER, QR_IMAGE_PATH, caption)
+      return res.status(200).json({ success: true, message: 'WhatsApp notification sent with image.' })
+    } catch (imageErr) {
+      console.warn('[whatsapp-notify] Failed to send image, falling back to text:', imageErr.message)
+      const { sendText } = await import('./_lib/whatsapp-client.js')
+      const fallbackCaption = caption + '\n\n📸 *UPI QR Code:* ' + 'https://turfon24.com/logo-assets/upi-qr.png'
+      await sendText(ADMIN_WA_NUMBER, fallbackCaption)
+      return res.status(200).json({ success: true, message: 'WhatsApp notification sent as text fallback.' })
+    }
   } catch (err) {
-    console.error('[whatsapp-notify] Error:', err.message)
+    console.error('[whatsapp-notify] Critical Error:', err.message)
     return res.status(500).json({ success: false, message: err.message })
   }
 }

@@ -5471,6 +5471,14 @@
     const modal = document.getElementById('bkDirectSuccessModal');
     if(modal) modal.classList.remove('open');
 
+    // --- Send QR image silently via backend WhatsApp bot ---
+    const payload = window._bkSuccessPayload || {};
+    fetch('/api/whatsapp-notify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(err => console.warn('[WA notify] failed:', err));
+
     bkResetBooking();
     const nameEl = document.getElementById('bkName');
     const mobileEl = document.getElementById('bkMobile');
