@@ -2898,56 +2898,62 @@
 
       <!-- PANE 7 — DIRECT CONFIRMATION -->
       <div id="bkPane7" class="bk-pane bk-confirmation-pane" style="display:none;">
-        <div class="bk-confirmation-card" style="text-align:left; max-width:540px; margin:0 auto; padding:28px 24px; background:#0A0F0D; border:1px solid #1E2E21; border-radius:20px; box-shadow:0 24px 60px rgba(0,0,0,0.85);">
-          
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; border-bottom:1px solid #1E2E21; padding-bottom:14px;">
-            <div>
-              <span class="bk-slat-title" style="display:block; margin-bottom:4px;">04. CONFIRMATION</span>
-              <h3 style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; color:var(--white); margin:0;">Booking Confirmation</h3>
+        <div class="qr-card" style="max-width:480px; margin:0 auto; padding:32px 24px; text-align:center; position:relative; overflow:hidden;">
+          <div class="qr-glow-border"></div>
+
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); margin-bottom:18px;">
+            PAYMENT CONFIRMATION
+          </div>
+
+          <!-- Total Amount to Pay Box (replaces the QR code box, shows amount big) -->
+          <div style="width:min(280px, 100%); margin:0 auto 20px; padding:22px 16px; background:#131C15; border:1px solid #1E2E21; border-radius:18px; position:relative; overflow:hidden; box-shadow:0 12px 32px rgba(0,0,0,0.6);">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#8E9F93; margin-bottom:8px;">
+              Total Amount to Pay
             </div>
-            <div class="bk-streamline-badge">
-              <span>● TURFON24 ARENA</span>
+            <div id="bkConfBigAmountVal" style="font-family:'Space Grotesk',sans-serif; font-size:40px; font-weight:800; color:#39FF7A; letter-spacing:-0.02em; text-shadow:0 0 24px rgba(57,255,122,0.35);">
+              ₹0
+            </div>
+            <div style="position:absolute; bottom:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg, transparent, #39FF7A, transparent); box-shadow:0 0 10px #39FF7A;"></div>
+          </div>
+
+          <!-- Key-value details list (no player name) -->
+          <div style="text-align:left; border-top:1px solid var(--border); padding-top:16px; display:flex; flex-direction:column; gap:9px; max-width:420px; margin:0 auto;">
+            <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace;">
+              <span>Date</span>
+              <span class="mono" style="color:var(--white);" id="bkConfDateRow">—</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace;">
+              <span>Time</span>
+              <span class="mono" style="color:var(--white);" id="bkConfTimeRow">—</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace;">
+              <span>Duration</span>
+              <span class="mono" style="color:var(--white);" id="bkConfDurationVal">—</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace;">
+              <span>Mobile Number</span>
+              <span class="mono" style="color:var(--white);" id="bkConfMobileVal">—</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace; border-top:1px solid rgba(255,255,255,0.06); padding-top:9px; margin-top:3px;">
+              <span style="font-weight:600; color:var(--white);">Amount</span>
+              <span class="mono" style="color:#39FF7A; font-weight:700; font-size:16px;" id="bkConfAmountVal">₹0</span>
             </div>
           </div>
 
-          <div style="background:#131C15; border:1px solid #1E2E21; border-radius:14px; padding:18px 20px; margin-bottom:20px; display:flex; flex-direction:column; gap:12px;">
-            <div style="font-size:14px; color:var(--white); line-height:1.55;">
-              You have booked this slot <span id="bkConfTimingText" style="color:#39FF7A; font-weight:700;">—</span> on <span id="bkConfDateText" style="color:#39FF7A; font-weight:700;">—</span>.
-            </div>
-
-            <div style="border-top:1px solid rgba(255,255,255,0.07); padding-top:12px; display:flex; flex-direction:column; gap:8px;">
-              <div style="display:flex; justify-content:space-between; font-size:12.5px; color:var(--muted);">
-                <span>Player Name</span>
-                <b id="bkConfNameVal" style="color:var(--white); font-family:'Inter',sans-serif;">—</b>
-              </div>
-              <div style="display:flex; justify-content:space-between; font-size:12.5px; color:var(--muted);">
-                <span>Mobile Number</span>
-                <b id="bkConfMobileVal" style="color:var(--white); font-family:'Inter',sans-serif;">—</b>
-              </div>
-              <div style="display:flex; justify-content:space-between; font-size:12.5px; color:var(--muted);">
-                <span>Total Duration</span>
-                <b id="bkConfDurationVal" style="color:var(--white); font-family:'Inter',sans-serif;">—</b>
-              </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.07); padding-top:10px; margin-top:2px;">
-                <span style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; color:var(--white);">Total Amount</span>
-                <b id="bkConfAmountVal" style="font-size:22px; color:#39FF7A; font-weight:700; font-family:'Space Grotesk',sans-serif;">₹0</b>
-              </div>
-            </div>
+          <!-- You have booked this slot ... brought down -->
+          <div style="text-align:center; font-size:13px; color:#A1B0A6; line-height:1.55; margin:18px auto 20px; max-width:420px; padding:12px 16px; background:rgba(57,255,122,0.05); border:1px solid rgba(57,255,122,0.15); border-radius:12px;">
+            You have booked this slot <span id="bkConfTimingText" style="color:#39FF7A; font-weight:700;">—</span> on <span id="bkConfDateText" style="color:#39FF7A; font-weight:700;">—</span>.
           </div>
 
-          <div style="text-align:center; padding:10px 4px 4px;">
-            <p style="font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:600; color:var(--white); margin-bottom:16px;">
-              Would you like to book?
-            </p>
-            <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-              <button type="button" class="btn btn-glow magnetic" id="bkDirectConfirmYesBtn" style="flex:1; min-width:140px; justify-content:center; padding:12px 24px; font-size:13.5px;" onclick="bkExecuteDirectBooking()">
-                Yes
-              </button>
-              <button type="button" class="btn btn-outline" style="flex:1; min-width:140px; justify-content:center; padding:12px 24px; font-size:13.5px; color:#94A3B8; border-color:#1E2E21;" onclick="bkCancelConfirmation()">
-                No
-              </button>
-            </div>
-            <div id="bkConfirmationErrMsg" style="display:none; color:#FF5C5C; font-size:12.5px; margin-top:12px; font-weight:500;"></div>
+          <!-- Action Button: Submit Payment Confirmation Request -->
+          <div style="max-width:420px; margin:0 auto;">
+            <button type="button" class="btn btn-glow magnetic" id="bkDirectConfirmYesBtn" style="width:100%; justify-content:center; padding:15px 24px; font-size:14px; font-weight:700; border-radius:30px; letter-spacing:0.02em;" onclick="bkExecuteDirectBooking()">
+              Submit Payment Confirmation Request
+            </button>
+            <button type="button" class="btn btn-outline" style="width:100%; justify-content:center; margin-top:10px; font-size:12.5px; color:#8E9F93; border-color:#1E2E21; padding:9px 16px; border-radius:20px;" onclick="bkCancelConfirmation()">
+              Change Booking Details
+            </button>
+            <div id="bkConfirmationErrMsg" style="display:none; color:#FF5C5C; font-size:12.5px; margin-top:12px; font-weight:500; text-align:center;"></div>
           </div>
 
         </div>
@@ -5328,8 +5334,11 @@
     const mobileEl = document.getElementById('bkConfMobileVal');
     const dateEl = document.getElementById('bkConfDateText');
     const timingEl = document.getElementById('bkConfTimingText');
+    const dateRowEl = document.getElementById('bkConfDateRow');
+    const timeRowEl = document.getElementById('bkConfTimeRow');
     const durEl = document.getElementById('bkConfDurationVal');
     const amountEl = document.getElementById('bkConfAmountVal');
+    const bigAmountEl = document.getElementById('bkConfBigAmountVal');
 
     const name = (document.getElementById('bkName')?.value || '').trim() || 'Player';
     const mobile = (document.getElementById('bkMobile')?.value || '').trim() || '—';
@@ -5338,25 +5347,34 @@
     if(nameEl) nameEl.textContent = name;
     if(mobileEl) mobileEl.textContent = mobile;
     if(dateEl) dateEl.textContent = date;
+    if(dateRowEl) dateRowEl.textContent = date;
 
     let timingStr = '—';
+    let timeRangeStr = '—';
     if(bkSlots && bkSlots.length > 0){
       if(bkSlots.length === 1){
         const s = bkSlots[0];
         timingStr = `from ${s.startLabel || bkState.start || '—'} to ${s.endLabel || bkState.end || '—'}`;
+        timeRangeStr = `${s.startLabel || bkState.start || '—'} - ${s.endLabel || bkState.end || '—'}`;
       } else {
         timingStr = bkSlots.map((s, idx) => `Slot ${idx + 1}: ${s.startLabel} to ${s.endLabel}`).join(', ');
+        timeRangeStr = bkSlots.map((s) => `${s.startLabel} - ${s.endLabel}`).join(', ');
       }
     } else if(bkState.start && bkState.end){
       timingStr = `from ${bkState.start} to ${bkState.end}`;
+      timeRangeStr = `${bkState.start} - ${bkState.end}`;
     }
     if(timingEl) timingEl.textContent = timingStr;
+    if(timeRowEl) timeRowEl.textContent = timeRangeStr;
 
     const totalHours = bkTotalHours() || bkDurationHours || 1;
-    if(durEl) durEl.textContent = `${totalHours} hour${totalHours > 1 ? 's' : ''}`;
+    const durLabel = `${totalHours} hour${totalHours > 1 ? 's total' : ' total'}`;
+    if(durEl) durEl.textContent = durLabel;
 
     const totalAmount = totalHours * getSiteRate();
-    if(amountEl) amountEl.textContent = `₹${totalAmount.toLocaleString('en-IN')}`;
+    const formattedAmount = `₹${totalAmount.toLocaleString('en-IN')}`;
+    if(amountEl) amountEl.textContent = formattedAmount;
+    if(bigAmountEl) bigAmountEl.textContent = formattedAmount;
 
     const errBox = document.getElementById('bkConfirmationErrMsg');
     if(errBox) errBox.style.display = 'none';
@@ -5367,7 +5385,7 @@
     const yesBtn = document.getElementById('bkDirectConfirmYesBtn');
     if(yesBtn){
       yesBtn.disabled = true;
-      yesBtn.textContent = 'Booking...';
+      yesBtn.textContent = 'Submitting Request...';
     }
 
     const name = (document.getElementById('bkName')?.value || '').trim() || 'Player';
@@ -5436,7 +5454,7 @@
     } finally {
       if(yesBtn){
         yesBtn.disabled = false;
-        yesBtn.textContent = 'Yes';
+        yesBtn.textContent = 'Submit Payment Confirmation Request';
       }
     }
   }
