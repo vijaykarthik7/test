@@ -5423,31 +5423,6 @@
       openModal('bkDirectSuccessModal');
       fireConfetti('directSuccessConfettiCanvas');
 
-      // Capture QR data URL and booking summary for WhatsApp sharing on Done
-      const _qrImg = document.getElementById('bkQrImage');
-      window._bkSuccessQrDataUrl = (_qrImg && _qrImg.src && _qrImg.src.startsWith('data:')) ? _qrImg.src : null;
-      const _slotLine = (slots && slots.length === 1)
-        ? `${slots[0].start} to ${slots[0].end}`
-        : slots.map((s, i) => `Slot ${i+1}: ${s.start} - ${s.end}`).join(', ');
-      window._bkSuccessSummary = [
-        `*Turfon24 – Payment Confirmation*`,
-        `Player: ${name}`,
-        `Date: ${bkState.dateLabel || date}`,
-        `Timing: ${_slotLine}`,
-        `Duration: ${duration} hour${duration > 1 ? 's' : ''}`,
-        `Amount: ₹${(duration * getSiteRate()).toLocaleString('en-IN')}`,
-        ``,
-        `Please verify the payment and confirm the booking.`
-      ].join('\n');
-      // Structured payload for server-side WhatsApp API
-      window._bkSuccessPayload = {
-        name,
-        date: bkState.dateLabel || date,
-        timing: _slotLine,
-        duration: `${duration} hour${duration > 1 ? 's' : ''}`,
-        amount: (duration * getSiteRate()).toLocaleString('en-IN')
-      };
-
       // Pre-reset the underlying booking section so it is already back at step 1
       bkResetBooking();
       bkGoStep(1);
@@ -5470,14 +5445,6 @@
   function bkFinishDirectBooking(){
     const modal = document.getElementById('bkDirectSuccessModal');
     if(modal) modal.classList.remove('open');
-
-    // --- Send QR image silently via backend WhatsApp bot ---
-    const payload = window._bkSuccessPayload || {};
-    fetch('/api/whatsapp-notify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).catch(err => console.warn('[WA notify] failed:', err));
 
     bkResetBooking();
     const nameEl = document.getElementById('bkName');

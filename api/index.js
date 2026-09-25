@@ -22,7 +22,6 @@ import adminVerifyResetToken from '../server/admin/verify-reset-token.js'
 import adminWhatsappEnquiries from '../server/admin/whatsapp-enquiries.js'
 import paymentCreate from '../server/payment/create.js'
 import paymentStatus from '../server/payment/status.js'
-import whatsappNotify from '../server/whatsapp-notify.js'
 
 const handlers = {
   bookings,
@@ -49,7 +48,6 @@ const handlers = {
   'admin/whatsapp-enquiries': adminWhatsappEnquiries,
   'payment/create': paymentCreate,
   'payment/status': paymentStatus,
-  'whatsapp-notify': whatsappNotify,
 }
 
 function getRoute(req) {
