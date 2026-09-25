@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => {
   }
 
   return {
-  server: { host: true, watch: { ignored: ['**/dist/**'] } },
+  server: { host: true, watch: { ignored: ['**/dist/**', '**/.wa-session/**'] } },
   plugins: [react(), {
     name: 'local-admin-api',
     configureServer(server) {
