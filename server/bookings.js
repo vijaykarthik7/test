@@ -33,7 +33,7 @@ function cleanDraftData(data = {}) {
     duration: Number.isInteger(data.duration) ? data.duration : 0,
     start: String(data.start || '').slice(0, 40),
     end: String(data.end || '').slice(0, 40),
-    slots: Array.isArray(data.slots) ? data.slots.slice(0, 5).map((slot) => ({
+    slots: Array.isArray(data.slots) ? data.slots.slice(0, 24).map((slot) => ({
       start: String(slot?.start || '').slice(0, 40),
       end: String(slot?.end || '').slice(0, 40),
       hours: Number.isInteger(slot?.hours) ? slot.hours : 0,

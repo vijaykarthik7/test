@@ -5,7 +5,7 @@ import { getDb } from '../_lib/mongodb.js'
 export const HOURLY_RATE = 800
 const PAYMENT_TTL_MINUTES = 15
 const MAX_HOURLY_DURATION = 60
-const MAX_SLOTS = 5
+const MAX_SLOTS = 24
 const TIME_PATTERN = /^(\d{1,2}):(\d{2})\s?(AM|PM)(?:\s*\(next day\))?$/i
 
 async function getConfiguredHourlyRate(db) {

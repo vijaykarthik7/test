@@ -1173,25 +1173,41 @@
     line-height:1.45;
     word-break:break-word;
   }
-  .bk-streamline-sum-price{
+  .bk-streamline-sum-price-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    justify-content:center;
+    flex-shrink:0;
+    gap:4px;
+    margin-left:auto;
+  }
+  .bk-streamline-sum-price-label{
     font-family:'Inter',sans-serif;
-    font-size:20px;
+    font-size:10.5px;
     font-weight:700;
+    color:#94A3B8;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+  }
+  .bk-streamline-sum-price{
+    font-family:'Space Grotesk','Inter',sans-serif;
+    font-size:24px;
+    font-weight:800;
     color:#39FF7A;
-    line-height:1.2;
-    padding-top:8px;
-    border-top:1px solid rgba(255,255,255,0.07);
-    margin-top:4px;
+    line-height:1.15;
+    white-space:nowrap;
+    text-shadow:0 0 22px rgba(57,255,122,0.35);
   }
   .bk-streamline-go-btn{
-    height:38px;
-    padding:0 20px;
+    height:40px;
+    padding:0 24px;
     border-radius:100px;
     background:#39FF7A;
     color:#0A0F0D;
     font-family:'Inter',sans-serif;
-    font-size:12px;
-    font-weight:600;
+    font-size:12.5px;
+    font-weight:700;
     letter-spacing:0.04em;
     border:none;
     cursor:pointer;
@@ -1203,6 +1219,8 @@
     gap:8px;
     flex-shrink:0;
     white-space:nowrap;
+    align-self:flex-start;
+    margin-top:8px;
   }
   .bk-streamline-go-btn:hover{
     transform:translateY(-1px);
@@ -1468,20 +1486,25 @@
       white-space:normal;
       line-height:1.45;
     }
+    .bk-streamline-sum-price-wrap{
+      align-items:flex-start;
+      margin-left:0;
+      border-top:1px solid #1E2E21;
+      padding-top:12px;
+      width:100%;
+    }
     .bk-streamline-sum-price{
       font-size:22px;
-      font-weight:700;
-      padding-top:10px;
-      border-top:1px solid #1E2E21;
-      margin-top:4px;
+      font-weight:800;
     }
     .bk-streamline-go-btn{
       width:100%;
       height:42px;
-      font-size:12.5px;
-      font-weight:600;
+      font-size:13px;
+      font-weight:700;
       padding:0 18px;
-      margin-top:4px;
+      margin-top:6px;
+      justify-content:center;
     }
 
     /* Keep floating buttons from overlapping summary card on mobile */
@@ -2787,7 +2810,7 @@
                 <div class="ms-count" id="bkSlotCount">1</div>
                 <button type="button" class="ms-step" id="bkSlotPlus" onclick="bkStepSlotCount(1)" aria-label="Add a slot">+</button>
               </div>
-              <div class="ms-hint" id="bkSlotCountHint">1 to 5 slots on the same date.</div>
+              <div class="ms-hint" id="bkSlotCountHint">1 to 24 slots on the same date.</div>
               <div id="bkSlotDurations"></div>
             </div>
           </div>
@@ -2822,11 +2845,13 @@
             <div class="bk-streamline-sum-info">
               <span class="bk-streamline-sum-kicker">MATCH SUMMARY</span>
               <div class="bk-streamline-sum-details" id="bkStreamlineSumDetails">—</div>
+              <button type="button" class="btn btn-glow magnetic bk-streamline-go-btn" id="bkStreamlineGoBtn" onclick="bkConfirmSlots()" disabled>
+                GO TO SUMMARY →
+              </button>
+            </div>
+            <div class="bk-streamline-sum-price-wrap">
               <div class="bk-streamline-sum-price" id="bkStreamlineSumPrice">TOTAL: ₹1,600</div>
             </div>
-            <button type="button" class="btn btn-glow magnetic bk-streamline-go-btn" id="bkStreamlineGoBtn" onclick="bkConfirmSlots()" disabled>
-              GO TO SUMMARY →
-            </button>
           </div>
 
         </div> <!-- /bk-streamline-console -->
@@ -2918,30 +2943,32 @@
 
           <!-- Key-value details list (no player name) -->
           <div style="text-align:left; border-top:1px solid var(--border); padding-top:16px; display:flex; flex-direction:column; gap:9px; max-width:420px; margin:0 auto;">
-            <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace;">
-              <span>Date</span>
-              <span class="mono" style="color:var(--white);" id="bkConfDateRow">—</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace; gap:14px;">
+              <span style="flex-shrink:0;">Date</span>
+              <div style="width:235px; max-width:65%; text-align:left;">
+                <span class="mono" style="color:var(--white);" id="bkConfDateRow">—</span>
+              </div>
             </div>
-            <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace;">
-              <span>Time</span>
-              <span class="mono" style="color:var(--white);" id="bkConfTimeRow">—</span>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace; gap:14px;">
+              <span style="flex-shrink:0; padding-top:1px;">Time</span>
+              <div class="mono" style="color:var(--white); width:235px; max-width:65%; text-align:left;" id="bkConfTimeRow">—</div>
             </div>
-            <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace;">
-              <span>Duration</span>
-              <span class="mono" style="color:var(--white);" id="bkConfDurationVal">—</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace; gap:14px;">
+              <span style="flex-shrink:0;">Duration</span>
+              <div style="width:235px; max-width:65%; text-align:left;">
+                <span class="mono" style="color:var(--white);" id="bkConfDurationVal">—</span>
+              </div>
             </div>
-            <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace;">
-              <span>Mobile Number</span>
-              <span class="mono" style="color:var(--white);" id="bkConfMobileVal">—</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace; border-top:1px solid rgba(255,255,255,0.06); padding-top:9px; margin-top:3px;">
-              <span style="font-weight:600; color:var(--white);">Amount</span>
-              <span class="mono" style="color:#39FF7A; font-weight:700; font-size:16px;" id="bkConfAmountVal">₹0</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace; border-top:1px solid rgba(255,255,255,0.06); padding-top:9px; margin-top:3px; gap:14px;">
+              <span style="font-weight:600; color:var(--white); flex-shrink:0;">Amount</span>
+              <div style="width:235px; max-width:65%; text-align:left;">
+                <span class="mono" style="color:#39FF7A; font-weight:700; font-size:16px;" id="bkConfAmountVal">₹0</span>
+              </div>
             </div>
           </div>
 
           <!-- You have booked this slot ... brought down -->
-          <div style="text-align:center; font-size:13px; color:#A1B0A6; line-height:1.55; margin:18px auto 20px; max-width:420px; padding:12px 16px; background:rgba(57,255,122,0.05); border:1px solid rgba(57,255,122,0.15); border-radius:12px;">
+          <div id="bkConfBookingNotice" style="text-align:center; font-size:13px; color:#A1B0A6; line-height:1.55; margin:18px auto 20px; max-width:420px; padding:14px 16px; background:rgba(57,255,122,0.05); border:1px solid rgba(57,255,122,0.15); border-radius:12px;">
             You have booked this slot <span id="bkConfTimingText" style="color:#39FF7A; font-weight:700;">—</span> on <span id="bkConfDateText" style="color:#39FF7A; font-weight:700;">—</span>.
           </div>
 
@@ -4950,16 +4977,17 @@
     bkUpdateStreamlineSummary();
     bkPersist();
   }
+  const MAX_MULTI_SLOTS = 24;
   function bkStepSlotCount(delta){
     const next = bkSlotCount + delta;
-    if(next >= 1 && next <= 5) bkSlotCount = next;
+    if(next >= 1 && next <= MAX_MULTI_SLOTS) bkSlotCount = next;
     const countEl = document.getElementById('bkSlotCount');
     const minusBtn = document.getElementById('bkSlotMinus');
     const plusBtn = document.getElementById('bkSlotPlus');
     const durReadout = document.getElementById('bkStreamlineDurReadout');
     if(countEl) countEl.textContent = bkSlotCount;
     if(minusBtn) minusBtn.disabled = bkSlotCount <= 1;
-    if(plusBtn) plusBtn.disabled = bkSlotCount >= 5;
+    if(plusBtn) plusBtn.disabled = bkSlotCount >= MAX_MULTI_SLOTS;
     if(durReadout) durReadout.textContent = `${bkSlotCount} ${bkSlotCount === 1 ? 'SLOT' : 'SLOTS'} CONFIGURING`;
     while(bkSlots.length < bkSlotCount) bkSlots.push(bkCreateMultiSlot(bkSlots.length));
     while(bkSlots.length > bkSlotCount) bkSlots.pop();
@@ -5335,6 +5363,7 @@
     const durEl = document.getElementById('bkConfDurationVal');
     const amountEl = document.getElementById('bkConfAmountVal');
     const bigAmountEl = document.getElementById('bkConfBigAmountVal');
+    const noticeBox = document.getElementById('bkConfBookingNotice');
 
     const name = (document.getElementById('bkName')?.value || '').trim() || 'Player';
     const mobile = (document.getElementById('bkMobile')?.value || '').trim() || '—';
@@ -5346,22 +5375,52 @@
     if(dateRowEl) dateRowEl.textContent = date;
 
     let timingStr = '—';
-    let timeRangeStr = '—';
+    let timeRangeHtml = '—';
     if(bkSlots && bkSlots.length > 0){
       if(bkSlots.length === 1){
         const s = bkSlots[0];
         timingStr = `from ${s.startLabel || bkState.start || '—'} to ${s.endLabel || bkState.end || '—'}`;
-        timeRangeStr = `${s.startLabel || bkState.start || '—'} - ${s.endLabel || bkState.end || '—'}`;
+        timeRangeHtml = `<span style="color:#FFFFFF;">${s.startLabel || bkState.start || '—'} – ${s.endLabel || bkState.end || '—'}</span>`;
+        if(noticeBox){
+          noticeBox.innerHTML = `You have booked this slot <span style="color:#39FF7A; font-weight:700;">${timingStr}</span> on <span style="color:#39FF7A; font-weight:700;">${date}</span>.`;
+        }
       } else {
         timingStr = bkSlots.map((s, idx) => `Slot ${idx + 1}: ${s.startLabel} to ${s.endLabel}`).join(', ');
-        timeRangeStr = bkSlots.map((s) => `${s.startLabel} - ${s.endLabel}`).join(', ');
+        timeRangeHtml = `
+          <div style="display:grid; grid-template-columns:auto 1fr; gap:5px 8px; align-items:center; text-align:left; width:100%;">
+            ${bkSlots.map((s, idx) => `
+              <span style="color:#39FF7A; font-weight:600; font-size:12px; white-space:nowrap;">Slot ${idx + 1}:</span>
+              <span style="color:#FFFFFF; white-space:nowrap;">${s.startLabel} – ${s.endLabel}</span>
+            `).join('')}
+          </div>
+        `;
+        if(noticeBox){
+          const slotCards = bkSlots.map((s, idx) => `
+            <div style="display:flex; align-items:center; justify-content:center; gap:8px; background:rgba(255,255,255,0.03); border:1px solid rgba(57,255,122,0.18); border-radius:8px; padding:6px 12px; font-family:'JetBrains Mono',monospace;">
+              <span style="color:#A1B0A6; font-size:12px; font-weight:600;">Slot ${idx + 1}:</span>
+              <span style="color:#39FF7A; font-weight:700; font-size:13px;">${s.startLabel} to ${s.endLabel}</span>
+              <span style="color:#64748B; font-size:11px;">(${s.hours}h)</span>
+            </div>
+          `).join('');
+          noticeBox.innerHTML = `
+            <div style="color:#A1B0A6; font-size:13px; margin-bottom:10px;">
+              You have booked the following slots on <span style="color:#39FF7A; font-weight:700;">${date}</span>:
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px; max-width:360px; margin:0 auto;">
+              ${slotCards}
+            </div>
+          `;
+        }
       }
     } else if(bkState.start && bkState.end){
       timingStr = `from ${bkState.start} to ${bkState.end}`;
-      timeRangeStr = `${bkState.start} - ${bkState.end}`;
+      timeRangeHtml = `<span style="color:#FFFFFF;">${bkState.start} – ${bkState.end}</span>`;
+      if(noticeBox){
+        noticeBox.innerHTML = `You have booked this slot <span style="color:#39FF7A; font-weight:700;">${timingStr}</span> on <span style="color:#39FF7A; font-weight:700;">${date}</span>.`;
+      }
     }
-    if(timingEl) timingEl.textContent = timingStr;
-    if(timeRowEl) timeRowEl.textContent = timeRangeStr;
+    if(timingEl && (!noticeBox || bkSlots?.length <= 1)) timingEl.textContent = timingStr;
+    if(timeRowEl) timeRowEl.innerHTML = timeRangeHtml;
 
     const totalHours = bkTotalHours() || bkDurationHours || 1;
     const durLabel = `${totalHours} hour${totalHours > 1 ? 's total' : ' total'}`;
