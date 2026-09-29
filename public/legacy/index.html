@@ -60,6 +60,10 @@
   .btn{font-family:'Inter',sans-serif; font-weight:600; font-size:14px; padding:11px 24px; border-radius:100px; border:none; position:relative; overflow:hidden; display:inline-flex; align-items:center; gap:8px; transition:transform .15s ease-out, box-shadow .3s ease;}
   .btn-glow{background:linear-gradient(135deg,var(--emerald-light),var(--neon)); color:#04140D; box-shadow:0 0 24px rgba(57,255,122,0.4);}
   .btn-glow:hover{box-shadow:0 0 40px rgba(57,255,122,0.7);}
+  .btn:active, .btn-glow:active, #bkDirectConfirmYesBtn:active{transform:none;}
+  @media(max-width:900px), (hover:none), (pointer:coarse){
+    .magnetic, .btn.magnetic, .btn, #bkDirectConfirmYesBtn{transform:none !important;}
+  }
   .btn-glow[disabled], .btn[disabled], button:disabled{opacity:0.35 !important; box-shadow:none !important; cursor:not-allowed !important; filter:grayscale(0.8) !important; pointer-events:none !important;}
   .btn-outline{background:transparent; color:var(--white); border:1px solid var(--border);}
   .btn-outline:hover{border-color:var(--neon); color:var(--neon);}
@@ -2664,7 +2668,7 @@
           <div class="rate-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>OTP-secured booking</span></div>
           <div class="rate-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cancel up to 2 hrs before your slot</span></div>
         </div>
-        <button class="btn btn-glow magnetic" style="width:100%; justify-content:center; margin-top:24px;" onclick="document.getElementById('book').scrollIntoView()">Book by the hour →</button>
+        <button class="btn btn-glow" style="width:100%; justify-content:center; margin-top:24px;" onclick="document.getElementById('book').scrollIntoView()">Book by the hour →</button>
       </div>
 
       <div class="extended-card">
@@ -2718,7 +2722,7 @@
           <div class="bk-otp-msg" id="bkOtpMsg" style="margin-top:8px;"></div>
         </div>
         <div class="bk-note">Enter your name and mobile number to proceed directly with your booking. No OTP verification required.</div>
-        <button class="btn btn-glow magnetic" id="bkVerifyContinue" style="width:100%; justify-content:center; margin-top:18px;" onclick="bkContinueFromVerification()">Continue to date selection →</button>
+        <button class="btn btn-glow" id="bkVerifyContinue" style="width:100%; justify-content:center; margin-top:18px;" onclick="bkContinueFromVerification()">Continue to date selection →</button>
       </div>
 
       <!-- PANE 2 — "THE 24-HOUR TURF RUNWAY" -->
@@ -2892,7 +2896,7 @@
         <div class="bk-slot-tabs" id="bkSumSlots" role="tablist" aria-label="Slots"></div>
         <div class="bk-summary" id="bkSumActive" style="margin-bottom:14px;"></div>
         <div class="bk-summary" id="bkSumCombined"></div>
-        <button class="btn btn-glow magnetic" style="width:100%; justify-content:center;" onclick="bkGoStep(4)">Proceed to confirmation →</button>
+        <button class="btn btn-glow" style="width:100%; justify-content:center;" onclick="bkGoStep(4)">Proceed to confirmation →</button>
       </div>
 
       <!-- PANE 6 — UPI QR PAYMENT (Kept as fallback) -->
@@ -2974,7 +2978,7 @@
 
           <!-- Action Button: Submit Payment Confirmation Request -->
           <div style="max-width:420px; margin:0 auto;">
-            <button type="button" class="btn btn-glow magnetic" id="bkDirectConfirmYesBtn" style="width:100%; justify-content:center; padding:15px 24px; font-size:14px; font-weight:700; border-radius:30px; letter-spacing:0.02em;" onclick="bkExecuteDirectBooking()">
+            <button type="button" class="btn btn-glow" id="bkDirectConfirmYesBtn" style="width:100%; justify-content:center; padding:15px 24px; font-size:14px; font-weight:700; border-radius:30px; letter-spacing:0.02em;" onclick="bkExecuteDirectBooking()">
               Submit Payment Confirmation Request
             </button>
             <div id="bkConfirmationErrMsg" style="display:none; color:#FF5C5C; font-size:12.5px; margin-top:12px; font-weight:500; text-align:center;"></div>
@@ -3069,7 +3073,7 @@
 
     <div class="fm-field" style="margin-bottom:22px;"><label>Additional requirements</label><textarea id="extNotes" placeholder="Tournament size, number of teams, catering, anything else we should know..."></textarea></div>
 
-    <button class="btn btn-glow magnetic" id="extSubmitBtn" style="width:100%; justify-content:center;" onclick="submitExtended()">Submit Enquiry</button>
+    <button class="btn btn-glow" id="extSubmitBtn" style="width:100%; justify-content:center;" onclick="submitExtended()">Submit Enquiry</button>
   </div>
 </div>
 
@@ -3097,7 +3101,7 @@
     <p style="position:relative; z-index:1; font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:24px;">
       Our team will verify the transaction and contact you shortly to confirm your booking.
     </p>
-    <button class="btn btn-glow magnetic" type="button" style="position:relative; z-index:1; width:100%; justify-content:center; padding:14px 24px; font-weight:700; border-radius:30px;" onclick="bkFinishDirectBooking()">Done</button>
+    <button class="btn btn-glow" type="button" style="position:relative; z-index:1; width:100%; justify-content:center; padding:14px 24px; font-weight:700; border-radius:30px;" onclick="bkFinishDirectBooking()">Done</button>
   </div>
 </div>
 
@@ -3286,14 +3290,26 @@
     fpf.appendChild(p);
   }
 
+  const isTouchOrMobile = () => {
+    return window.innerWidth <= 900 || window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  };
+
   document.querySelectorAll('.magnetic').forEach(btn=>{
     btn.addEventListener('mousemove', (e)=>{
+      if (isTouchOrMobile()) return;
       const r = btn.getBoundingClientRect();
       const x = e.clientX - r.left - r.width/2, y = e.clientY - r.top - r.height/2;
       btn.style.transform = `translate(${x*0.25}px, ${y*0.35}px)`;
     });
-    btn.addEventListener('mouseleave', ()=>{ btn.style.transform = 'translate(0,0)'; });
+    const resetMagnetic = () => { btn.style.transform = 'translate(0,0)'; };
+    btn.addEventListener('mouseleave', resetMagnetic);
+    btn.addEventListener('touchend', resetMagnetic);
+    btn.addEventListener('touchcancel', resetMagnetic);
+    btn.addEventListener('pointerup', resetMagnetic);
+    btn.addEventListener('pointercancel', resetMagnetic);
+    btn.addEventListener('blur', resetMagnetic);
     btn.addEventListener('click', function(e){
+      resetMagnetic();
       if(btn.hasAttribute('disabled')) return;
       const r = btn.getBoundingClientRect();
       const rip = document.createElement('span');
@@ -5441,6 +5457,7 @@
     if(yesBtn){
       yesBtn.disabled = true;
       yesBtn.textContent = 'Submitting Request...';
+      yesBtn.style.transform = 'none';
     }
 
     const name = (document.getElementById('bkName')?.value || '').trim() || 'Player';
@@ -5495,6 +5512,7 @@
       if(yesBtn){
         yesBtn.disabled = false;
         yesBtn.textContent = 'Submit Payment Confirmation Request';
+        yesBtn.style.transform = 'none';
       }
     }
   }
