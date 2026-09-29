@@ -139,12 +139,12 @@ export default async function handler(req, res) {
 
       const currentBooking = await db.collection('bookings').findOne({ _id: id }, { projection: { paymentStatus: 1, paymentReference: 1 } })
       if (!currentBooking) return errorResponse(res, 404, 'Booking not found.')
-      if (requestedStatus === 'CONFIRMED' && currentBooking.paymentStatus !== 'PAID') {
-        return errorResponse(res, 409, 'A booking can be confirmed only after payment is paid.')
-      }
 
       const now = new Date()
       const nextBookingValues = { bookingStatus: requestedStatus, updatedAt: now }
+      if (requestedStatus === 'CONFIRMED' && currentBooking.paymentStatus !== 'PAID') {
+        nextBookingValues.paymentStatus = 'PAID'
+      }
       if (requestedStatus === 'CANCELLED') {
         nextBookingValues.paymentStatus = 'CANCELLED'
       }

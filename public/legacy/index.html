@@ -3817,9 +3817,13 @@
     } catch(e){}
   }
   function bkSaveDraft(){
+    const name = (document.getElementById('bkName')?.value || '').trim();
+    const mobile = bkVerifiedMobile || (document.getElementById('bkMobile')?.value || '').trim();
+    if(!name && !mobile && !bkState.date && (!bkSlots || bkSlots.length === 0)) return;
+
     const data = {
-      name: document.getElementById('bkName')?.value || '',
-      mobile: bkVerifiedMobile || document.getElementById('bkMobile')?.value || '',
+      name,
+      mobile,
       date: bkState.date ? bkIsoDate(bkState.date) : '',
       dateLabel: bkState.dateLabel || '',
       duration: bkTotalHours(),
@@ -5497,10 +5501,6 @@
       // Open the success popup modal
       openModal('bkDirectSuccessModal');
       fireConfetti('directSuccessConfettiCanvas');
-
-      // Pre-reset the underlying booking section so it is already back at step 1
-      bkResetBooking();
-      bkGoStep(1);
     } catch(err){
       console.error('Booking confirmation failed:', err);
       const errBox = document.getElementById('bkConfirmationErrMsg');

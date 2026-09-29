@@ -131,7 +131,7 @@ export default async function handler(req, res) {
       const activeBookings = bookings.filter((booking) => {
         if (currentDraftRef && booking.draftReference === currentDraftRef) return false
         if (booking.bookingStatus === 'CANCELLED' || booking.paymentStatus === 'CANCELLED') return false
-        return booking.bookingStatus === 'CONFIRMED' || booking.bookingStatus === 'COMPLETED' || booking.paymentStatus === 'PAID'
+        return booking.bookingStatus === 'PENDING' || booking.bookingStatus === 'CONFIRMED' || booking.bookingStatus === 'COMPLETED' || booking.paymentStatus === 'PAID'
       })
       const activeReferences = new Set(activeBookings.map((booking) => booking.paymentReference).filter(Boolean))
       const occupiedSlotKeys = [...new Set([
@@ -176,31 +176,6 @@ export default async function handler(req, res) {
         },
         { upsert: true, returnDocument: 'after' },
       )
-      await db.collection('bookings').createIndex(
-        { draftReference: 1 },
-        { unique: true, sparse: true, name: 'draft_reference_unique' },
-      )
-      await db.collection('bookings').updateOne(
-        { draftReference },
-        {
-          $set: {
-            draftReference,
-            name: bookingData.name,
-            mobile: bookingData.mobile,
-            date: bookingData.date,
-            time: bookingData.slots.map((slot) => `${slot.start} - ${slot.end}`).join(', ') || bookingData.start || '',
-            duration: bookingData.duration,
-            amount: bookingData.duration * 800,
-            slots: bookingData.slots,
-            slotKeys: draftSlotKeys(bookingData),
-            paymentStatus: 'PAYMENT_PENDING',
-            bookingStatus: 'PENDING',
-            updatedAt: now,
-          },
-          $setOnInsert: { createdAt: now },
-        },
-        { upsert: true },
-      )
       return res.status(200).json(draftResponse(draft))
     } catch (error) {
       console.error('booking draft persistence failed', error.message)
@@ -222,7 +197,7 @@ export default async function handler(req, res) {
       const existing = await db.collection('bookings').find({
         date: bookingData.date,
         slotKeys: { $in: slotKeys },
-        bookingStatus: { $in: ['CONFIRMED', 'COMPLETED'] },
+        bookingStatus: { $in: ['PENDING', 'CONFIRMED', 'COMPLETED'] },
         draftReference: { $ne: draftReference }
       }).toArray()
       if (existing.length > 0) {
@@ -243,11 +218,11 @@ export default async function handler(req, res) {
         amount,
         slots: bookingData.slots,
         slotKeys,
-        paymentStatus: 'PAY_AT_VENUE',
-        bookingStatus: 'CONFIRMED',
+        paymentStatus: 'PAYMENT_PENDING',
+        bookingStatus: 'PENDING',
         paymentMethod: 'DIRECT',
         source: 'online_direct',
-        notes: 'Confirmed directly without online payment. Team will contact player.',
+        notes: 'Submitted online. Pending admin confirmation.',
         updatedAt: now,
       }
 
@@ -261,11 +236,16 @@ export default async function handler(req, res) {
         { upsert: true }
       )
 
+      await db.collection('booking_drafts').updateOne(
+        { draftReference: ref },
+        { $set: { status: 'SUBMITTED', updatedAt: now } }
+      ).catch(() => {})
+
       return res.status(200).json({
         success: true,
         bookingId: ref,
         amount,
-        bookingStatus: 'CONFIRMED'
+        bookingStatus: 'PENDING'
       })
     } catch (error) {
       console.error('Direct booking confirmation failed:', error)
