@@ -111,10 +111,6 @@
   .btn-outline{background:transparent; border:1px solid var(--border); color:var(--white); width:100%;}
   /* Reduced button text */
   .btn{font-family:'Inter',sans-serif; font-weight:600; font-size:13px; padding:12px 20px; border-radius:11px; border:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:8px; transition:transform .15s ease, box-shadow .25s ease;}
-  .btn:active, .btn-glow:active{transform:none;}
-  @media(max-width:900px), (hover:none), (pointer:coarse){
-    .magnetic, .btn.magnetic, .btn{transform:none !important;}
-  }
   .btn-glow{background:linear-gradient(135deg,var(--emerald-light),var(--neon)); color:#04140D; box-shadow:0 0 22px rgba(57,255,122,0.35); width:100%;}
   .btn-glow:hover{box-shadow:0 0 32px rgba(57,255,122,0.55);}
   .btn-ghost{background:transparent; border:1px solid var(--border); color:var(--white);}
@@ -126,7 +122,9 @@
   #app.active{display:flex;}
   .sidebar{width:236px; flex-shrink:0; background:rgba(10,15,13,0.85); border-right:1px solid var(--border); backdrop-filter:blur(10px); display:flex; flex-direction:column; overflow:hidden; transition:width .3s cubic-bezier(.2,.8,.2,1); position:sticky; top:0; height:100vh; z-index:10;}
   .sidebar.collapsed{width:74px;}
-  .side-head{display:flex; align-items:center; gap:10px; padding:22px 20px; border-bottom:1px solid var(--border); white-space:nowrap; overflow:hidden;}
+  .side-head{display:flex; align-items:center; justify-content:center; padding:18px 16px; border-bottom:1px solid var(--border); white-space:nowrap; overflow:hidden;}
+  .side-head .admin-brand-wrap{display:flex; align-items:center; justify-content:center; width:100%; overflow:hidden;}
+  .side-head img, .side-head .admin-tagline-logo{display:block; margin:0 auto; max-width:170px; width:100%; height:auto; object-fit:contain; filter:drop-shadow(0 0 10px rgba(57,255,122,0.18));}
   .side-head .mark{width:30px;height:30px;border-radius:8px; background:linear-gradient(135deg,var(--emerald),var(--neon)); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
   /* Reduced sidebar brand text */
   .side-head span{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
@@ -141,7 +139,16 @@
   .nav-notice{width:6px; height:6px; margin-left:auto; border-radius:50%; background:var(--neon); box-shadow:0 0 7px var(--neon); flex-shrink:0;}
   .nav-divider{height:1px; flex-shrink:0; background:var(--border); margin:12px 8px 12px;}
   .side-foot{padding:16px 20px; border-top:1px solid var(--border); display:flex; align-items:center; gap:10px; white-space:nowrap; overflow:hidden;}
-  .side-foot .avatar{width:32px;height:32px;border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--emerald)); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0;}
+  .side-foot .avatar{width:34px;height:34px;border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--emerald)); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0;}
+  .side-foot .admin-profile{display:flex;align-items:center;gap:10px;width:100%;padding:6px 10px;border:1px solid rgba(57,255,122,0.18);border-radius:28px;background:rgba(255,255,255,0.025);box-sizing:border-box;}
+  .side-foot .admin-profile-avatar-wrap{width:34px;height:34px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:transparent;}
+  .side-foot .admin-profile-avatar{width:34px;height:34px;padding:0;border-radius:50%;object-fit:contain;display:block;flex-shrink:0;background:transparent !important;}
+  .side-foot .admin-profile-avatar.avatar{background:transparent !important;}
+  .sidebar.collapsed .side-foot{padding:14px 0; justify-content:center; display:flex; align-items:center;}
+  .sidebar.collapsed .side-foot .admin-profile{width:38px; height:38px; min-width:38px; max-width:38px; min-height:38px; max-height:38px; padding:0 !important; border-radius:50% !important; display:flex !important; justify-content:center !important; align-items:center !important; margin:0 auto !important; box-sizing:border-box !important; gap:0 !important; overflow:hidden !important; border:1px solid rgba(57,255,122,0.25) !important; background:rgba(255,255,255,0.025) !important;}
+  .sidebar.collapsed .side-foot .admin-profile-avatar-wrap{width:100% !important; height:100% !important; min-width:100% !important; max-width:100% !important; min-height:100% !important; max-height:100% !important; border-radius:50% !important; overflow:hidden !important; display:flex !important; align-items:center !important; justify-content:center !important; margin:0 !important; padding:0 !important; flex-shrink:0 !important; background:transparent !important;}
+  .sidebar.collapsed .side-foot .admin-profile-avatar, .sidebar.collapsed .side-foot .avatar{width:100% !important; height:100% !important; min-width:100% !important; min-height:100% !important; max-width:100% !important; max-height:100% !important; border-radius:50% !important; object-fit:cover !important; display:block !important; margin:0 !important; padding:0 !important; transform:none !important;}
+  .sidebar.collapsed .side-foot .admin-profile-name, .sidebar.collapsed .side-foot .admin-profile-email{display:none !important;}
   /* Reduced sidebar footer admin name */
   .side-foot span{font-size:12px;}
   .side-foot .role{color:var(--muted); font-size:10.5px; display:block;}
@@ -209,8 +216,30 @@
 
   /* toolbar */
   .toolbar{display:flex; align-items:center; gap:10px; margin-bottom:18px; flex-wrap:wrap;}
-  /* Reduced toolbar input text */
-  .toolbar input[type="text"]{background:var(--charcoal); border:1px solid var(--border); border-radius:10px; padding:9px 14px; color:var(--white); font-size:12.5px; min-width:200px; flex:1 1 200px; box-sizing:border-box;}
+  /* Reduced toolbar input text with search icon */
+  .toolbar input[type="text"]{
+    order:1;
+    background-color:var(--charcoal);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:9px 14px 9px 34px;
+    color:var(--white);
+    font-size:12.5px;
+    min-width:110px;
+    max-width:150px;
+    flex:0 1 150px;
+    box-sizing:border-box;
+    text-overflow:ellipsis;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238F9E97' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:11px center;
+    background-size:14px 14px;
+  }
+  .toolbar input[type="text"]:focus{
+    outline:none;
+    border-color:var(--neon);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2339ff7a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+  }
   /* Date filter — real-mobile fix */
   .date-wrap{position:relative; display:inline-flex; align-items:center; min-width:170px; max-width:100%; flex:0 1 auto; box-sizing:border-box; background:var(--charcoal); border:1px solid var(--border); border-radius:10px; color:var(--white); font-size:12.5px; cursor:pointer;}
   .date-wrap .date-ph{display:block; position:relative; z-index:1; left:0; top:0; transform:none; width:100%; box-sizing:border-box; color:var(--white); font-size:inherit; pointer-events:none; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:9px 40px 9px 12px; font-family:'Inter',sans-serif; line-height:1.2;}
@@ -331,14 +360,10 @@
     .login-card .login-brand-wrap img{max-width:220px; width:auto; height:auto; display:block;}
     .table-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch;}
     table{min-width:640px;}
-    .toolbar{gap:8px;}
-    .toolbar input[type="text"]{width:100%; min-width:0; flex:1 1 100%; font-size:12.8px !important; min-height:36px !important; max-height:36px !important; height:36px !important; line-height:1.2; padding-top:8px; padding-bottom:8px; box-sizing:border-box;}
-    .date-wrap{width:auto !important; flex:0 0 auto !important; min-width:120px !important; max-width:160px !important; min-height:32px !important; max-height:32px !important; height:32px !important; border-radius:10px; align-items:center !important; display:flex; overflow:hidden !important;}
-    .date-wrap .date-ph{display:flex; align-items:center; height:32px !important; max-height:32px !important; min-height:32px !important; padding:0 22px 0 10px !important; font-size:12px !important; line-height:32px !important; min-height:0;}
-    .date-wrap .date-filter{display:block; width:100%; height:32px !important; max-height:32px !important; min-height:32px !important; font-size:16px; border:none;}
-    .date-wrap::after{width:12px !important; height:12px !important; right:8px;}
-    .filt-pill{font-size:10.5px; padding:6px 10px;}
-    .toolbar .btn-ghost{font-size:11px; padding:8px 12px;}
+    .toolbar{display:flex !important; flex-wrap:wrap !important; align-items:center !important; gap:8px 6px !important;}
+    .toolbar input[type="text"]{order:1 !important; width:auto !important; min-width:100px !important; max-width:145px !important; flex:0 1 145px !important; font-size:11px !important; min-height:32px !important; max-height:32px !important; height:32px !important; padding:4px 8px 4px 28px !important; box-sizing:border-box; text-overflow:ellipsis !important; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238F9E97' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") !important; background-repeat:no-repeat !important; background-position:8px center !important; background-size:13px 13px !important;}
+    .toolbar input[type="text"]:focus{outline:none !important; border-color:var(--neon) !important; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2339ff7a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") !important;}
+    .toolbar .toolbar-export-btn, .toolbar .btn-ghost{order:2 !important; width:auto !important; min-width:74px !important; max-width:84px !important; height:32px !important; min-height:32px !important; max-height:32px !important; padding:0 10px !important; font-size:11px !important; font-weight:600 !important; border-radius:100px !important; display:inline-flex !important; align-items:center !important; justify-content:center !important; flex:0 0 auto !important; margin:0 !important;}
     .history-switch{width:100%;}
     .history-switch .filt-pill{flex:1; text-align:center; font-size:11px; padding:8px 6px;}
     /* Admin Calendar — keep mobile cells square and anchor the count badge */
@@ -393,7 +418,7 @@
         <label class="chk"><input type="checkbox" checked> Remember me</label>
         <a href="#" class="forgot" onclick="openPasswordReset(); return false;">Forgot password?</a>
       </div>
-      <button class="btn btn-glow" id="loginBtn" onclick="tryLogin()">Log in</button>
+      <button class="btn btn-glow magnetic" id="loginBtn" onclick="tryLogin()">Log in</button>
       <div class="login-success" id="loginSuccess"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg>Welcome back — loading dashboard...</div>
     </div>
   </div>
@@ -460,7 +485,7 @@
       <div class="nav-item" data-page="profile"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span class="nav-label">Profile</span></div>
       <div class="nav-item" onclick="logout()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg><span class="nav-label">Logout</span></div>
     </div>
-    <div class="side-foot"><div class="avatar" id="sidebarAvatar">A</div><div class="admin-meta"><span class="admin-name">Admin</span><span class="admin-email">ask@turfon24.com</span></div></div>
+    <div class="side-foot"><div class="admin-profile"><div class="admin-profile-avatar-wrap"><img class="admin-profile-avatar avatar" src="/logo-assets/LogoWater.png" alt="TurfOn24" /></div><span class="admin-profile-name" id="adminSidebarName">Admin</span></div></div>
   </div>
 
   <div class="main">
@@ -612,8 +637,7 @@
           <div class="fgroup"><label>Phone</label><input type="text" value="+91 98xxx xxxxx"></div>
           <div class="fgroup"><label>WhatsApp</label><input type="text" value="+91 98xxx xxxxx"></div>
           <div class="fgroup"><label>Email</label><input type="text" value="play@turfon24.com"></div>
-          <div class="fgroup"><label>UPI ID</label><input type="text" value="turfon24@okaxis"></div>
-          <div class="fgroup full"><label>Address</label><input type="text" value="Turf Grounds, Sector 12"></div>
+          <div class="fgroup"><label>Address</label><input type="text" value="Turf Grounds, Sector 12"></div>
         </div>
         <button class="btn btn-glow" style="width:auto; padding:12px 26px;" onclick="showToast('Settings saved')">Save changes</button>
       </div>
@@ -1359,30 +1383,17 @@
   }
 
   // ---- activity ----
-  const activity = [
-    ['New booking from Rahul Verma — Aug 27, 07:00 AM', '2 min ago'],
-    ['Payment verified for booking #BK1042', '18 min ago'],
-    ['Extended enquiry received from Priya Nair', '1 hr ago'],
-    ['Booking #BK1039 cancelled by customer', '3 hrs ago'],
-    ['New customer registered — Aditya Rao', '5 hrs ago'],
-  ];
-  document.getElementById('activityList').innerHTML = activity.map(a=>`<div class="activity-row"><span class="adot"></span>${a[0]}<span class="atime">${a[1]}</span></div>`).join('');
+  const activity = [];
+  document.getElementById('activityList').innerHTML = activity.length
+    ? activity.map(a=>`<div class="activity-row"><span class="adot"></span>${a[0]}<span class="atime">${a[1]}</span></div>`).join('')
+    : '<div class="tbl-empty">No recent activity</div>';
 
   // ---- bookings table ----
-  const bookings = [
-    ['BK1042','Rahul Verma','98765 43210','Aug 27','07:00 AM','2 hrs','₹1,400','verified','confirmed','2026-08-27'],
-    ['BK1041','Sana Sheikh','91234 56780','Aug 27','06:00 PM','1 hr','₹800','pending','pending','2026-08-27'],
-    ['BK1040','Aditya Rao','99887 66554','Aug 26','08:00 PM','3 hrs','₹2,100','verified','confirmed','2026-08-26'],
-    ['BK1039','Priya Nair','90011 22334','Aug 26','07:00 PM','2 hrs','₹1,400','pending','cancelled','2026-08-26'],
-    ['BK1038','Karan Mehta','98123 45670','Aug 25','06:00 AM','1 hr','₹800','verified','confirmed','2026-08-25'],
-    ['BK1037','Neha Joshi','97865 43120','Aug 25','09:00 PM','2 hrs','₹1,400','pending','pending','2026-08-25'],
-    ['BK1036','Vikram Singh','96543 21098','Aug 24','07:00 PM','4 hrs','₹2,800','verified','confirmed','2026-08-24'],
-    ['BK1035','Ayesha Khan','95432 10987','Aug 24','06:00 PM','1 hr','₹800','verified','confirmed','2026-08-24'],
-  ];
+  const bookings = [];
   const bstatusLbl = {confirmed:'Confirmed', pending:'Pending', cancelled:'Cancelled'};
   const pstatusLbl = {verified:'Verified', pending:'Pending'};
-  document.getElementById('bookingsBody').innerHTML = bookings.map(b=>`
-    <tr data-date="${b[9]}">
+  document.getElementById('bookingsBody').innerHTML = bookings.length ? bookings.map(b=>`
+    <tr data-date="${b[9]}" data-booking-id="${b[0]}">
       <td class="mono">${b[0]}</td><td>${b[1]}</td><td class="mono">${b[2]}</td><td>${b[3]}</td><td>${b[4]}</td><td>${b[5]}</td><td class="mono">${b[6]}</td>
       <td><span class="badge ${b[7]}">${pstatusLbl[b[7]]}</span></td>
       <td><span class="badge ${b[8]}">${bstatusLbl[b[8]]}</span></td>
@@ -1390,8 +1401,17 @@
         <button onclick='openBookingDetail(${JSON.stringify(b)})' title="View"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button>
         <button onclick="showToast('Booking ${b[0]} confirmed')" title="Confirm"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12.5l5 5L20 6"/></svg></button>
         <button class="danger" onclick="showToast('Booking ${b[0]} cancelled')" title="Cancel"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        <button class="danger" onclick="deleteBookingFromTable('${b[0]}')" title="Delete"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16"/><path d="M10 11v6M14 11v6"/><path d="M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12"/><path d="M9 7V4h6v3"/></svg></button>
       </div></td>
-    </tr>`).join('');
+    </tr>`).join('') : '<tr><td colspan="10" class="tbl-empty">No bookings found</td></tr>';
+
+  function deleteBookingFromTable(bookingId){
+    const confirmed = window.confirm('Delete this booking permanently from the dashboard?');
+    if (!confirmed) return;
+    const row = document.querySelector(`#bookingsBody tr[data-booking-id="${CSS.escape(String(bookingId))}"]`);
+    if (row) row.remove();
+    showToast(`Booking ${bookingId} deleted`);
+  }
 
   function openBookingDetail(b){
     document.getElementById('detailBody').innerHTML = `
@@ -1408,31 +1428,20 @@
   }
 
   // ---- enquiries table ----
-  const enquiries = [
-    ['EQ204','Priya Nair','90011 22334','Aug 29','Aug 30','2','Evening','New','2026-08-29','2026-08-30'],
-    ['EQ203','Corporate — Zynta Ltd','98700 11223','Sep 2','Sep 3','2','Morning','Contacted','2026-09-02','2026-09-03'],
-    ['EQ202','Manav Iyer','97654 33221','Sep 5','Sep 6','2','Night','Quotation Sent','2026-09-05','2026-09-06'],
-    ['EQ201','Weekend Warriors Club','96500 44332','Aug 22','Aug 24','3','Evening','Confirmed','2026-08-22','2026-08-24'],
-    ['EQ200','Riya Kapoor','95400 55667','Aug 15','Aug 16','2','Morning','Closed','2026-08-15','2026-08-16'],
-  ];
+  const enquiries = [];
   const enqBadge = {'New':'verified','Contacted':'pending','Quotation Sent':'pending','Confirmed':'confirmed','Closed':'cancelled'};
-  document.getElementById('enquiriesBody').innerHTML = enquiries.map(e=>`
+  document.getElementById('enquiriesBody').innerHTML = enquiries.length ? enquiries.map(e=>`
     <tr data-start="${e[8]}" data-end="${e[9]}"><td class="mono">${e[0]}</td><td>${e[1]}</td><td class="mono">${e[2]}</td><td>${e[3]}</td><td>${e[4]}</td><td>${e[5]}</td><td>${e[6]}</td>
     <td><span class="badge ${enqBadge[e[7]]}">${e[7]}</span></td>
     <td><div class="row-actions">
       <button title="View"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button>
       <button onclick="showToast('Calling ${e[1]}...')" title="Call"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.4.55 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .55 3.4 1 1 0 0 1-.25 1Z"/></svg></button>
-    </div></td></tr>`).join('');
+    </div></td></tr>`).join('') : '<tr><td colspan="9" class="tbl-empty">No enquiries found</td></tr>';
 
   // ---- WhatsApp enquiries table ----
-  const waEnquiries = [
-    ['Rahul Verma','98765 43210','rahul.v@example.com','Do you have a slot free this Saturday evening?','2 min ago','new','2026-08-27'],
-    ['Sana Sheikh','91234 56780','sana.s@example.com','Can I get a group discount for 10+ people?','1 hr ago','pending','2026-08-26'],
-    ['Aditya Rao','99887 66554','aditya.r@example.com','Is the turf covered in case of rain?','4 hrs ago','confirmed','2026-08-25'],
-    ['Priya Nair','90011 22334','priya.n@example.com','Looking to book for a corporate tournament.','Yesterday','cancelled','2026-08-24'],
-  ];
+  const waEnquiries = [];
   const waStatusLbl = {new:'New', pending:'Contacted', confirmed:'Resolved', cancelled:'Archived'};
-  document.getElementById('whatsappBody').innerHTML = waEnquiries.map(w=>`
+  document.getElementById('whatsappBody').innerHTML = waEnquiries.length ? waEnquiries.map(w=>`
     <tr data-date="${w[6]}"><td>${w[0]}</td><td class="mono">${w[1]}</td><td>${w[2]}</td><td style="white-space:normal; max-width:220px;">${w[3]}</td><td>${w[4]}</td>
     <td><span class="badge ${w[5]}">${waStatusLbl[w[5]]}</span></td>
     <td><div class="row-actions">
@@ -1440,23 +1449,18 @@
       <button onclick="showToast('Marked as contacted')" title="Mark as contacted"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12.5l5 5L20 6"/></svg></button>
       <button onclick="showToast('Opening reply...')" title="Reply"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.55L4 20l1.05-4.42A8.5 8.5 0 1 1 21 11.5Z"/></svg></button>
       <button class="danger" onclick="showToast('Enquiry archived')" title="Archive"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9M10 13h4"/></svg></button>
-    </div></td></tr>`).join('');
+    </div></td></tr>`).join('') : '<tr><td colspan="7" class="tbl-empty">No WhatsApp enquiries found</td></tr>';
 
   // ---- Chatbot conversations table ----
-  const chatConvos = [
-    ['Karan Mehta','98123 45670','karan.m@example.com','Pricing, Booking steps','10 min ago','new','2026-08-27'],
-    ['Neha Joshi','97865 43120','neha.j@example.com','Operating hours, OTP','3 hrs ago','new','2026-08-26'],
-    ['Vikram Singh','96543 21098','vikram.s@example.com','Multi-day booking, Location','Yesterday','contacted','2026-08-25'],
-    ['Ayesha Khan','95432 10987','ayesha.k@example.com','Payment methods','2 days ago','contacted','2026-08-24'],
-  ];
-  document.getElementById('chatbotBody').innerHTML = chatConvos.map(c=>`
+  const chatConvos = [];
+  document.getElementById('chatbotBody').innerHTML = chatConvos.length ? chatConvos.map(c=>`
     <tr data-date="${c[6]}"><td>${c[0]}</td><td class="mono">${c[1]}</td><td>${c[2]}</td><td style="white-space:normal; max-width:200px;">${c[3]}</td><td>${c[4]}</td>
     <td><span class="badge ${c[5]==='new'?'confirmed':'pending'}">${c[5]==='new'?'New':'Contacted'}</span></td>
     <td><div class="row-actions">
       <button onclick="showToast('Opening conversation...')" title="Continue"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v13H8l-4 4Z"/></svg></button>
       <button onclick="showToast('Marked as contacted')" title="Mark as contacted"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12.5l5 5L20 6"/></svg></button>
       <button onclick="showToast('Conversation exported')" title="Export"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></button>
-    </div></td></tr>`).join('');
+    </div></td></tr>`).join('') : '<tr><td colspan="7" class="tbl-empty">No chatbot conversations found</td></tr>';
 
   function formatDisplayDate(value){
     if(!value) return 'dd-mm-yyyy';
@@ -1519,33 +1523,23 @@
 
   // ---- customers table ----
   const customerHistory = {
-    hourly: [
-      ['Rahul Verma','98765 43210','2026-08-27','07:00 PM','2 hrs','₹1,400','Confirmed'],
-      ['Sana Sheikh','91234 56780','2026-08-27','06:00 PM','1 hr','₹800','Pending'],
-      ['Aditya Rao','99887 66554','2026-08-26','08:00 PM','3 hrs','₹2,100','Confirmed'],
-      ['Priya Nair','90011 22334','2026-08-26','07:00 PM','2 hrs','₹1,400','Cancelled'],
-      ['Karan Mehta','98123 45670','2026-08-25','06:00 AM','1 hr','₹800','Confirmed'],
-    ],
-    extended: [
-      ['Weekend Warriors Club','96500 44332','2026-08-22','2026-08-24','3 days','₹18,900','Confirmed'],
-      ['Corporate — Zynta Ltd','98700 11223','2026-09-02','2026-09-03','2 days','₹12,600','Contacted'],
-      ['Manav Iyer','97654 33221','2026-09-05','2026-09-06','2 days','₹12,600','Quotation Sent'],
-      ['Priya Nair','90011 22334','2026-08-29','2026-08-30','2 days','₹12,600','New'],
-    ],
+    hourly: [],
+    extended: [],
   };
   let activeHistoryType = 'hourly';
   const historyHead = document.getElementById('customerHistoryHead');
   const historyBody = document.getElementById('customerHistoryBody');
   const historyDate = document.getElementById('customerHistoryDate');
   function renderCustomerHistory(){
-    const rows = customerHistory[activeHistoryType];
+    const rows = customerHistory[activeHistoryType] || [];
     const selectedDate = historyDate.value;
     historyHead.innerHTML = activeHistoryType === 'hourly'
       ? '<tr><th>Customer</th><th>Mobile</th><th>Booking date</th><th>Time</th><th>Duration</th><th>Amount</th><th>Status</th></tr>'
       : '<tr><th>Customer</th><th>Mobile</th><th>Start date</th><th>End date</th><th>Duration</th><th>Amount</th><th>Status</th></tr>';
-    historyBody.innerHTML = rows.filter(row => !selectedDate || (activeHistoryType === 'hourly' ? row[2] === selectedDate : selectedDate >= row[2] && selectedDate <= row[3])).map(row=>`
-      <tr><td>${row[0]}</td><td class="mono">${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td><td>${row[4]}</td><td class="mono">${row[5]}</td><td><span class="badge ${row[6] === 'Confirmed' ? 'confirmed' : row[6] === 'Cancelled' ? 'cancelled' : 'pending'}">${row[6]}</span></td></tr>`).join('');
-    document.getElementById('customerHistoryCount').textContent = `Showing ${activeHistoryType} booking history${selectedDate ? ` for ${selectedDate}` : ''}`;
+    const filteredRows = rows.filter(row => !selectedDate || (activeHistoryType === 'hourly' ? row[2] === selectedDate : selectedDate >= row[2] && selectedDate <= row[3]));
+    historyBody.innerHTML = filteredRows.length ? filteredRows.map(row=>`
+      <tr><td>${row[0]}</td><td class="mono">${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td><td>${row[4]}</td><td class="mono">${row[5]}</td><td><span class="badge ${row[6] === 'Confirmed' ? 'confirmed' : row[6] === 'Cancelled' ? 'cancelled' : 'pending'}">${row[6]}</span></td></tr>`).join('') : '<tr><td colspan="7" class="tbl-empty">No customer history found</td></tr>';
+    document.getElementById('customerHistoryCount').textContent = `Showing ${filteredRows.length} ${activeHistoryType} booking history${selectedDate ? ` for ${selectedDate}` : ''}`;
   }
   document.querySelectorAll('[data-history]').forEach(button=>button.addEventListener('click', ()=>{
     activeHistoryType = button.dataset.history;
@@ -1613,23 +1607,13 @@
   }
 
   // ---- magnetic buttons (used sparingly, e.g. login) ----
-  const isTouchOrMobileAdmin = () => {
-    return window.innerWidth <= 900 || window.matchMedia('(hover: none), (pointer: coarse)').matches;
-  };
   document.querySelectorAll('.magnetic').forEach(btn=>{
     btn.addEventListener('mousemove', (e)=>{
-      if (isTouchOrMobileAdmin()) return;
       const r = btn.getBoundingClientRect();
       const x = e.clientX - r.left - r.width/2, y = e.clientY - r.top - r.height/2;
       btn.style.transform = `translate(${x*0.18}px, ${y*0.25}px)`;
     });
-    const resetAdminMagnetic = () => { btn.style.transform = 'translate(0,0)'; };
-    btn.addEventListener('mouseleave', resetAdminMagnetic);
-    btn.addEventListener('touchend', resetAdminMagnetic);
-    btn.addEventListener('touchcancel', resetAdminMagnetic);
-    btn.addEventListener('pointerup', resetAdminMagnetic);
-    btn.addEventListener('blur', resetAdminMagnetic);
-    btn.addEventListener('click', resetAdminMagnetic);
+    btn.addEventListener('mouseleave', ()=>{ btn.style.transform = 'translate(0,0)'; });
   });
 
   // ---- background grid ----

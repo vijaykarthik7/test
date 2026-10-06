@@ -29,3 +29,9 @@ dist-ssr
 .env*
 cookies.txt
 curl-cookies.txt
+
+# WhatsApp temporary/local files
+.wwebjs_cache/
+wa-qr.png
+server/_lib/whatsapp-client.js
+server/whatsapp-notify.js
