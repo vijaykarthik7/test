@@ -4424,7 +4424,18 @@
     });
   });
 
-  function openModal(id){ document.getElementById(id).classList.add('open'); }
+  function openModal(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    if(id === 'extendedModal'){
+      const submitButton = document.getElementById('extSubmitBtn');
+      if(submitButton){
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit Enquiry';
+      }
+    }
+    el.classList.add('open');
+  }
   function closeModal(id){
     const el = document.getElementById(id);
     if(!el) return;
@@ -4691,6 +4702,11 @@
     extendedPreferredTimes = [];
     document.querySelectorAll('#extTimePills .pill').forEach(pill => { pill.classList.remove('sel'); pill.setAttribute('aria-pressed', 'false'); });
     clearExtendedErrors();
+    const submitButton = document.getElementById('extSubmitBtn');
+    if(submitButton){
+      submitButton.disabled = false;
+      submitButton.textContent = 'Submit Enquiry';
+    }
     renderRangeCalendar();
   }
 
@@ -4773,7 +4789,10 @@
     const preferredTime = [...document.querySelectorAll('#extTimePills .pill.sel')].map(item => item.textContent.trim());
     const requirements = String(document.getElementById('extNotes').value || '').trim();
     if(!extendedRequestKey) extendedRequestKey = (window.crypto && window.crypto.randomUUID) ? window.crypto.randomUUID().replaceAll('-', '') : `ext-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-    if(submitButton) submitButton.disabled = true;
+    if(submitButton){
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting...';
+    }
     try {
       const response = await fetch('/api/extended-enquiries', {
         method: 'POST',
@@ -4790,11 +4809,17 @@
       });
       const result = await response.json().catch(() => ({}));
       if(!response.ok || !result.success) throw new Error(result.message || 'Unable to submit the enquiry.');
+      extendedRequestKey = null;
       closeModal('extendedModal');
       openModal('extendedSuccessModal');
+      if(typeof fireConfetti === 'function') fireConfetti('confettiCanvas');
     } catch(error) {
-      if(submitButton) submitButton.disabled = false;
       document.getElementById('rangeHint').textContent = error.message;
+    } finally {
+      if(submitButton){
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit Enquiry';
+      }
     }
   }
 
