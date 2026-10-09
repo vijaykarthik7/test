@@ -1,3 +1,5 @@
+import { resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import bookings from '../server/bookings.js'
 import chatbotConversations from '../server/chatbot-conversations.js'
 import extendedEnquiries from '../server/extended-enquiries.js'
@@ -50,6 +52,33 @@ const handlers = {
   'payment/status': paymentStatus,
 }
 
+const routeFiles = {
+  bookings: './server/bookings.js',
+  'chatbot-conversations': './server/chatbot-conversations.js',
+  'extended-enquiries': './server/extended-enquiries.js',
+  settings: './server/settings.js',
+  'whatsapp-enquiries': './server/whatsapp-enquiries.js',
+  'admin/bookings': './server/admin/bookings.js',
+  'admin/chatbot-conversations': './server/admin/chatbot-conversations.js',
+  'admin/customers': './server/admin/customers.js',
+  'admin/dashboard': './server/admin/dashboard.js',
+  'admin/diagnose': './server/admin/diagnose.js',
+  'admin/extended-enquiries': './server/admin/extended-enquiries.js',
+  'admin/forgot-password': './server/admin/forgot-password.js',
+  'admin/login': './server/admin/login.js',
+  'admin/logout': './server/admin/logout.js',
+  'admin/payment-sessions': './server/admin/payment-sessions.js',
+  'admin/profile': './server/admin/profile.js',
+  'admin/reports': './server/admin/reports.js',
+  'admin/reset-password': './server/admin/reset-password.js',
+  'admin/session': './server/admin/session.js',
+  'admin/settings': './server/admin/settings.js',
+  'admin/verify-reset-token': './server/admin/verify-reset-token.js',
+  'admin/whatsapp-enquiries': './server/admin/whatsapp-enquiries.js',
+  'payment/create': './server/payment/create.js',
+  'payment/status': './server/payment/status.js',
+}
+
 function getRoute(req) {
   const configuredRoute = req.query?.route
   if (typeof configuredRoute === 'string' && configuredRoute) {
@@ -62,9 +91,9 @@ function getRoute(req) {
 
 export default async function handler(req, res) {
   const route = getRoute(req)
-  const routeHandler = handlers[route]
+  let routeHandler = handlers[route]
 
-  if (!routeHandler) {
+  if (!routeHandler && !routeFiles[route]) {
     return res.status(404).json({ message: 'Not found' })
   }
 
@@ -76,6 +105,16 @@ export default async function handler(req, res) {
         success: false,
         message: 'Invalid JSON body.',
       })
+    }
+  }
+
+  if (process.env.NODE_ENV !== 'production' && routeFiles[route]) {
+    try {
+      const moduleUrl = pathToFileURL(resolve(process.cwd(), routeFiles[route])).href + '?t=' + Date.now()
+      const mod = await import(moduleUrl)
+      if (mod.default) routeHandler = mod.default
+    } catch (error) {
+      console.warn('Dev hot-reload failed for route:', route, error.message)
     }
   }
 

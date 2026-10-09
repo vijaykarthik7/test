@@ -7105,7 +7105,14 @@
     const ring = document.getElementById('commClickRing');
     ring.classList.remove('go'); void ring.offsetWidth; ring.classList.add('go');
     commPanel.classList.toggle('open');
-    if(commPanel.classList.contains('open')) commShowChoices();
+    if(commPanel.classList.contains('open')){
+      commShowChoices();
+    } else {
+      const row = document.getElementById('chatInputRow');
+      if(row) row.remove();
+      chatUser = null;
+      chatConversationId = null;
+    }
   }
 
   function commSetHeaderSimple(title){
@@ -7127,6 +7134,10 @@
   }
 
   function commShowChoices(){
+    const row = document.getElementById('chatInputRow');
+    if(row) row.remove();
+    chatUser = null;
+    chatConversationId = null;
     commSetHeaderSimple('Get in touch');
     commBody.innerHTML = `
       <div class="comm-choice" onclick="commShowWA()">
@@ -7140,6 +7151,8 @@
   }
 
   function commShowWA(){
+    const row = document.getElementById('chatInputRow');
+    if(row) row.remove();
     commSetHeaderSimple('WhatsApp enquiry');
     commBody.innerHTML = `
       <div class="fm-field"><label>Name</label><input type="text" id="waName"></div>
@@ -7194,17 +7207,44 @@
 
   let chatUser = null;
   let chatConversationId = null;
+
+  function escapeCommHtml(str){
+    return String(str || '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  }
+
   async function saveChatMessage(message){
-    const response = await fetch('/api/chatbot-conversations', {
+    let payload = {
+      name: chatUser.name,
+      mobile: chatUser.phone,
+      email: chatUser.email,
+      message,
+      conversationId: chatConversationId || undefined
+    };
+    let response = await fetch('/api/chatbot-conversations', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({name:chatUser.name, mobile:chatUser.phone, email:chatUser.email, message, conversationId:chatConversationId || undefined})
+      body: JSON.stringify(payload)
     });
-    const result = await response.json().catch(()=>({}));
+    let result = await response.json().catch(()=>({}));
+    if(!response.ok && response.status === 404 && chatConversationId){
+      chatConversationId = null;
+      delete payload.conversationId;
+      response = await fetch('/api/chatbot-conversations', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+      });
+      result = await response.json().catch(()=>({}));
+    }
     if(!response.ok || !result.success) throw new Error(result.message || 'Unable to save the conversation.');
     chatConversationId = result.conversationId || chatConversationId;
   }
+
   function commShowChatIntake(){
+    const row = document.getElementById('chatInputRow');
+    if(row) row.remove();
+    chatUser = null;
+    chatConversationId = null;
     commSetHeaderSimple('Chat with us');
     commBody.innerHTML = `
       <p style="font-size:12.5px; color:var(--muted); margin-bottom:16px;">Quick details before we start — we'll only use these to follow up if needed.</p>
@@ -7230,10 +7270,11 @@
     const email = document.getElementById('chEmail').value.trim();
     if(!name || !phone || !email) return;
     chatUser = {name, phone, email};
+    chatConversationId = null;
     try {
-      await saveChatMessage('Conversation started')
+      await saveChatMessage('Conversation started');
     } catch(error) {
-      commBody.innerHTML = `<p class="comm-error">${String(error.message || 'Unable to save the conversation.').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]))}</p>`;
+      commBody.innerHTML = `<p class="comm-error">${escapeCommHtml(error.message || 'Unable to save the conversation.')}</p>`;
       return;
     }
     commSetHeaderBrand();
@@ -7250,11 +7291,13 @@
       p.onclick = ()=> commAsk(q);
       quick.appendChild(p);
     });
+    const existingInputRow = document.getElementById('chatInputRow');
+    if(existingInputRow) existingInputRow.remove();
     const inputRow = document.createElement('div');
     inputRow.className = 'chat-input-row';
-    inputRow.innerHTML = `<input type="text" id="chatCustomInput" placeholder="Type your question..."><button onclick="commAskCustom()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 14 0M13 6l6 6-6 6"/></svg></button>`;
-    commPanel.appendChild(inputRow);
     inputRow.id = 'chatInputRow';
+    inputRow.innerHTML = `<input type="text" id="chatCustomInput" placeholder="Type your question..." onkeydown="if(event.key==='Enter') commAskCustom()"><button onclick="commAskCustom()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 14 0M13 6l6 6-6 6"/></svg></button>`;
+    commPanel.appendChild(inputRow);
   }
 
   function commReplyWithDelay(thread, text){
@@ -7284,8 +7327,9 @@
   }
 
   async function commAsk(q){
-    try { await saveChatMessage(q) } catch(error) { return }
+    saveChatMessage(q).catch(err => console.warn('Chatbot message save warning:', err));
     const thread = document.getElementById('chatThread');
+    if(!thread) return;
     const user = document.createElement('div');
     user.className = 'chat-msg user';
     user.textContent = q;
@@ -7293,18 +7337,21 @@
     thread.scrollTop = thread.scrollHeight;
     commReplyWithDelay(thread, commResponseMarkup(q));
   }
+
   async function commAskCustom(){
     const input = document.getElementById('chatCustomInput');
+    if(!input) return;
     const q = input.value.trim();
     if(!q) return;
-    try { await saveChatMessage(q) } catch(error) { return }
+    input.value = '';
+    saveChatMessage(q).catch(err => console.warn('Chatbot custom message save warning:', err));
     const thread = document.getElementById('chatThread');
+    if(!thread) return;
     const user = document.createElement('div');
     user.className = 'chat-msg user';
     user.textContent = q;
     thread.appendChild(user);
     thread.scrollTop = thread.scrollHeight;
-    input.value = '';
     commReplyWithDelay(thread, "Thanks for your question — I've noted it and our team will follow up with you directly. Meanwhile, try one of the quick questions above.");
   }
 
@@ -7320,13 +7367,6 @@
     document.querySelector('.mobile-menu-btn').setAttribute('aria-expanded', 'false');
   }));
 
-  // clean up the injected chat input row when navigating back to choices
-  const _origShowChoices = commShowChoices;
-  commShowChoices = function(){
-    const row = document.getElementById('chatInputRow');
-    if(row) row.remove();
-    _origShowChoices();
-  };
 </script>
 
 <script>
